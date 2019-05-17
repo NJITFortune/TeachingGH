@@ -397,8 +397,21 @@ revsylsong = revsylsong[seq(to = 1, by = -1, length.out = length(revsylsong))]
 
 Now do the same for the rest of the syllables, adding them to the new variable...
 
+*We use the temporary variable **ra** to do the reversing*
+
+```{r}
+for (l in seq(2, length(syllable), 1)) {
+  
+  ra = syllable[length(syllable)]
+  revsylsong = append(revsylsong, unlist(nop[[l]]))
+  revsylsong = append(revsylsong, unlist(revsylsong[seq(to = 1, by = -1, length.out =      length(revsylsong))]))
+  
+}
+```
+
+and don't forget about the time data...
+
 ```{r}
 
 ```
-
 
