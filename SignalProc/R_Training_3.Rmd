@@ -120,17 +120,13 @@ thresh = 900
 
 For clicking, we use the command **locator()** and specify how many clicks we are going to make, which is 1 in this case:
 
-```{r}
 thresh = locator(1)
 
-```
- 
+
 If we used **locator()**, then **thresh** will have two values, the x-value and the y-value of the click. We only want the y-value, which is in the second position, and hence we only want
 **thresh[2]**. We can do the following:
 
-```{r}
 thresh = thresh[2]
-```
 
 Let's replot with a line at the guessed threshold just to check. You might have to redo this section over and over again with different values for **thresh** until we get a value that we think will suffice.
 
@@ -404,7 +400,7 @@ for (l in seq(2, length(syllable), 1)) {
   
   ra = unlist(syllable[[l]])
   revsylsong = append(revsylsong, unlist(nop[[l]]))
-  revsylsong = append(revsylsong, unlist(revsylsong[seq(to = 1, by = -1, length.out =      length(revsylsong))]))
+  revsylsong = append(revsylsong, unlist(ra[seq(to = 1, by = -1, length.out = length(revsylsong))]))
   
 }
 ```
@@ -415,7 +411,7 @@ and don't forget about the time data...
 revsyltim = seq(1/Fs, length(revsylsong)/Fs, 1/Fs)
 ```
 
-Now we can make the same plots as last time: 
+Now we can make the same plots as last time, including spectrograms: 
 
 ```{r}
 p1 = ggplot() + 
@@ -431,3 +427,19 @@ p2 = ggplot() +
 grid.arrange(p1, p2, nrow = 2)
 ```
 
+We can save the file as a .wav using the same process as in the last excercise. 
+
+```{r}
+savewav(revsylsong, FS, "revsylsong.wav")
+```
+
+With these tools you can make a wide range of arbitrary stimuli from your recordings of animal signals. These are powerful tolls for sensory electrophysiology. 
+
+###Practice:Try to redo this exercise with the data in wcs.wav. 
+#Exercise 12: Spikes 
+
+In this exercise we will take a recording of a neural activity (spikes!) and turn it into data that we can start to analyze in useful ways. 
+
+I have provided two sample files that contain some nice neural activity. They are very different from each other. 
+
+Read the first file, make the time data, and plot (easy by now). 
