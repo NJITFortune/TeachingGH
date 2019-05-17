@@ -1,4 +1,4 @@
-
+#function requires seeWave and TuneR 
 sepsyll = function(wave_file, Fs, sms, thresh) {
   
   #make formal class for storage of individual syllable data including: number, sample rate, frequency data, 
