@@ -9,7 +9,11 @@ Lets load our data. Remember to load any necessary libraries before you begin.
 
 ```{r}
 library(seewave)
+library(tuneR)
+library(ggplot2)
+library(gridExtra)
 zf_data = readWave('zfinch.wav')
+zfFs = zf_data@samp.rate
 tim = seq(1/zfFs, length(zf_data@left)/zfFs, 1/zfFs)
 ```
 
@@ -70,32 +74,23 @@ mhz = mhz*1000
 Time to plot. First the original signal...
 
 ```{r}
-plot(tim, zf_data@left, 
-     main = "Zebra Finch Data", 
-     col = "Blue", type = "l", 
-     xlab = "Time" , 
-     ylab = "", 
-     yaxt = "none", 
-     ylim = c(0,250))
-axis(2, seq(27, 227,100))
+zf_data_plot = data.frame(tim, zf_data@left)
+
+ggplot(zf_data_plot, aes(x = tim, y = zf_data.left)) + 
+  geom_line(color = "Blue") +
+  scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
+  scale_x_continuous(name = "Time")
+
 ```
 
 ...and the same signal after filtering.
 
 ```{r}
-plot(tim, mhz, 
-     type = "l", 
-     col = "Green", 
-     yaxt = "n", 
-     ylab = "", 
-     xaxt = "n", 
-     xlab = "")
-par(new = TRUE)
-plot(tim, mrz, 
-     type = "l", 
-     col = "Red", 
-     ylab = "", 
-     xlab = "Time")
+ggplot() +
+  geom_line(aes(x = tim, y = mhz), color = "Green") +
+  geom_line(aes(x = tim, y = mrz), color = "Red") +
+  ylab("Time") +
+  xlab("Frequency")
 ```
 
 
@@ -104,16 +99,14 @@ plot(tim, mrz,
 
 Animals often produce signals that are composed of multiple parts. One strategy to understand the signal is to divide it into syllables. That is what we will do here - use an amplitude threshold to separate each part into distinct syllables. 
 
-We start by replotting the same data (**mrz**) from the last system, but the **y axis** will be on a log scale. This is acheived using the parameter **log = "y"** which plots with the X axis normal and Y axis on a log scale. You can make the same change to the x-axis with **log = "x"**. 
+We start by replotting the same data (**mrz**) from the last system, but the **y axis** will be on a log scale. This is acheived using the parameter **scale_y_log10()** which plots with the X axis normal and Y axis on a log scale. 
 
 ```{r}
 
-plot(tim, mrz, 
-     type = "l", 
-     log = "y", 
-     col = "Red", 
-     ylab = "", 
-     xlab = "Time")
+ggplot() +
+  geom_line(aes(x = tim, y = mrz, color = "Red")) +
+  scale_y_log10() +
+  theme(legend.position = "none")
 
 ```
 
@@ -141,18 +134,15 @@ thresh = thresh[2]
 
 Let's replot with a line at the guessed threshold just to check. You might have to redo this section over and over again with different values for **thresh** until we get a value that we think will suffice.
 
-**y** will be the amplitude of the threshold
+And now we plot the line of our threshold :
 
 ```{r}
-y = thresh
-```
-
-And now we plot the line with the **abline()** command using **h = ** to indicate a hoizontal line:
-
-```{r}
-plot(tim, mrz, type = "l", log = "y", col = "Red", ylab = "", xlab = "Time")
-par(new = TRUE)
-abline(h = y, col = "Blue")
+ggplot() +
+  geom_line(aes(x = tim, y = mrz, color = "Red")) +
+  geom_line(aes(x = tim, y = thresh), color = "Blue") +
+  scale_y_log10() +
+  theme(legend.position = "none")
+  
 ```
 
 Now we use the **which()** command to get the part of the signal above the threshold. The variable **syls** will get the index numbers for each value of **mrz** that is larger than **thresh**:
@@ -174,23 +164,15 @@ Let's look at **zz**:
 Replot the original signal and then plot **zz**.
 
 ```{r}
-par(mfrow = c(2,1))
-plot(tim, zf_data@left, 
-     main = "Zebra Finch Data", 
-     col = "Blue", 
-     type = "l", 
-     xlab = "Time" , 
-     ylab = "", 
-     yaxt = "none", 
-     ylim = c(0,250))
-axis(2, seq(27, 227,100))
 
-plot(tim, zz, 
-     col = "Red", 
-     type = "l", 
-     xlab = "Time" , 
-     ylab = "", 
-     yaxt = "none")
+grid.arrange(ggplot(zf_data_plot, aes(x = tim, y = zf_data.left)) + 
+               geom_line(color = "Blue") +
+               scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
+               scale_x_continuous(name = "Time"),
+             ggplot() +
+               geom_line(aes(x = tim, y = zz, color = "Red")) +
+               theme(legend.position = "none"), 
+             nrow = 2)
 
 ```
 
@@ -203,23 +185,15 @@ zz[syls] = 1
 Now lets replot **zz**:
 
 ```{r}
-par(mfrow = c(2,1))
-plot(tim, zf_data@left, 
-     main = "Zebra Finch Data", 
-     col = "Blue", 
-     type = "l", 
-     xlab = "Time" , 
-     ylab = "", 
-     yaxt = "none", 
-     ylim = c(0,250))
-axis(2, seq(27, 227,100))
+grid.arrange(ggplot(zf_data_plot, aes(x = tim, y = zf_data.left)) + 
+               geom_line(color = "Blue") +
+               scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
+               scale_x_continuous(name = "Time"),
+             ggplot() +
+               geom_line(aes(x = tim, y = zz, color = "Red")) +
+               theme(legend.position = "none"), 
+             nrow = 2)
 
-plot(tim, zz, 
-     col = "Red", 
-     type = "l", 
-     xlab = "Time" , 
-     ylab = "", 
-     yaxt = "none")
 ```
 
 
@@ -231,14 +205,14 @@ Cool - these blocks roughly align with the syllables... but what we need are the
 
 ```{r}
 yy = diff(zz)
+yy_tim = tim[1:length(tim)-1]
 ```
 
 Now let's plot this. Starts are marked by **1** and ends are marked by **-1**.
 
 ```{r}
-plot(tim[1:length(tim)-1], yy, 
-     type = "l", 
-     col = "Blue")
+ggplot() +
+  geom_line(aes(x = yy_tim, y = yy), color = "Blue")
 ```
  
 
@@ -299,14 +273,18 @@ The procedure is almost the same as for the syllables as above. What is differen
 
 We use a loop for each of the ends (which is the start of each silence).
 
-To do this, make a list of zeros with the length of the interval and get the length of the interval by getting the difference between the end of the silence, which is the 'start' of the next syllable, and the start of the silence, which is the 'end' of the previous syllable. Complicated!?! NOt really!
+To do this, make a list of zeros with the length of the interval and get the length of the interval by getting the difference between the end of the silence, which is the 'start' of the next syllable, and the start of the silence, which is the 'end' of the previous syllable. Complicated!?! Not really!
 
 ```{r}
-
+nop = c()
+noptimmy = c()
+noptimm = c()
+ 
 for (j in seq(2,length(ends))) {
   
-  nop[[j]] = list(rep(0, times = starts[j] - ends[j-1]))
-  noptimmy = tim[ends[j-1]:starts[j]]
+  nop[[j]] = list(rep(127, times = starts[j] - ends[j-1]))
+  noptimmy[[j]] = tim[ends[j-1]:starts[j]]
+  noptimm[[j]] = seq(1/Fs, (1 + ends[j] - starts[j])/Fs, 1/Fs)
   
 }
 ```
@@ -338,13 +316,68 @@ How long (duration) is syllable{7}?
 
 # Exercise 10: Make a NEW song with the syllable order reversed
 
+Here we are going to take each syllable, and instead of the normal order of ABCDEFG we will make the order GFEDCBA. Easy!
 
+Here we are making a new variable, **revordersong** and we are putting the last syllable in there.
 
+```{r}
+revordersong = syllable[length(syllable)]
+revordersong = unlist(revordersong)
 
+```
 
+Now we will cycle though each syllable from the second to last to the first (we already have the last syllable from the above line.
 
+The variables in the brackets will be concatenated. So [ revordersong nop syllable ] will make the previously defined **revordersong** followed by the silent period, which is then followed by the next syllable. 
 
+```{r}
+for (k in seq(length(syllable)-1, 1, -1)) {
+  
+  revordersong = append(revordersong, unlist(nop[[k + 1]]))
+  revordersong = append(revordersong, unlist(syllable[[k]]))
+  
+}
 
+```
+
+This is nice to add - a time base for this new signal. We've seen this many times by now.
+
+```{r}
+revtim = seq(1/Fs, length(revordersong)/Fs, 1/Fs)
+```
+
+```{r}
+p1 = ggplot() + 
+  geom_line(aes(x = tim, y = zf_data@left), color = "Blue") +
+  scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
+  scale_x_continuous(name = "Time")
+
+p2 = ggplot() +
+  geom_line(aes(x = revtim, y = revordersong), color = "Red") +
+  scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
+  scale_x_continuous(name = "Time")
+
+grid.arrange(p1, p2, nrow = 2)
+```
+
+or we can show the spectra...
+
+the orininal signal: 
+
+```{r}
+spectro(zf_data, Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -20, 1), scale = FALSE)
+```
+
+reverse signal: 
+
+```{r}
+spectro(revordersong, Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -20, 1), scale = FALSE)
+```
+
+Save the data to a wave file. You can then use Audacity to listen to it. 
+```{r}
+savewav(revordersong, Fs, "revordersong.wav")
+```
 
 
 
