@@ -386,7 +386,7 @@ This is nearly identical to the previous excerise, but now the order is correct 
 Take the first syllable and put it in our new variable **revsylsong**...
 
 ```{r}
-revsylsong = syllable[length(syllable)]
+revsylsong = unlist(syllable[length(syllable)])
 ```
 
 Now reverse it -- we saw how to do this in a previous excerise...
@@ -402,7 +402,7 @@ Now do the same for the rest of the syllables, adding them to the new variable..
 ```{r}
 for (l in seq(2, length(syllable), 1)) {
   
-  ra = syllable[length(syllable)]
+  ra = unlist(syllable[[l]])
   revsylsong = append(revsylsong, unlist(nop[[l]]))
   revsylsong = append(revsylsong, unlist(revsylsong[seq(to = 1, by = -1, length.out =      length(revsylsong))]))
   
@@ -412,6 +412,22 @@ for (l in seq(2, length(syllable), 1)) {
 and don't forget about the time data...
 
 ```{r}
+revsyltim = seq(1/Fs, length(revsylsong)/Fs, 1/Fs)
+```
 
+Now we can make the same plots as last time: 
+
+```{r}
+p1 = ggplot() + 
+  geom_line(aes(x = tim, y = zf_data@left), color = "Blue") +
+  scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
+  scale_x_continuous(name = "Time")
+
+p2 = ggplot() +
+  geom_line(aes(x = revsyltim, y = revsylsong), color = "Red") +
+  scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
+  scale_x_continuous(name = "Time")
+
+grid.arrange(p1, p2, nrow = 2)
 ```
 
