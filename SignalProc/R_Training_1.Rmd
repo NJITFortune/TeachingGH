@@ -1,0 +1,242 @@
+---
+title: "R Training I"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+# Exercise 1: Make a sinewave
+
+**Fs** is the sample rate. 
+
+Most audio systems use a sample rate of 44100 Hz. 
+
+The highest frequencies that humans can hear are typically 
+in the range of 12000 to 17000 Hz. Here I chose 20 kHz. 
+You can change this to see the effect of sample rate.
+
+```{r}
+Fs = 20000
+```
+
+The interval **intvl** is the time for a single cycle at the 
+sample rate. 
+
+For instance, 1 Hz would be 1 second, 2 Hz 
+would be 0.5 seconds, 10 Hz would be 0.1 seconds, and 20 Hz 
+would be 0.05 seconds.
+
+```{r}
+intvl = 1/Fs 
+```
+
+Now we will make a time series called **tim** using the **seq()** function.
+
+You get to choose the duration in seconds --- here I show 2 seconds **secs**. 
+
+This will be the duration of the sinewave.
+
+### Syntax 
+There are three parts in seq() - seq(a, c, b) 
+
+1. a is the time of the first sample. We can't sample at time zero --- the first sample will occur at a time determined by the sample rate. 
+
+2. b is the interval for every other sample starting after the first. 
+
+3. c is the final value, in seconds.
+
+```{r}
+secs = 2 
+tim = seq(intvl, secs, intvl)
+```
+
+Now we make the sinewave using the **sin** command. You choose the frequency **freq** --- which is set to 2 Hz here. **pi** is literally the number Pi (3.1415926...).
+
+```{r}
+freq = 2 
+
+wav = sin(tim*2*pi*freq)
+```
+
+Now we can plot. 
+**xlab** and **ylab** set the x and y axis labels respectively 
+**col** specifies line color 
+**type** specifies the type of plot, in this case "l" for line 
+
+#### Figure A
+
+```{r}
+plot(tim, wav, xlab = 'Time', ylab = 'Sine Wave', col = "Red", type = "l")
+
+```
+
+### EXERCISE 1.1 : Learn about the role of sample rate
+
+Try changing the sample rate relative to the frequency.
+
+Here is a suggestion: Fs = 8; freq = 5;
+
+Then you can increase the sample rate to 10, 15, 20, 50, and 100.
+
+# Excercise 2: Add two sinewaves 
+
+For this exercise, the two sinewaves need to have the same duration.
+As above, we need a sample rate, and a time sequence.
+
+```{r}
+Fs = 20000
+intvl = 1/Fs
+secs = 2
+tim = seq(intvl, secs, intvl)
+```
+
+We will make two signals at two different frequencies. 
+
+Each signal can have its own amplitude - basically we can multiply 
+by any value we want. Obviously, if we multiply by 0, we will get no 
+signal, and 0.5, we'll get 1/2 amplitude. 1 will be the original amplitude. 
+
+In the example here, we have 4 Hz difference in frequencies, and the second signal 
+is 1/2 the amplitude of the first
+
+```{r}
+freq1 = 1000
+freq2 = 1004
+
+amp1 = 1
+amp2 = 0.5
+```
+
+Make two sine waves
+
+```{r}
+wave1 = sin(tim*2*pi*freq1)*amp1
+wave2 = sin(tim*2*pi*freq2)*amp2
+```
+
+Now add them together and plot the result
+
+```{r}
+addwave = wave1 + wave2
+
+plot(tim, addwave, xlab = 'Time', ylab = 'Sine Wave', col = "Blue", type = "l")
+```
+
+### Excercise 2.1: Learn about interactions between sinewaves
+Play around by changing freq2 and amp2.
+Try freq2 of 1001, 1002, 1010.
+Try amp2 of 1, 0.1, 1.5.
+Plot the results using the plot command.
+Also plot using the sonogram command.
+
+# Excercise 3: Make Sonograms --- artificial signal
+
+We can make a sonogram of any signal to learn more about its spectral and temporal characteristics.
+
+R does not contain a native function to plot sonograms. In order to plot them we need to install a package (remember **#** comments out code, so don't forget to remove it here) **seewave** and import the library.
+
+```{r}
+#install.packages("seewave")
+
+library(seewave)
+```
+
+We begin with the signal that we used above, except with different frequencies. The frequencies are further apart: **freq1** = 1000 and **freq2** = 4200.
+
+```{r}
+Fs = 20000
+intvl = 1/Fs
+secs = 2
+tim = seq(intvl, secs, intvl)
+freq1 = 1000
+freq3 = 4200
+amp1 = 1
+amp2 = 0.5
+wave1 = sin(tim*2*pi*freq1) * amp1
+wave3 = sin(tim*2*pi*freq3) * amp2
+addwave2 = wave1 + wave3
+```
+
+Now we make a sonogram!
+The critical variable is fft which is specified as **wl** --- this is the length, in samples, over which the frequency will be estimate using the Fourier transform. The longer the length, the greater precision of the frequency estimate. fft should always be a multiple of 2.
+
+```{r}
+spectro(addwave2, Fs, wl = 1024, palette = reverse.gray.colors.1, collevels = seq(-200, 0, 1), scale = FALSE) 
+```
+
+
+Bigger values for **nfft** lead to better frequency resolution but worse
+time resolution. Smaller values for nfft have worse frequency resolution but better temporal resolution. The artificial signal we made does not change over time, so we can easily use larger values for **nfft**.
+
+### EXERCISE 3.1: Learn about the role of fft window size
+
+Try **nfft** = 512, 1024, 2048, and 8096 (**nfft** should be multiples of 2)
+
+# Exercise 4: Make Sonograms - natural signal
+
+We can make a sonogram on any signal.
+
+Natural signal - we have provided two example bird songs.
+
+One is a White-crowned sparrow (*Zonotrichia leucophrys*)
+
+The other is a Zebra finch (*Taeniopygia guttata*)
+
+In order to read wave files in R we will need to install another package **tuneR** (again don't forget to un-comment the install function) and then read the files using the **readWave()** function. 
+The recording is in xxData, and the sample rate is in xxFs
+
+
+**Get the sound files:** https://web.njit.edu/~efortune/n2014/data/wcs.wav (wcs)
+                         https://web.njit.edu/~efortune/n2014/data/wcs.wav (zfinch)
+                         
+
+```{r}
+#install.packages("tuneR")
+
+library(tuneR)
+```
+
+```{r}
+wcs_data = readWave('wcs.wav')
+zfinch_data = readWave('zfinch.wav')
+```
+
+In this exercise, we will see the effect of the nfft value on the sparrow (wcs) song.
+
+A couple of new commands: **par()** and **spectro()**...
+**par()** allows us to edit certain plot parameters. In this case we are editing the parameter **mfrow(c(m, n)** or **mfcol(c(m, n)** --- these specify the row or collumn of the plot as a matrix using m and n 
+
+spectro(wave, f, wl, ); **wave** is the .wav file, **f** is the frequency,**wl** controlls the fft, **palette** allows us to select a color scheme, and **main** allows us to add a title. **collevels** and **scale** change certain graphing parameters, for now just use the values given.  
+                         
+```{r}
+par(mfrow = c(2,2))
+
+spectro(wcs_data, Fs, wl = 32, palette = reverse.gray.colors.1, collevels = seq(-75, -5, 1), scale = FALSE, main = "fft = 32")
+spectro(wcs_data, Fs, wl = 128, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 128")
+spectro(wcs_data, Fs, wl = 512, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 512")
+spectro(wcs_data, Fs, wl = 2048, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 2048")
+```
+
+
+### EXERCISE 4.1 
+
+Which FFT (nfft) size is best to show the details of the signal? 32, 128, 512, 2048?? You can try other values - 256 and 1024 are good choices.                       
+Now lets plot the zebra finch...
+
+```{r}
+par(mfrow = c(2,2))
+
+spectro(zfinch_data, Fs, wl = 32, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 32")
+spectro(zfinch_data, Fs, wl = 128, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 128")
+spectro(zfinch_data, Fs, wl = 512, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 512")
+spectro(zfinch_data, Fs, wl = 2048, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 2048")
+```
+
+### Tying everything together:
+
+For short, variable signals, lower nfft values are most useful. For long, constant signals, higher nfft values are most useful. For wave-type weakly electric fish, which produce constant frequency sinusoidal signals, we sometimes use nfft values of 65536 - which provides very precise frequency resolution.
+
+**nfft and Fs are related!**
+
+If Fs is 1000 and nfft is 128, then the sample is 0.128 seconds in duration. If Fs is 10000 and nfft is 128, then the sample is 0.0128 seconds in duration. For the White-Crowned Sparrow, the best nfft window was 512. The song was recorded at a sample rate of 22050 Hz. If the song had been recorded at 44100 Hz, then the nfft window should be 1024.                         
+                         
