@@ -379,6 +379,26 @@ Save the data to a wave file. You can then use Audacity to listen to it.
 savewav(revordersong, Fs, "revordersong.wav")
 ```
 
+# Exercise 11: Make a NEW song with each syllable reversed but the syllable order normal
 
+This is nearly identical to the previous excerise, but now the order is correct (ABCDEF) but each syllable is reversed. 
+
+Take the first syllable and put it in our new variable **revsylsong**...
+
+```{r}
+revsylsong = syllable[length(syllable)]
+```
+
+Now reverse it -- we saw how to do this in a previous excerise...
+
+```{r}
+revsylsong = revsylsong[seq(to = 1, by = -1, length.out = length(revsylsong))]
+```
+
+Now do the same for the rest of the syllables, adding them to the new variable...
+
+```{r}
+
+```
 
 
