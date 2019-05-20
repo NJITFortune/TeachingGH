@@ -80,13 +80,20 @@ Now we can plot. Lets get used to ggplot2.
 
 ### Syntax
 
-ggplot2 by default uses dataframes to plot. We don't need to use them here, but its a good idea to get used to using R dataframes eventually. 
+ggplot2 by default uses dataframes to plot. We don't always need to make a dataframe, but its good to know how. We can create a dataframe using the **data.frame(data1, data2, data3, etc...)** function. 
 
-We create initiate a plot window using **ggplot()** and we can add to that plot by using a **+**
+We create initiate a plot window using **ggplot()** and we can add to that plot by using a **+**. There are lots of plotting options and we will address them as we go. For now lets create a line graph using **geom_line()**.
+
+*Note: we will always use **aes()** for mapping our data, but it may appear in different places*
 
 ```{r}
-ggplot() +
-  tim, wav, xlab = 'Time', ylab = 'Sine Wave', col = "Red", type = "l")
+plotsin = data.frame(tim, wav)
+
+ggplot(plotsin, aes(x = tim, y = wav)) +
+  geom_line(colour = "Blue", show.legend = FALSE) +
+  xlab("Time") +
+  ylab("Sine Wave")
+  
 
 ```
 
@@ -101,7 +108,7 @@ Then you can increase the sample rate to 10, 15, 20, 50, and 100.
 # Excercise 2: Add two sinewaves 
 
 For this exercise, the two sinewaves need to have the same duration.
-As above, we need a sample rate, and a time sequence.
+As above, we need a sample rate and a time sequence.
 
 ```{r}
 Fs = 20000
@@ -139,10 +146,16 @@ Now add them together and plot the result
 ```{r}
 addwave = wave1 + wave2
 
-plot(tim, addwave, xlab = 'Time', ylab = 'Sine Wave', col = "Blue", type = "l")
+plotaddwave = data.frame(tim, addwave)
+
+ggplot(plotaddwave, aes(x = tim, y = addwave)) +
+  geom_line(colour = "Blue", show.legend = FALSE) +
+  xlab("Time") +
+  ylab("Sine Wave") 
 ```
 
 ### Excercise 2.1: Learn about interactions between sinewaves
+
 Play around by changing freq2 and amp2.
 Try freq2 of 1001, 1002, 1010.
 Try amp2 of 1, 0.1, 1.5.
@@ -151,9 +164,10 @@ Also plot using the sonogram command.
 
 # Excercise 3: Make Sonograms --- artificial signal
 
-We can make a sonogram of any signal to learn more about its spectral and temporal characteristics.
+We can make a sonogram (spectrogram) of any signal to learn more about its spectral and temporal characteristics.
 
 R does not contain a native function to plot sonograms. In order to plot them we need to install a package (remember **#** comments out code, so don't forget to remove it here) **seewave** and import the library.
+
 
 ```{r}
 #install.packages("seewave")
@@ -180,8 +194,16 @@ addwave2 = wave1 + wave3
 Now we make a sonogram!
 The critical variable is fft which is specified as **wl** --- this is the length, in samples, over which the frequency will be estimate using the Fourier transform. The longer the length, the greater precision of the frequency estimate. fft should always be a multiple of 2.
 
+### Syntax 
+
+The function **spectro()** is based on the default R graphics, so its syntax will be a little different than the **ggplot()** syntax we have been using. So don't worry to much about the other parameters here, we'll talk about the **spectro()** function in detail in the next section.
+
+
 ```{r}
-spectro(addwave2, Fs, wl = 1024, palette = reverse.gray.colors.1, collevels = seq(-200, 0, 1), scale = FALSE) 
+spectro(addwave2, Fs, wl = 1024, 
+        palette = reverse.gray.colors.1, 
+        collevels = seq(-200, 0, 1), 
+        scale = FALSE) 
 ```
 
 
@@ -208,13 +230,15 @@ The recording is in xxData, and the sample rate is in xxFs
 
 **Get the sound files:** https://web.njit.edu/~efortune/n2014/data/wcs.wav (wcs)
                          https://web.njit.edu/~efortune/n2014/data/wcs.wav (zfinch)
-                         
+                        
 
 ```{r}
 #install.packages("tuneR")
 
 library(tuneR)
 ```
+
+*Note: Make sure you know where the files are saved to, you'll need to specify the path (or change the working directory)*
 
 ```{r}
 wcs_data = readWave('wcs.wav')
@@ -223,10 +247,14 @@ zfinch_data = readWave('zfinch.wav')
 
 In this exercise, we will see the effect of the nfft value on the sparrow (wcs) song.
 
-A couple of new commands: **par()** and **spectro()**...
-**par()** allows us to edit certain plot parameters. In this case we are editing the parameter **mfrow(c(m, n)** or **mfcol(c(m, n)** --- these specify the row or collumn of the plot as a matrix using m and n 
+### Syntax
 
-spectro(wave, f, wl, ); **wave** is the .wav file, **f** is the frequency,**wl** controlls the fft, **palette** allows us to select a color scheme, and **main** allows us to add a title. **collevels** and **scale** change certain graphing parameters, for now just use the values given.  
+A couple of new commands: **par()** and **spectro()**...
+**par()** allows us to edit certain plot parameters in the default R graphics. 
+
+In this case we are editing the parameter **mfrow = c(m, n)** or **mfcol = c(m, n)** --- these specify the row or collumn of the plot as a matrix using m and n 
+
+spectro(wave, f, wl, ); **wave** is the .wav file, **f** is the frequency,**wl** controls the fft, **palette** allows us to select a color scheme, and **main** allows us to add a title. **collevels** and **scale** change certain graphing parameters, for now just use the values given.  
                          
 ```{r}
 par(mfrow = c(2,2))
