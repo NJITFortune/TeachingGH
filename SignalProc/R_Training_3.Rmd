@@ -2,6 +2,11 @@
 title: "R Training 3"
 output: html_notebook
 ---
+# Introduction 
+
+Welcome to the third tutorial! In this lesson we are going to look at actual bird songs and learn how identify and seperate syllables. We will also look at some spike data at the end. By this time, you should be familiar with the basics of R, so there will be less syntax explanations. However, if you ever get confused or want to know more about a function, you can search for it using the Help tab ion the bottom right pane. 
+
+
 
 # Exercise 9: Sperate the syllables in a song
 
@@ -23,13 +28,15 @@ These two methods produce nearly the same result. The first method is to rectify
 
 Both require that the signal be centered at zero. It is easy to do this by subtracting the mean from the original signal.
 
+Lets use the **mean()** function...
+
 ```{r}
 zf_data_center = zf_data@left - mean(zf_data@left)
 ```
 
 ## Strategy 1: Rectify and smooth
 
-First lets take the absolute value using **abs()**.
+First lets take the absolute value using **abs()**...
 
 ```{r}
 rz = abs(zf_data_center)
@@ -37,7 +44,7 @@ rz = abs(zf_data_center)
 
 Now we are going to smooth this signal using a median filter. R does this with the function **runmed()**. 
 
-Before we do that lets set our variables. Here **sms** is the duration, in seconds, of the filter - I have set the default to 20 milliseconds. If **sms** is too long, then it will smooth out the signal too much. If **sms** is too short, then you will get spurious syllables. We will multiply sms with the sample rate, **Fs**. This will give us the number of samples for the duration that **sms** specifies.
+Before we do that lets set our variables. Here **sms** is the duration, in seconds, of the filter - I have set the default to 20 milliseconds. If **sms** is too long, then it will smooth out the signal too much. If **sms** is too short, then you will get spurious syllables. We will multiply **sms** with the sample rate, **Fs**. This will give us the number of samples for the duration that **sms** specifies.
 
 ```{r}
 sms = 0.020
@@ -58,7 +65,7 @@ mrz = mrz*1000
 
 ## Strategy 2: Hilbert and Smooth
 
-This is almost identical to Strategy 1, but uses a nice function called **hilbert**. This function is from the package **seewave**, which you should already have installed!
+This is almost identical to Strategy 1, but uses a nice function called **hilbert()**. This function is from the package **seewave**, which you should already have installed!
 
 ```{r}
 hz = abs(hilbert(rz, f = Fs))
