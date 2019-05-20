@@ -6,7 +6,7 @@ output: html_notebook
 
 Welcome to the third tutorial! In this lesson we are going to look at actual bird songs and learn how identify and seperate syllables. We will also look at some spike data at the end. By this time, you should be familiar with the basics of R, so there will be less syntax explanations. However, if you ever get confused or want to know more about a function, you can search for it using the Help tab ion the bottom right pane. 
 
-
+*Note: We will be using the default graphics for some of our plots for conveniance, as **spectro()** uses default graphics and will not allow mulit-plots with ggplot2 generated graphs. There is a **ggspectro()** function, but it is complicated and we will not be using it.*  
 
 # Exercise 9: Sperate the syllables in a song
 
