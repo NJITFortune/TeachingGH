@@ -115,12 +115,15 @@ tim = seq(1/Fs, len, 1/Fs)
 ```
 
 
-Make the noise sequence using **randn**, a function from the package **varbvs**. This function selects semi-random numbers from a matrix with dimensions we will specify.  
-The arguments are **m** and **n**. We want a 1 dimensional noisy sequence, hence the second dimension **n** is 1.
+Make the noise sequence using **runif**. This function generates a series of random numbers within a set min and max value. 
+
+### Syntax 
+
+runif(number_of_numbers, min, max). If you want a random sequence taken from a normal distribution you can use rnorm. 
 
 ```{r}
 
-noisy = randn(length(tim), 1)
+noisy = runif(length(tim), min = 0, max = 10000)
 
 ```
 
@@ -128,7 +131,11 @@ noisy = randn(length(tim), 1)
 This is great - we can plot this
 
 ```{r}
-spectro(noisy, Fs, wl = 512, palette = reverse.gray.colors.1, collevels = seq(-80, 0, 1), scale = FALSE, main = "Original") 
+spectro(noisy, Fs, wl = 512, 
+        palette = reverse.heat.colors, 
+        collevels = seq(-50, -15, 1), 
+        scale = FALSE, 
+        main = "Original") 
 ```
 
 
