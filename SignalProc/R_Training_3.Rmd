@@ -406,7 +406,7 @@ for (l in seq(2, length(syllable), 1)) {
   
   ra = unlist(syllable[[l]])
   revsylsong = append(revsylsong, unlist(nop[[l]]))
-  revsylsong = append(revsylsong, unlist(ra[seq(to = 1, by = -1, length.out = length(revsylsong))]))
+  revsylsong = append(revsylsong, unlist(ra[seq(to = 1, by = -1, length.out = length(syllable[[l]]))]))
   
 }
 ```
@@ -420,17 +420,17 @@ revsyltim = seq(1/Fs, length(revsylsong)/Fs, 1/Fs)
 Now we can make the same plots as last time, including spectrograms: 
 
 ```{r}
-p1 = ggplot() + 
+p3 = ggplot() + 
   geom_line(aes(x = tim, y = zf_data@left), color = "Blue") +
   scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
   scale_x_continuous(name = "Time")
 
-p2 = ggplot() +
+p4 = ggplot() +
   geom_line(aes(x = revsyltim, y = revsylsong), color = "Red") +
   scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
   scale_x_continuous(name = "Time")
 
-grid.arrange(p1, p2, nrow = 2)
+grid.arrange(p3, p4, nrow = 2)
 ```
 
 We can save the file as a .wav using the same process as in the last excercise. 
