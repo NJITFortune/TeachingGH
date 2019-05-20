@@ -255,10 +255,10 @@ Just to show what has happened, here is a plot:
 ```{r}
 
 par(mfrow = c(2,4))
-spectro(syllable[[4]], Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -10, 1), scale = FALSE)
-spectro(syllable[[5]], Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -10, 1), scale = FALSE)
-spectro(syllable[[6]], Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -10, 1), scale = FALSE)
-spectro(syllable[[7]], Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -10, 1), scale = FALSE)
+spectro(syllable[[4]], Fs, wl = 256, palette = rainbow, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
+spectro(syllable[[5]], Fs, wl = 256, palette = heat.colors, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
+spectro(syllable[[6]], Fs, wl = 256, palette = gray.colors, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
+spectro(syllable[[7]], Fs, wl = 256, palette = rainbow, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
 
 plot(timmy[[4]], syllable[[4]], type = "l", col = "Red")
 plot(timmy[[5]], syllable[[5]], type = "l", col = "Red")
@@ -302,7 +302,7 @@ Let's plot a syllable.
 ```{r}
 
 par(mfrow = c(1,2))
-spectro(syllable[[7]], Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -20, 1), scale = FALSE)
+spectro(syllable[[7]], Fs, wl = 256, palette = rainbow, collevels = seq(-70, -20, 2), scale = FALSE, ovlp = 95)
 plot(timmy[[7]], syllable[[7]], type = "l", col = "Red")
 ```
 
