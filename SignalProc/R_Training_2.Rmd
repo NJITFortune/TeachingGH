@@ -123,7 +123,7 @@ runif(number_of_numbers, min, max). If you want a random sequence taken from a n
 
 ```{r}
 
-noisy = runif(length(tim), min = 0, max = 10000)
+noisy = runif(length(tim), min = -2^16, max = 2^16)
 
 ```
 
@@ -132,10 +132,12 @@ This is great - we can plot this
 
 ```{r}
 spectro(noisy, Fs, wl = 512, 
-        palette = reverse.heat.colors, 
-        collevels = seq(-50, -15, 1), 
+        palette = heat.colors, 
+        collevels = c(0, 100, -1),
         scale = FALSE, 
-        main = "Original") 
+        main = "Original",
+        ovlp = 50,
+        norm = FALSE) 
 ```
 
 
