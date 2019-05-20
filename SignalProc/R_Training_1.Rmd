@@ -5,9 +5,19 @@ output:
     df_print: paged
   pdf_document: default
 ---
+# Introduction
+
+In these tutorials you'll be learning some of the basics of acoustic analysis using R and R studio. 
+
+The first steps are to download and install the most recent versions of both R and R studio onto your computer. 
+
+Once we have R studio running we can begin learning. To complete these tutorials you'll need several packages: seeWave, TuneR, ggplot2, and gridExtra. TuneR allows us to read .wav files, seeWave allows us to plot easy spectrograms, and ggplot2 and gridExtra allow us to plot other graphs. We will also be using the built in graphing functions for certain plots (so you'll learn to use both ggplot and built in R graphics)
+
+Don't worry about those for now, installing and loading packages will be explained later. Along the way we will also discuss some general R skills. 
+
 # Exercise 1: Make a sinewave
 
-**Fs** is the sample rate. 
+Let's get started!
 
 Most audio systems use a sample rate of 44100 Hz. 
 
@@ -15,11 +25,15 @@ The highest frequencies that humans can hear are typically
 in the range of 12000 to 17000 Hz. Here I chose 20 kHz. 
 You can change this to see the effect of sample rate.
 
+Lets create a variable **Fs**, the sample rate.
+
+In R we can create variables and assign values using either **=** or **<-**. For this tutorial we will be using **=**
+
 ```{r}
 Fs = 20000
 ```
 
-The interval **intvl** is the time for a single cycle at the 
+The variable **intvl** is the time for a single cycle at the 
 sample rate. 
 
 For instance, 1 Hz would be 1 second, 2 Hz 
@@ -30,7 +44,9 @@ would be 0.05 seconds.
 intvl = 1/Fs 
 ```
 
-Now we will make a time series called **tim** using the **seq()** function.
+Now we will make a time series called **tim** using the **seq()** function. 
+
+Lets make one now. 
 
 You get to choose the duration in seconds --- here I show 2 seconds **secs**. 
 
@@ -50,7 +66,9 @@ secs = 2
 tim = seq(intvl, secs, intvl)
 ```
 
-Now we make the sinewave using the **sin** command. You choose the frequency **freq** --- which is set to 2 Hz here. **pi** is literally the number Pi (3.1415926...).
+Now we make the sinewave using the **sin()** command. You choose the frequency **freq** --- which is set to 2 Hz here. **pi** is literally the number Pi (3.1415926...). 
+
+We want to save our sinewave in a variable, lets call it **wav**
 
 ```{r}
 freq = 2 
@@ -58,15 +76,17 @@ freq = 2
 wav = sin(tim*2*pi*freq)
 ```
 
-Now we can plot. 
-**xlab** and **ylab** set the x and y axis labels respectively 
-**col** specifies line color 
-**type** specifies the type of plot, in this case "l" for line 
+Now we can plot. Lets get used to ggplot2. 
 
-#### Figure A
+### Syntax
+
+ggplot2 by default uses dataframes to plot. We don't need to use them here, but its a good idea to get used to using R dataframes eventually. 
+
+We create initiate a plot window using **ggplot()** and we can add to that plot by using a **+**
 
 ```{r}
-plot(tim, wav, xlab = 'Time', ylab = 'Sine Wave', col = "Red", type = "l")
+ggplot() +
+  tim, wav, xlab = 'Time', ylab = 'Sine Wave', col = "Red", type = "l")
 
 ```
 
