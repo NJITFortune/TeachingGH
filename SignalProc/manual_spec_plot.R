@@ -4,8 +4,8 @@ library(signal)
 nfft = 1024
 wl = 256
 ovlp = 128
-snd = zf_data@left
-
+snd = zfinch_data@left
+Fs = zfinch_data@samp.rate
 spec = specgram(snd, nfft, Fs, 256, 128)
 
 P = abs(spec$S)
@@ -31,8 +31,11 @@ z = t(P)
 max(z)
 min(z)
 
+-35/-58.6
 
-drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, dBscale) {
+
+
+drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, scale_dB) {
   #nfft, wl are input in points
   #ovlp is input in percent 
   
@@ -92,18 +95,17 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   #extract time
   t = spec$t
   
-  #check min and max of z and determine reasonable zlims 
-  if(missing(dBscale)) {
-    dBscale = c(min(t(P)), max(t(p)))
+  #check if user entered zlim parameter or set default 
+  if(missing(scale_dB)) {
+    scale_dB = c(min(t(P))*.6, max(t(p))-5)
   } else {
-    
-    
-  }
+    scale_dB = scale_dB
+  } 
   
   
   #plot
   image(x = t, y = spec$f, z = t(P), 
-        zlim = c(-35, -5),
+        zlim = scale_dB,
         col = (100), 
         ylab = "Frequency [Hz]", 
         xlab = "Time [s]")
