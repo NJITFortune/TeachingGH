@@ -11,7 +11,7 @@ In these tutorials you'll be learning some of the basics of acoustic analysis us
 
 The first steps are to download and install the most recent versions of both R and R studio onto your computer. 
 
-Once we have R studio running we can begin learning. To complete these tutorials you'll need several packages: signal, TuneR, ggplot2, and gridExtra. TuneR allows us to read .wav files, signal allows us to create spectrograms, and ggplot2 and gridExtra allow us to plot other graphs. We will also be using the built in graphing functions for certain plots (so you'll learn to use both ggplot and built in R graphics)
+Once we have R studio running we can begin learning. To complete these tutorials you'll need several packages: signal, TuneR, ggplot2, oce, and gridExtra. TuneR allows us to read .wav files, signal allows us to create spectrograms, and ggplot2 and gridExtra allow us to plot other graphs. We will also be using the built in graphing functions for certain plots (so you'll learn to use both ggplot and built in R graphics)
 
 Don't worry about those for now, installing and loading packages will be explained later. Along the way we will also discuss some general R skills. 
 
@@ -166,14 +166,18 @@ Also plot using the sonogram command.
 
 We can make a sonogram (spectrogram) of any signal to learn more about its spectral and temporal characteristics.
 
-R does not contain a native function to plot sonograms. In order to plot them we need to install a package (remember **#** comments out code, so don't forget to remove it here) **seewave** and import the library.
-
+R does not contain a native function to plot sonograms. In order to plot them we need to use a custom function called **specplot()**. Lets install the dependacies now...
 
 ```{r}
-#install.packages("seewave")
+#install.packages("signal")
+#install.packages("oce")
+#install.packages("tuneR")
 
-library(seewave)
+library(signal)
+library(oce)
+library(tuneR)
 ```
+
 
 We begin with the signal that we used above, except with different frequencies. The frequencies are further apart: **freq1** = 1000 and **freq2** = 4200.
 
@@ -200,10 +204,7 @@ The function **spectro()** is based on the default R graphics, so its syntax wil
 
 
 ```{r}
-spectro(addwave2, Fs, wl = 1024, 
-        palette = reverse.gray.colors.1, 
-        collevels = seq(-200, 0, 1), 
-        scale = FALSE) 
+specplot(addwave2, Fs) 
 ```
 
 
@@ -224,19 +225,13 @@ One is a White-crowned sparrow (*Zonotrichia leucophrys*)
 
 The other is a Zebra finch (*Taeniopygia guttata*)
 
-In order to read wave files in R we will need to install another package **tuneR** (again don't forget to un-comment the install function) and then read the files using the **readWave()** function. 
+In order to read wave files in R we will need to use **tuneR** (we already installed that in the last section) and then read the files using the **readWave()** function. 
 The recording is in xxData, and the sample rate is in xxFs
 
 
 **Get the sound files:** https://web.njit.edu/~efortune/n2014/data/wcs.wav (wcs)
                          https://web.njit.edu/~efortune/n2014/data/wcs.wav (zfinch)
                         
-
-```{r}
-#install.packages("tuneR")
-
-library(tuneR)
-```
 
 *Note: Make sure you know where the files are saved to, you'll need to specify the path (or change the working directory)*
 
@@ -259,10 +254,10 @@ spectro(wave, f, wl, ); **wave** is the .wav file, **f** is the frequency,**wl**
 ```{r}
 par(mfrow = c(2,2))
 
-spectro(wcs_data, Fs, wl = 32, palette = reverse.gray.colors.1, collevels = seq(-75, -5, 1), scale = FALSE, main = "fft = 32")
-spectro(wcs_data, Fs, wl = 128, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 128")
-spectro(wcs_data, Fs, wl = 512, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 512")
-spectro(wcs_data, Fs, wl = 2048, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 2048")
+specplot(wcs_data, nfft = 64)
+specplot(wcs_data, nfft = 128)
+specplot(wcs_data, nfft = 512)
+specplot(wcs_data, nfft = 1024)
 ```
 
 
@@ -274,10 +269,10 @@ Now lets plot the zebra finch...
 ```{r}
 par(mfrow = c(2,2))
 
-spectro(zfinch_data, Fs, wl = 32, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 32")
-spectro(zfinch_data, Fs, wl = 128, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 128")
-spectro(zfinch_data, Fs, wl = 512, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 512")
-spectro(zfinch_data, Fs, wl = 2048, palette = reverse.gray.colors.1, collevels = seq(-75, -10, 1), scale = FALSE, main = "fft = 2048")
+specplot(zfinch_data, nfft = 64)
+specplot(zfinch_data, nfft = 128)
+specplot(zfinch_data, nfft = 512)
+specplot(zfinch_data, nfft = 1024)
 ```
 
 ### Tying everything together:
