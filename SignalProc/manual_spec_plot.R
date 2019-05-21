@@ -35,7 +35,7 @@ min(z)
 
 
 
-drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, scale_dB) {
+drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, scale_dB, color) {
   #requires tuneR (if using wave file for input), signal (to produce spectro data)
   #freq _data may be list of frequencies or wav file
   #if sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
@@ -43,6 +43,9 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   #nfft, wl are input in points
   #ovlp is input in percent 
   
+  #create 2 custom palletes for graphing 
+  heat_col_custom = c("FFFFFF","FDFF97","EBF900","FBE900","FFD600","FFBF00","FF7C00","FF4300","FF0000","000000")
+  greyscale_custom = c()
   #check if sample rate is given, if not extract from .wav file
   if(missing(Fs)) {
     Fs = wave_file@samp.rate
@@ -104,12 +107,26 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
     scale_dB = c(min(t(P))*.6, max(t(p))-5)
   } else {
     scale_dB = scale_dB
-  } 
+  }
   
-  #plot
+  #set color pallete, default is heat, 1 = heat, 2 = greyscale
+  if(ismissing(color)) {
+    col_select = heat_col_custom
+  } else { 
+    if(color == 1){
+      col_select = greyscale_custom 
+    } else {
+      if(color ==2){
+        col_select = heat_col_custom 
+      }
+    }
+  }
+  
+ 
+   #plot
   image(x = t, y = spec$f, z = t(P), 
         zlim = scale_dB,
-        col = (100), 
+        col = col_select, 
         ylab = "Frequency [Hz]", 
         xlab = "Time [s]")
 }
