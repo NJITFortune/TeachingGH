@@ -106,7 +106,6 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
     scale_dB = scale_dB
   } 
   
-  
   #plot
   image(x = t, y = spec$f, z = t(P), 
         zlim = scale_dB,
