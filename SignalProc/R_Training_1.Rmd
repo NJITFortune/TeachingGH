@@ -11,7 +11,7 @@ In these tutorials you'll be learning some of the basics of acoustic analysis us
 
 The first steps are to download and install the most recent versions of both R and R studio onto your computer. 
 
-Once we have R studio running we can begin learning. To complete these tutorials you'll need several packages: seeWave, TuneR, ggplot2, and gridExtra. TuneR allows us to read .wav files, seeWave allows us to plot easy spectrograms, and ggplot2 and gridExtra allow us to plot other graphs. We will also be using the built in graphing functions for certain plots (so you'll learn to use both ggplot and built in R graphics)
+Once we have R studio running we can begin learning. To complete these tutorials you'll need several packages: signal, TuneR, ggplot2, and gridExtra. TuneR allows us to read .wav files, signal allows us to create spectrograms, and ggplot2 and gridExtra allow us to plot other graphs. We will also be using the built in graphing functions for certain plots (so you'll learn to use both ggplot and built in R graphics)
 
 Don't worry about those for now, installing and loading packages will be explained later. Along the way we will also discuss some general R skills. 
 
