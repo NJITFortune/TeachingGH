@@ -45,7 +45,7 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   
   #create 2 custom palletes for graphing 
   heat_col_custom = c("FFFFFF","FDFF97","EBF900","FBE900","FFD600","FFBF00","FF7C00","FF4300","FF0000","000000")
-  greyscale_custom = c()
+  greyscale_custom = c("FFFFFF","EEEEEE","DBDBDB","C1C1C1","ACACAC","8E8E8E","7A7A7A","5C5C5C","3E3E3E","000000")
   #check if sample rate is given, if not extract from .wav file
   if(missing(Fs)) {
     Fs = wave_file@samp.rate
