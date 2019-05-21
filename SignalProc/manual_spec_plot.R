@@ -1,44 +1,6 @@
-install.packages("signal")
-library(signal)
-library(ggplot2)
-install.packages("oce")
-library(oce)
-nfft = 1024
-wl = 256
-ovlp = 128
-snd = zfinch_data@left
-Fs = zfinch_data@samp.rate
-spec = specgram(snd, nfft, Fs, 256, 128)
 
-P = abs(spec$S)
-
-P = P/max(P)
-
-P = 10*log10(P)
-
-t = spec$t
-
-
-image(x = t, y = spec$f, z = t(P), 
-      zlim = c(-35, -5),
-      col = (100), 
-      ylab = "Frequency [Hz]", 
-      xlab = "Time [s]")
-
-spectro(zf_data, zf_data@samp.rate, 256, ovlp = 50, 
-        scale = FALSE, 
-        collevels = c(-80, 0, 1))
-
-z = t(P)
-max(z)
-min(z)
-
--35/-58.6
-
-c("#FFFFFF","#FFFBCC","#FFF8A0","#FFF572","#FFF24A","#FFF028","#FFEC00","#FFEC00","#FFE100","#FFD600","#FFBF00","#FFA900","#FF9D00","#FF8700","#FF7C00","#FF6500","#FF4F00","#FF4300","#FF3800","#FF0000","#E30000","#D00000","#BD0000","#9C0000","#850000","#520000","#3E0000","#270000","#130000","#000000")
-
-drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, scale_dB, color) {
-  #requires tuneR (if using wave file for input), signal (to produce spectro data)
+specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color) {
+  #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
   #freq _data may be list of frequencies or wav file
   #if sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
   #all other parameters are optional and have defaults
@@ -107,17 +69,22 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   t = spec$t
   
   #check if user entered zlim parameter or set default 
-  if(missing(scale_dB)) {
-    scale_dB = c(min(t(P))*.6, max(t(P)))
+  if(missing(amp_range)) {
+    amp_range = c(min(t(P))*.6, max(t(P)))
   } else {
-    scale_dB = scale_dB
+    amp_range = amp_range
   }
   
   #set color pallete, default is heat, 1 = greyscale, 2 = heat, 3 = rev heat, 4 = rev greyscale
   if(missing(color)) {
-    col_select = heat_col_custom
+    col_select = rev(heat_col_custom)
+    box_col = "Black"
+    par(bg = "white")
+    par(col.lab="black")
+    par(col.axis="black")
+    par(col.main="black")
   } else { 
-    if(color == 1){
+    if(color == 3){
       col_select = greyscale_custom
       box_col = "Black"
       par(bg = "white")
@@ -125,7 +92,7 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
       par(col.axis="black")
       par(col.main="black")
     } else {
-      if(color ==2){
+      if(color ==4){
         col_select = heat_col_custom
         box_col = "Black"
         par(bg = "white")
@@ -133,7 +100,7 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
         par(col.axis="black")
         par(col.main="black")
       } else {
-        if(color == 3) {
+        if(color == 1) {
           col_select = rev(heat_col_custom)
           par(bg = "black")
           par(col.lab="white")
@@ -141,7 +108,7 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
           par(col.main="white")
           box_col = "white"
         } else {
-          if(color == 4) {
+          if(color == 2) {
             col_select = rev(greyscale_custom)
             par(bg = "black")
             par(col.lab="white")
@@ -155,15 +122,15 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   }
   #plot
   imagep(x = t, y = spec$f, z = t(P), 
-        zlim = scale_dB,
+        zlim = amp_range,
         col = col_select, 
         ylab = "Frequency [Hz]", 
         xlab = "Time [s]",
-        drawPalette = TRUE)
+        drawPalette = FALSE)
   box(col = box_col)
 }
 
-drericfortunesperfectspectrogramplottingfunction(zfinch_data, scale_dB = c(-30, 0), color = 2)
+specplot(zfinch_data, amp_range = c(-20, -10), )
 
 
   
