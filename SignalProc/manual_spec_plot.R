@@ -1,4 +1,4 @@
-specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color) {
+specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color, amp_value = FALSE) {
   #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
   #freq _data may be list of frequencies or wav file
   #if sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
@@ -18,26 +18,28 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
     Fs = Fs
   }
   
+  
   #checks if nfft is given, if not substitutes default value
   if(missing(nfft)) {
-    nfft = 1024
+    nfft = 512
   } else {
     nfft = nfft
   }
-  
+ 
   #checks if wl is given, if not substitutes default value
   if(missing(wl)) {
-    wl = 256
+    wl = nfft/2
   } else {
     wl = wl
-  }
-  
+  } 
+
   #checks if ovlp is given, if not substitutes default value
   if(missing(ovlp)) {
-    ovlp = 128
+    ovlp = wl/2
   } else {
     ovlp = (ovlp/100) * wl
   }
+  
   #check to see if input file is .wav.
   #if .wav, extract freq data, else directly use the data provided
   if(isS4(freq_data) == TRUE) {
@@ -67,9 +69,18 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
   #extract time
   t = spec$t
   
+  #output amp values 
+  if(amp_value) {
+    print(max(t(P)))
+    print(min(t(P)))
+  }
+  
+  
   #check if user entered zlim parameter or set default 
+  bottom_amp = 0.6
+  top_amp = 1 
   if(missing(amp_range)) {
-    amp_range = c(min(t(P))*.6, max(t(P)))
+    amp_range = c(min(t(P))*bottom_amp, max(t(P))*top_amp)
   } else {
     amp_range = amp_range
   }
@@ -125,9 +136,10 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
         col = col_select, 
         ylab = "Frequency [Hz]", 
         xlab = "Time [s]",
-        drawPalette = FALSE)
+        drawPalette = FALSE,
+        decimate = FALSE)
   box(col = box_col)
 }
 
-
+specplot(zfinch_data, nfft = 512, amp_value = TRUE)
   
