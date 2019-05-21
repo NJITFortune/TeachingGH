@@ -121,9 +121,7 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
       }
     }
   }
-  
- 
-   #plot
+  #plot
   image(x = t, y = spec$f, z = t(P), 
         zlim = scale_dB,
         col = col_select, 
