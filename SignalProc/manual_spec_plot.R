@@ -44,11 +44,11 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   #ovlp is input in percent 
   
   #create 2 custom palletes for graphing 
-  heat_col_custom = c("FFFFFF","FDFF97","EBF900","FBE900","FFD600","FFBF00","FF7C00","FF4300","FF0000","000000")
-  greyscale_custom = c("FFFFFF","EEEEEE","DBDBDB","C1C1C1","ACACAC","8E8E8E","7A7A7A","5C5C5C","3E3E3E","000000")
+  heat_col_custom = c("#FFFFFF","#FDFF97","#EBF900","#FBE900","#FFD600","#FFBF00","#FF7C00","#FF4300","#FF0000","#000000")
+  greyscale_custom = c("#FFFFFF","#EEEEEE","#DBDBDB","#C1C1C1","#ACACAC","#8E8E8E","#7A7A7A","#5C5C5C","3E3E3E","000000")
   #check if sample rate is given, if not extract from .wav file
   if(missing(Fs)) {
-    Fs = wave_file@samp.rate
+    Fs = freq_data@samp.rate
   } else {
     Fs = Fs
   }
@@ -104,13 +104,13 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   
   #check if user entered zlim parameter or set default 
   if(missing(scale_dB)) {
-    scale_dB = c(min(t(P))*.6, max(t(p))-5)
+    scale_dB = c(min(t(P))*.6, max(t(P)))
   } else {
     scale_dB = scale_dB
   }
   
   #set color pallete, default is heat, 1 = heat, 2 = greyscale
-  if(ismissing(color)) {
+  if(missing(color)) {
     col_select = heat_col_custom
   } else { 
     if(color == 1){
@@ -118,6 +118,14 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
     } else {
       if(color ==2){
         col_select = heat_col_custom 
+      } else {
+        if(color == 3) {
+          col_select = rev(heat_col_custom)
+        } else {
+          if(color == 4) {
+            col_select = rev(greyscale_custom)
+          }
+        }
       }
     }
   }
@@ -129,4 +137,4 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
         xlab = "Time [s]")
 }
 
-
+drericfortunesperfectspectrogramplottingfunction(zfinch_data)
