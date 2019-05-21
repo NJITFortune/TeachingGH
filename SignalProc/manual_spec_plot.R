@@ -1,4 +1,3 @@
-
 specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color) {
   #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
   #freq _data may be list of frequencies or wav file
