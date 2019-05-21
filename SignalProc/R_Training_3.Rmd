@@ -48,7 +48,7 @@ Before we do that lets set our variables. Here **sms** is the duration, in secon
 
 ```{r}
 sms = 0.020
-Fs = zf_data@samp.rate
+zfFs = zf_data@samp.rate
 ```
 
 The we apply our filter...
@@ -255,10 +255,10 @@ Just to show what has happened, here is a plot:
 ```{r}
 
 par(mfrow = c(2,4))
-spectro(syllable[[4]], Fs, wl = 256, palette = rainbow, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
-spectro(syllable[[5]], Fs, wl = 256, palette = heat.colors, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
-spectro(syllable[[6]], Fs, wl = 256, palette = gray.colors, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
-spectro(syllable[[7]], Fs, wl = 256, palette = rainbow, collevels = seq(-100, -10, 1), scale = FALSE, ovlp = 90, fftw = TRUE)
+specplot(syllable[[4]], Fs = zfFs)
+specplot(syllable[[5]], Fs = zfFs)
+specplot(syllable[[6]], Fs = zfFs)
+specplot(syllable[[7]], Fs = zfFs)
 
 plot(timmy[[4]], syllable[[4]], type = "l", col = "Red")
 plot(timmy[[5]], syllable[[5]], type = "l", col = "Red")
@@ -302,7 +302,7 @@ Let's plot a syllable.
 ```{r}
 
 par(mfrow = c(1,2))
-spectro(syllable[[7]], Fs, wl = 256, palette = rainbow, collevels = seq(-70, -20, 2), scale = FALSE, ovlp = 95)
+specplot(syllable[[7]], Fs = zfFs, ovlp = 90)
 plot(timmy[[7]], syllable[[7]], type = "l", col = "Red")
 ```
 
@@ -367,13 +367,13 @@ or we can show the spectra...
 the orininal signal: 
 
 ```{r}
-spectro(zf_data, Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -20, 1), scale = FALSE)
+specplot(zf_data, Fs = zfFs)
 ```
 
 reverse signal: 
 
 ```{r}
-spectro(revordersong, Fs, wl = 512, palette = reverse.heat.colors, collevels = seq(-100, -20, 1), scale = FALSE)
+specplot(revordersong, Fs = zfFs)
 ```
 
 Save the data to a wave file. You can then use Audacity to listen to it. 
@@ -523,7 +523,7 @@ ggplot() +
 ```{r}
 ggplot() +
   geom_line(aes(x = atim, y = a@left), colour = "Blue") +
-  geom_point(aes(x = atim[spikes1], y = ys), colour = "Red", size = 2, shape = 8)
+  geom_point(aes(x = atim[spikes1], y = ys), colour = "Red", size = 2, shape = 1)
 ```
 
 Zoom in to get a better look!
@@ -531,7 +531,7 @@ Zoom in to get a better look!
 ```{r}
 ggplot() +
   geom_line(aes(x = atim, y = a@left), colour = "Blue") +
-  geom_point(aes(x = atim[spikes1], y = ys), colour = "Red", size = 2, shape = 8) +
+  geom_point(aes(x = atim[spikes1], y = ys), colour = "Red", size = 2, shape = 1) +
   coord_cartesian(xlim = c(1,2))
 ```
 
@@ -540,7 +540,7 @@ We can go even further...
 ```{r}
 ggplot() +
   geom_line(aes(x = atim, y = a@left), colour = "Blue") +
-  geom_point(aes(x = atim[spikes1], y = ys), colour = "Red", size = 2, shape = 8) +
+  geom_point(aes(x = atim[spikes1], y = ys), colour = "Red", size = 2, shape = 1) +
   coord_cartesian(xlim = c(1,1.25))
 ```
 
