@@ -16,6 +16,8 @@ Remember to install and import any libraries we will be using:
 library(seewave)
 library(tuneR)
 library(ggplot2)
+library(oce)
+library(signal)
 ```
 
 
@@ -27,7 +29,7 @@ one with a frequency of 5 kHz and the other at 500 Hz. We've done this before, s
 freq1 = 5000;
 freq2 = 500;
 
-Fs = 20000;
+sampleFs = 20000;
 intvl = 1/Fs;
 secs = 2;
 tim = seq(intvl, secs, intvl)
@@ -68,33 +70,19 @@ highfilt = bwfilter(addwav, Fs, n = 5, from = 2500, to = NULL )
 
 Now let's plot the results. 
 
-*Note: You may notice that the **collevels** parameter is different in the spectrograms. This parameter specifies the range of colors that will be plotted. Different sequences will give better or worse looking graphs. Go ahead and play with the numbers...remeber the syntax seq(start, end, interval).*
-
 ```{r}
 
-spectro(addwav, Fs, wl = 512, 
-        palette = reverse.gray.colors.1, 
-        collevels = seq(-200, 0, 1), 
-        scale = FALSE, 
-        main = "Original") 
+specplot(addwav, Fs = sampleFs) 
 
 ```
 
 ```{r}
-spectro(lowfilt, Fs, wl = 512, 
-        palette = reverse.gray.colors.1, 
-        collevels = seq(-200, 0, 1), 
-        scale = FALSE, 
-        main = "Low Pass")
+specplot(lowfilt, Fs = sampleFs)
 
 ```
 
 ```{r}
-spectro(highfilt, Fs, wl = 512, 
-        palette = reverse.gray.colors.1, 
-        collevels = seq(-200, 0, 1), 
-        scale = FALSE, 
-        main = "High Pass")
+specplot(highfilt, Fs = sampleFs)
 ```
 
 # Exercise 6: Filter a signal - noise
@@ -131,13 +119,7 @@ noisy = runif(length(tim), min = -2^16, max = 2^16)
 This is great - we can plot this
 
 ```{r}
-spectro(noisy, Fs, wl = 512, 
-        palette = heat.colors, 
-        collevels = c(0, 100, 1),
-        scale = FALSE, 
-        main = "Original",
-        ovlp = 50,
-        norm = FALSE) 
+specplot(noisy, Fs = sampleFs)
 ```
 
 
@@ -154,11 +136,11 @@ highfilt_noise = bwfilter(noisy, Fs, n = 5, from = 2700, to = NULL )
 Now we can plot these as sonograms.
 
 ```{r}
-spectro(lowfilt_noise, Fs, wl = 512, palette = reverse.gray.colors.1, collevels = seq(-200, 0, 1), scale = FALSE, main = "Low Pass") 
+specplot(lowfilt_noise, Fs = sampleFs) 
 ```
 
 ```{r}
-spectro(highfilt_noise, Fs, wl = 512, palette = reverse.gray.colors.1, collevels = seq(-200, 0, 1), scale = FALSE, main = "High Pass") 
+specplot(highfilt_noise, Fs = sampleFs) 
 ```
 
 ### Exercise 6.1 
