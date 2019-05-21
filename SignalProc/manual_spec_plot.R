@@ -30,3 +30,30 @@ spectro(zf_data, zf_data@samp.rate, 256, ovlp = 50,
 z = t(P)
 max(z)
 min(z)
+
+
+drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp) {
+  
+  #check if sample rate is given, if not extract from .wav file
+  if(missing(Fs)) {
+    Fs = wave_file@samp.rate
+  } else {
+    Fs = Fs
+  }
+  
+  #check to see if input file is .wav.
+  #if .wav, extract freq data, else directly use the data provided
+  if(isS4(freq_data) == TRUE) {
+    snd = freq_data@left
+  } else {
+    snd = freq_data
+  }
+  #produce spectrogram of data using signal function  
+  ##MUST HAVE SIGNAL INSTALLED 
+  spec = specgram(snd, nfft, Fs, wl, ovlp)
+  
+}
+
+typeof(zfinch_data)
+isS4(zfinch_data)
+isS4(zfinch_data@left)
