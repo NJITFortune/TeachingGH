@@ -141,5 +141,4 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
   box(col = box_col)
 }
 
-specplot(zfinch_data, nfft = 512, amp_value = TRUE)
   
