@@ -34,7 +34,10 @@ min(z)
 -35/-58.6
 
 
-
+#requires tuneR (if using wave file for input), signal 
+#freq _data may be list of frequencies or wav file
+#if sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
+#all other parameters are optional and have defaults
 drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, scale_dB) {
   #nfft, wl are input in points
   #ovlp is input in percent 
