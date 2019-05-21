@@ -17,6 +17,8 @@ library(seewave)
 library(tuneR)
 library(ggplot2)
 library(gridExtra)
+library(oce)
+library(signal)
 zf_data = readWave('zfinch.wav')
 zfFs = zf_data@samp.rate
 tim = seq(1/zfFs, length(zf_data@left)/zfFs, 1/zfFs)
