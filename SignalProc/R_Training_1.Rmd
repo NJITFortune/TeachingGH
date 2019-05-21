@@ -78,6 +78,12 @@ wav = sin(tim*2*pi*freq)
 
 Now we can plot. Lets get used to ggplot2. 
 
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+```
+
+
 ### Syntax
 
 ggplot2 by default uses dataframes to plot. We don't always need to make a dataframe, but its good to know how. We can create a dataframe using the **data.frame(data1, data2, data3, etc...)** function. 
