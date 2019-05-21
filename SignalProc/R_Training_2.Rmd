@@ -30,7 +30,7 @@ freq1 = 5000;
 freq2 = 500;
 
 sampleFs = 20000;
-intvl = 1/Fs;
+intvl = 1/sampleFs;
 secs = 2;
 tim = seq(intvl, secs, intvl)
 amp1 = 1;
@@ -63,8 +63,8 @@ We can specify a few parameters: **wave** specifies our wave file, **f** is the 
 
 
 ```{r}
-lowfilt = bwfilter(addwav, Fs, n = 5, from = NULL, to = 2500 )
-highfilt = bwfilter(addwav, Fs, n = 5, from = 2500, to = NULL )
+lowfilt = bwfilter(addwav, sampleFs, n = 5, from = NULL, to = 2500 )
+highfilt = bwfilter(addwav, sampleFs, n = 5, from = 2500, to = NULL )
 ```
 
 
@@ -129,8 +129,8 @@ Our low pass filter will have a max frequency of 1500.
 Our high pass filter will have a minimum frequency of 2700. 
 
 ```{r}
-lowfilt_noise = bwfilter(noisy, Fs, n = 5, from = NULL, to = 1500 )
-highfilt_noise = bwfilter(noisy, Fs, n = 5, from = 2700, to = NULL )
+lowfilt_noise = bwfilter(noisy, sampleFs, n = 5, from = NULL, to = 1500 )
+highfilt_noise = bwfilter(noisy, sampleFs, n = 5, from = 2700, to = NULL )
 ```
 
 Now we can plot these as sonograms.
