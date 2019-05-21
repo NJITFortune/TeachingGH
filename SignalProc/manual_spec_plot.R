@@ -32,7 +32,7 @@ max(z)
 min(z)
 
 
-drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp) {
+drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, dBscale) {
   #nfft, wl are input in points
   #ovlp is input in percent 
   
@@ -80,13 +80,28 @@ drericfortunesperfectspectrogramplottingfunction = function(freq_data, Fs, nfft,
   
   #remove phase info
   P = abs(spec$S)
+  
   #normalize
-  P = P/max(P)
+  if(normal) {
+    P = P/max(P)
+  }
+  
   #convert to dB
   P = 10*log10(P)
+  
   #extract time
   t = spec$t
   
+  #check min and max of z and determine reasonable zlims 
+  if(missing(dBscale)) {
+    dBscale = c(min(t(P)), max(t(p)))
+  } else {
+    
+    
+  }
+  
+  
+  #plot
   image(x = t, y = spec$f, z = t(P), 
         zlim = c(-35, -5),
         col = (100), 
