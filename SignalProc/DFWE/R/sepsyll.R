@@ -37,6 +37,13 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
     wav_file = wav_file
   }
 
+  #checks to see if there is a syl_filt specified, if not uses default of 50 samples
+  if(missing(syl_filt)) {
+    syl_filt = 50
+  } else {
+    syl_filt = syl_filt
+  }
+
   #centers signal at zero
   data_center = wav_file - mean(wav_file)
 
@@ -129,7 +136,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
     ends = which(yy == -1)
   }
 
-  #create empty lists to store our syllable data in
+  #create empty lists to store syllable data in
   syllable = c()
   timmy = c()
   timm = c()
@@ -137,21 +144,29 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 
   #create our output data for syllable locations
   for (i in seq(1,length(starts))) {
-
     syllable[[i]] = wave_file@left[starts[i]:ends[i]]
     timmy[[i]] = tim[starts[i]:ends[i]]
     timm[[i]] = seq(1/Fs, (1 + ends[i] - starts[i])/Fs, 1/Fs)
 
   }
 
-  for (s in seq(1, length(syllable))) {
-    syllable[which(length(syllable) < 30)]
-
+  #checks to see if syllables (and timm, timmy) meet the minimum sample length requirement. if not, delete
+  if(syllable_filter){
+    for (s in seq(1, length(syllable))) {
+      if(length(syllable[[s]]) <= syl_filt) {
+        syllable[s] = NULL
+      }
+      if(length(timmy[[s]]) <= syl_filt) {
+        timmy[s] = NULL
+      }
+      if(length(timm[[s]]) <= syl_filt) {
+        timm[s] = NULL
+      }
+    }
   }
 
 
-
-  all_syllables = c("Syllable" = syllable, "Timmy" = timmy, "Timm" = timm)
+  all_syllables = c("syllable" = syllable, "timmy" = timmy, "timm" = timm)
   return(all_syllables)
 
 }
