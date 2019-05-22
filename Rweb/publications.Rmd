@@ -162,7 +162,7 @@ Khosravi-Hashemi, N., Fortune, E.S., and M.J. Chacron
 </td></tr></table>
 <hr>
 
-<!-- CHACRON SUBTHRESHOLD 2011 -->
+<!-- CHACRON SUBTHRESHOLD 2010 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
 <img src="images/icons/iPMID_20445028.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
@@ -170,9 +170,21 @@ Khosravi-Hashemi, N., Fortune, E.S., and M.J. Chacron
 Chacron, M.J. and E.S. Fortune (2010) Subthreshold membrane
 conductances enhance directional selectivity in vertebrate sensory neurons.  J.
 Neurophysiol., 4(2):e32, 
- [PMID:20445028](pdf/ChacronSubthreshold2010_pmid20445028.pdf").  
+ [PMID:20445028](pdf/ChacronSubthreshold2010_pmid20445028.pdf).  
 </td></tr></table>
 <hr>
 
+<!-- STAMPER SPECIES 2010 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_19874855.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Stamper, S.A., Carrera-G, E., Tan, E.W., Fugere, V., Krahe, R., and
+E.S.  Fortune (2010) Species differences in group size and electrosensory
+interference in weakly electric fishes: Implications for electrosensory
+processing. Behav Brain Res., 
+ [PMID:19874855](pdf/StamperSpecies2010_pmid19874885.pdf).  
+</td></tr></table>
+<hr>
 
 
