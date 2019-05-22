@@ -1,18 +1,15 @@
 
-get_clicks = function(wave_file, frame_shift){
-  
-  #checks that package seewave is installed and loaded. If not, installs and loads 
-  if("seewave" %in% rownames(installed.packages()) == FALSE) {
-    print("Required package 'seewave' missing. Package will be installed.")
-    install.packages("seewave")
-    }
-  library(seewave)
-  
+getclicks = function(wav_file, Fs, frame_shift){
+
+  #variable to continue/end click collection
+  continue = 1
+
   #function to merge click positions nicely, internal, called later on
-  #adds each element in collected lists to larger list. 
+  #adds each element in collected lists to larger list.
   internallistcombine = function(list1, list2){
+    #create empty list
     n = c()
-    
+
     for(x in list1){
       n = c(n, x)
     }
@@ -21,32 +18,39 @@ get_clicks = function(wave_file, frame_shift){
     }
     return(n)
   }
-  
+
+  #check to see if wav_file is actually a wav and extract frequency data. If not wav, then just use the data
+  if(isS4(wav_file)) {
+    wav_file = wav_file@left
+  } else {
+    wav_file = wav_file
+  }
+
+  #check to see if user specified Fs, if not then use embedded wav sample rate
+  if(missing(Fs)){
+    Fs = wav_file@samp.rate
+  } else {
+    Fs = Fs
+  }
+
+  #add variable frame shift with a default value of 2
+  if(missing(frame_shift)) {
+    frame_shift = 2
+  } else {
+    frame_shift = frame_shift
+  }
+
   #get the length of clip in seconds
-  tmax = length(wave_file@left)/wave_file@samp.rate
-  #series from 0 to the max number of frameshifts to be ploted, prevents plotting out of bounds  
+  tmax = length(wav_file)/Fs
+  #series from 0 to the max number of frameshifts to be ploted, prevents plotting out of bounds
   nframe = c(-1:trunc(tmax/2)+1)
   #set up collection points for click data
   internal_data_collect = c()
-  #add variable frame shift with a default value of 2
-  if(missing(frame_shift)) {
-    fs = 2
-  } else {
-    fs = frame_shift
-  }
-  
+
   #plot entire spectro to get overview
-  spectro(wave_file, wl = 512, 
-          palette = reverse.gray.colors.2, 
-          collevels = seq(-65, 0, 1), 
-          scale = FALSE, 
-          flim = c(0, 8),
-          fastdisp = TRUE)
-  
-  
-  #variable to continue/end click collection
-  continue = 1
-  
+  specplot(wav_file, Fs)
+
+
   #main function. while loop that will ask to continue when finished. allows multiple click series to be captured
   while(continue == 1) {
     #prompts user to name click series
@@ -57,58 +61,60 @@ get_clicks = function(wave_file, frame_shift){
     nshift = 0
     #creates new storage list. also clears list at the start of loop
     internal_list = c()
-    
-    #actual click capture part. 
+
+    #actual click capture part.
     while(new_plot == 1) {
      #start frame
-      sframe = c(0, fs)
+      sframe = c(0, frame_shift)
       #amount of frame shift
-      ##modify this to add overlap 
-      shift = c(fs, fs)
-    
+      ##modify this to add overlap
+      shift = c(frame_shift, frame_shift)
+
       #set the frame to graph
-      #test if the upper limit "b" of tlim c(a,b) is greater than the tmax of the clip. 
-      #if b is greater than tmax, tmax is used as upper tlim, prevents plotting out of bounds 
+      #test if the upper limit "b" of tlim c(a,b) is greater than the tmax of the clip.
+      #if b is greater than tmax, tmax is used as upper tlim, prevents plotting out of bounds
       pframe = if((nshift+1)*shift[2] <= tmax) {
         sframe + shift*nshift
       } else {
-        c(sframe[1] + nshift*shift[1], tmax) 
+        c(sframe[1] + nshift*shift[1], tmax)
       }
-    
+
       #plot portion of spectrogram. 2 second intervals
-      #uses tlim instead of xlim to dictate x-limits 
-      spectro(wave_file, wl = 512, 
-              palette = reverse.gray.colors.2, 
-              collevels = seq(-65, 0, 1), 
-              scale = FALSE, 
-              flim = c(0, 8), 
+      #uses tlim instead of xlim to dictate x-limits
+      spectro(wave_file, wl = 512,
+              palette = reverse.gray.colors.2,
+              collevels = seq(-65, 0, 1),
+              scale = FALSE,
+              flim = c(0, 8),
               tlim = pframe,
               fastdisp = TRUE)
-    
+
+      specplot(wav_file, x_limit = pframe)
+
       print("Select points on graph. Hit 'ESC' when complete")
-    
+
       #collect set of clicks
-      #plots points 
-      ##locator is slow for some reason. it doesn't like to plot these points 
+      #plots points
+      ##locator is slow for some reason. it doesn't like to plot these points
       clicks = locator(type = "p", col = "Red")
       #take only x values
       clicks_x = clicks[1]
       #create internal function list of click x values
       internal_list = list("a" = internallistcombine(internal_list, clicks[1]))
-     
-    
+
+
       #check to see if plotting complete
       continue_plot = ifelse(pframe[2] == tmax, 0, 1)
       new_plot = continue_plot
       #add 1 to nshift, advancing plot window
-      nshift = nshift + 1 
-    } 
-  
+      nshift = nshift + 1
+    }
+
   #rename set of clicks to user generated name
   names(internal_list) = name_set
-  #add newly generated and named list to function variable for storage 
+  #add newly generated and named list to function variable for storage
   internal_data_collect = append(internal_data_collect, internal_list)
-  
+
   continue = as.integer(readline(prompt = "Would you like to select another series of points? 1 = Yes ; 2 = No  "))
   }
   return(internal_data_collect)
