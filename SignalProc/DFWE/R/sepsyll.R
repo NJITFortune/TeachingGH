@@ -189,6 +189,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
         if(length(ends[[s]]) >= syl_filt_b) {
           filt_ends[[s]] = ends[[s]]
         }
+        print(filt_starts)
       }
       #generate final lists by replacing storage lists with temporary lists - null values
       starts = filt_starts[-which(sapply(filt_starts, is.null))]
