@@ -19,18 +19,18 @@ getclicks = function(wav_file, Fs, frame_shift){
     return(n)
   }
 
-  #check to see if wav_file is actually a wav and extract frequency data. If not wav, then just use the data
-  if(isS4(wav_file)) {
-    wav_file = wav_file@left
-  } else {
-    wav_file = wav_file
-  }
-
   #check to see if user specified Fs, if not then use embedded wav sample rate
   if(missing(Fs)){
     Fs = wav_file@samp.rate
   } else {
     Fs = Fs
+  }
+
+  #check to see if wav_file is actually a wav and extract frequency data. If not wav, then just use the data
+  if(isS4(wav_file)) {
+    wav_file = wav_file@left
+  } else {
+    wav_file = wav_file
   }
 
   #add variable frame shift with a default value of 2
@@ -80,16 +80,7 @@ getclicks = function(wav_file, Fs, frame_shift){
       }
 
       #plot portion of spectrogram. 2 second intervals
-      #uses tlim instead of xlim to dictate x-limits
-      spectro(wave_file, wl = 512,
-              palette = reverse.gray.colors.2,
-              collevels = seq(-65, 0, 1),
-              scale = FALSE,
-              flim = c(0, 8),
-              tlim = pframe,
-              fastdisp = TRUE)
-
-      specplot(wav_file, x_limit = pframe)
+      specplot(wav_file, Fs, x_limit = pframe)
 
       print("Select points on graph. Hit 'ESC' when complete")
 
