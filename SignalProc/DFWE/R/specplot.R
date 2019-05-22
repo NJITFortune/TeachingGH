@@ -11,9 +11,10 @@
 #' @param ovlp Overlap, give in percent. Defaults to 50%
 #' @param normal Normalize. Defaults to TRUE
 #' @param amp_range DB range
-#' @param color Choose from 4 present color palettes; 1 = reverse heat, 2 = reverse greyscale, 3 = greyscale, 4 = heat
+#' @param color Choose from 4 present color palettes; 1 = reverse heat (default), 2 = reverse greyscale, 3 = greyscale, 4 = heat
 #' @param amp_value Display min and max dB. Defaults to FALSE
-
+#' @examples
+#' specplot(zfinch_data, ovlp = 90, color = 2, amp_value = TRUE)
 
 specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color, amp_value = FALSE) {
   #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
