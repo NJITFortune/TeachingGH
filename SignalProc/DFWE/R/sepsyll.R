@@ -1,7 +1,8 @@
 #' sepsyll
 #'
 #' This function seperates syllables from a recording. This recording can be a .wav file read by tuneR or
-#' frequency data.
+#' frequency data. It will return a list of lists and can be searched by index. All syllables and times will be numbered.
+#' Syllable frequency data, syllable time, and syllable time relative to recording are all included.
 #'
 #' @return A list of syllables and times
 #'
