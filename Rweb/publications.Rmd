@@ -283,6 +283,18 @@ electrosensory systems.  J. Comp. Physiol. A, 192:625-635,
 </td></tr></table>
 <hr>
 
+<!-- FORTUNE ENCODING 2006 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_16450118.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S., Rose, G.J., and M. Kawasaki (2006)
+Encoding and processing biologically relevant temporal information in
+electrosensory systems.  J. Comp. Physiol. A, 192:625-635,
+[PMID:16450118](pdf/FortuneEncoding2006_pmid16450118.pdf).  
+</td></tr></table>
+<hr>
+
 
 
 
