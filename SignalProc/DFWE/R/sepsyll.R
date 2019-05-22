@@ -154,7 +154,6 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
   zz[syls] = 1
   #take difference, this will give us a list of 1s and -1s marking start and end times
   yy = diff(zz)
-  print(yy)
 
   #extract start and end indices
   starts = which(yy == 1)
