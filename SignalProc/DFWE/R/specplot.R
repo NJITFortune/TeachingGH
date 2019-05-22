@@ -159,3 +159,4 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
   box(col = box_col)
 }
 
+document()
