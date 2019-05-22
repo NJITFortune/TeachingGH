@@ -15,7 +15,9 @@
 #' @param wl Defaults to 1/2 nfft
 #' @param ovlp Overlap, give in percent. Defaults to 50%
 #' @param normal Normalize. Defaults to TRUE
-#' @param amp_range DB range
+#' @param amp_range DB range. Provide as list c(a, b)
+#' @param x_limit List of x-limits c(a,b)
+#' @param y_limit List of y-limits c(a,b)
 #' @param color Choose from 4 present color palettes; 1 = reverse heat (default), 2 = reverse greyscale, 3 = greyscale, 4 = heat
 #' @param amp_value Display min and max dB. Defaults to FALSE
 #'
@@ -24,7 +26,7 @@
 #'
 #' @export
 
-specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color, amp_value = FALSE) {
+specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, x_limit, y_limit, color, amp_value = FALSE) {
   #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
   #freq _data may be list of frequencies or wav file
   #if sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
@@ -95,6 +97,9 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
   #extract time
   t = spec$t
 
+  #extract frequency for later
+  f = spec$f
+
   #output amp values
   if(amp_value) {
     print(max(t(P)))
@@ -156,13 +161,30 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
       }
     }
   }
+
+  #check to see if user input x limits
+  if(missing(x_limit)) {
+    x_limit = c(t[1], t[length(t)])
+  } else {
+    x_limit = x_limit
+  }
+
+  #check to see if user input y limits
+  if(missing(y_limit)) {
+    y_limit = c(f[1], f[length(f)])
+  } else {
+    y_limit = y_limit
+  }
+
   #plot
-  imagep(x = t, y = spec$f, z = t(P),
+  imagep(x = t, y = f, z = t(P),
         zlim = amp_range,
         col = col_select,
         ylab = "Frequency [Hz]",
         xlab = "Time [s]",
         drawPalette = FALSE,
-        decimate = FALSE)
+        decimate = FALSE,
+        xlim = x_limit,
+        ylim = y_limit)
   box(col = box_col)
 }
