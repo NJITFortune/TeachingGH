@@ -67,7 +67,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
   data_center = wav_file - mean(wav_file)
 
   #creates tim variable
-  tim = seq(1/Fs, length(wave_file)/Fs, 1/Fs)
+  tim = seq(1/Fs, length(wav_file)/Fs, 1/Fs)
 
   #take absolute value of the centered data
   rz = abs(data_center)
