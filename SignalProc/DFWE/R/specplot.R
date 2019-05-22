@@ -4,6 +4,7 @@
 #' When using frequency data alone, you need to specify a sample frequency. This function relies on the
 #' imagep() function from oce. specplot() uses custom color palettes with 30 colors. Most parameters have defaults
 #' and do not need to be specified by the user.
+#' @usage specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color, amp_value = FALSE)
 #' @param freq_data Wav file or frequency data
 #' @param Fs Sample rate, not necessary if provided by .wav file
 #' @param nfft Defaults to 512
@@ -158,5 +159,3 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
         decimate = FALSE)
   box(col = box_col)
 }
-
-document()
