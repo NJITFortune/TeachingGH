@@ -19,7 +19,10 @@ plot and you will be prompted to select a level.}
 \item{syllable_filter}{Defaults to false. Turns off/on the syllable filter set with syl_filt.}
 
 \item{syl_filt}{Sets a minimum sample length for syllables in order to filter out non-syllables
-i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 50.}
+i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 30.}
+
+\item{plot_thresh}{If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
+Turn of if you know your threshold and don't want to waste time plotting and confirming.}
 }
 \value{
 A list of syllables and times
