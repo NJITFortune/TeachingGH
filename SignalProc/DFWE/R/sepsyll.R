@@ -1,8 +1,18 @@
 #' @title sepsyll
 #'
-#' @description
-
-
+#' @description This function seperates syllables from a recording. This recording can be a .wav file read by tuneR or
+#' frequency data.
+#' @usage sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
+#' @param wav_file Can be either a .wav file or a list of frequencies
+#' @param Fs Sampling rate, can be supplied by .wav or specified
+#' @param sms Sets the filter threshold. Defaults to 20ms (0.020 seconds)
+#' @param thresh Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
+#' plot and you will be prompted to select a level.
+#' @param syllable_filter Defaults to false. Turns off/on the syllable filter set with syl_filt.
+#' @param syl_filt Sets a minimum sample length for syllables in order to filter out non-syllables
+#' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 50.
+#' @examples
+#' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
 
 
 sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt) {
@@ -26,7 +36,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 
   #creates user input for filter duration in seconds. If there is no input, default is set to 0.020s
   if(missing(sms)) {
-    sms = 0.0020
+    sms = 0.020
   } else {
     sms = sms
   }
