@@ -10,7 +10,7 @@
 #'
 #' @param wav_file Can be either a .wav file or a list of frequencies
 #' @param Fs Sampling rate, can be supplied by .wav or specified
-#' @param sms Sets the filter threshold. Defaults to 20ms (0.0020 seconds)
+#' @param sms Sets the filter threshold. Defaults to 20ms (0.020 seconds)
 #' @param thresh Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
 #' plot and you will be prompted to select a level.
 #' @param syllable_filter Defaults to false. Turns off/on the syllable filter set with syl_filt.
@@ -41,9 +41,9 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
     Fs = Fs
   }
 
-  #creates user input for filter duration in seconds. If there is no input, default is set to 0.0020s
+  #creates user input for filter duration in seconds. If there is no input, default is set to 0.020s
   if(missing(sms)) {
-    sms = 0.0020
+    sms = 0.020
   } else {
     sms = sms
   }
@@ -74,7 +74,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 
   #integer width of median window value for median filter. must be odd
   #will change to odd if even
-  k = Fs*sms
+  k = as.integer(Fs*sms)
   if((k %% 2) == 0) {
     k = k + 1
   } else {
@@ -82,9 +82,8 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
   }
 
   #apply median filter
-  mrz = runmed(rz, Fs*sms)
-
-  #mrz = mrz*1000
+  mrz = runmed(rz, k)
+  mrz = mrz*100
 
   #plot data and choose threshold for syllable selection.
   #This will prompt user to input a click for the threshold if no threshold was specified.
