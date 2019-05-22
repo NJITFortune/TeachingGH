@@ -4,7 +4,7 @@
 #' frequency data. It will return a list of lists and can be searched by index. All syllables and times will be numbered.
 #' Syllable frequency data, syllable time, and syllable time relative to recording are all included.
 #'
-#' @return A list of syllables and times
+#' @return A list of syllables and times. Timmy is the time in relation to the entire song. Timm is the time of the individual syllable.
 #'
 #' @usage sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 #'
@@ -158,6 +158,8 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
   #extract start and end indices
   starts = which(yy == 1)
   ends = which(yy == -1)
+  print(starts)
+  print(ends)
 
 
   #correct for partial syllables by removing the first/last syllable if the recording does not begin
@@ -165,13 +167,16 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
   if(starts[1] < ends[1]) {
     starts = starts
   } else {
-    starts = starts[2:length(starts)]
+    ends = ends[2:length(ends)]
   }
   if(ends[length(ends)] > starts[length(starts)]) {
     ends = ends
   } else {
-    ends = ends[1:length(ends)-1]
+    start = start[1:length(start)-1]
   }
+
+  print(starts)
+  print(ends)
 
   #create empty lists to store syllable data in
   syllable = c()
