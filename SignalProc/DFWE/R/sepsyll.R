@@ -10,7 +10,7 @@
 #'
 #' @param wav_file Can be either a .wav file or a list of frequencies
 #' @param Fs Sampling rate, can be supplied by .wav or specified
-#' @param sms Sets the filter threshold. Defaults to 20ms (0.020 seconds)
+#' @param sms Sets the filter threshold. Defaults to 20ms (0.0020 seconds)
 #' @param thresh Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
 #' plot and you will be prompted to select a level.
 #' @param syllable_filter Defaults to false. Turns off/on the syllable filter set with syl_filt.
@@ -41,9 +41,9 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
     Fs = Fs
   }
 
-  #creates user input for filter duration in seconds. If there is no input, default is set to 0.020s
+  #creates user input for filter duration in seconds. If there is no input, default is set to 0.0020s
   if(missing(sms)) {
-    sms = 0.020
+    sms = 0.0020
   } else {
     sms = sms
   }
@@ -72,9 +72,19 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
   #take absolute value of the centered data
   rz = abs(data_center)
 
+  #integer width of median window value for median filter. must be odd
+  #will change to odd if even
+  k = Fs*sms
+  if((k %% 2) == 0) {
+    k = k + 1
+  } else {
+    k = k
+  }
+
   #apply median filter
   mrz = runmed(rz, Fs*sms)
-  mrz = mrz*1000
+
+  #mrz = mrz*1000
 
   #plot data and choose threshold for syllable selection.
   #This will prompt user to input a click for the threshold if no threshold was specified.
@@ -133,7 +143,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
   #here we are pulling out the start and end times of the syllables
   syls = which(mrz > thresh)
   #create a list of zeros with length = to the length of the file
-  zz = rep(0, length((wave_file@left)))
+  zz = rep(0, length((wav_file)))
   #sets all points about threshold = 1
   zz[syls] = 1
   #take difference, this will give us a list of 1s and -1s marking start and end times
@@ -163,7 +173,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 
   #create our output data for syllable locations
   for (i in seq(1,length(starts))) {
-    syllable[[i]] = wave_file@left[starts[i]:ends[i]]
+    syllable[[i]] = wav_file[starts[i]:ends[i]]
     timmy[[i]] = tim[starts[i]:ends[i]]
     timm[[i]] = seq(1/Fs, (1 + ends[i] - starts[i])/Fs, 1/Fs)
 
