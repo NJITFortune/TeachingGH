@@ -1,8 +1,8 @@
-#' @title Plot a spectrogram
+#' @title specplot
 #
 #' @description This function will plot spectrograms. It works with either a wav file read by tuneR or frequency data.
 #' When using frequency data alone, you need to specify a sample frequency. This function relies on the
-#' imagep() function from oce. specplot() uses custom color palletes with 30 colors. Most parameters have defaults
+#' imagep() function from oce. specplot() uses custom color palettes with 30 colors. Most parameters have defaults
 #' and do not need to be specified by the user.
 #' @param freq_data Wav file or frequency data
 #' @param Fs Sample rate, not necessary if provided by .wav file
