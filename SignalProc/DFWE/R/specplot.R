@@ -1,10 +1,19 @@
-#specplot
+#' Plot a spectrogram
+#
+#' This function will plot spectrograms. It works with either a wav file read by tuneR or frequency data.
+#' When using frequency data alone, you need to specify a sample frequency. This function relies on the
+#' imagep() function from oce. specplot() uses custom color palletes with 30 colors. Most parameters have defaults
+#' and do not need to be specified by the user.
+#' @param freq_data Wav file or frequency data
+#' @param Fs Sample rate, not necessary if provided by .wav file
+#' @param nfft Defaults to 512
+#' @param wl Defaults to 1/2 nfft
+#' @param ovlp Overlap, give in percent. Defaults to 50%
+#' @param normal Normalize. Defaults to TRUE
+#' @param amp_range DB range
+#' @param color Choose from 4 present color palettes; 1 = reverse heat, 2 = reverse greyscale, 3 = greyscale, 4 = heat
+#' @param amp_value Display min and max dB. Defaults to FALSE
 
-#This function will plot spectrograms. It works with either a wav file read by tuneR or frequency data.
-#When using frequency data alone, you need to specify a sample frequency. This function relies on the
-#imagep() function from oce. specplot() uses custom color palletes with 30 colors. Most parameters have defaults
-#and do not need to be specified by the user.
-#parameters
 
 specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color, amp_value = FALSE) {
   #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
