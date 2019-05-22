@@ -13,9 +13,9 @@
 #' @param sms Sets the filter threshold. Defaults to 20ms (0.020 seconds)
 #' @param thresh Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
 #' plot and you will be prompted to select a level.
-#' @param syllable_filter Defaults to false. Turns off/on the syllable filter set with syl_filt.
+#' @param syllable_filter Defaults to TRUE. Turns off/on the syllable filter set with syl_filt.
 #' @param syl_filt Sets a minimum time for syllables in order to filter out non-syllables
-#' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 30.
+#' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 0.02s.
 #' @param plot_thresh If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
 #' Turn of if you know your threshold and don't want to waste time plotting and confirming.
 #' @param plot_syl Plot a spectrogram with the start and ends of each syllable marked in green/red respectively
@@ -26,7 +26,7 @@
 #'
 #' @export
 
-sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt, plot_thresh = TRUE, plot_syl = FALSE, index_simp = FALSE) {
+sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, plot_thresh = TRUE, plot_syl = FALSE, index_simp = FALSE) {
 
   #make formal class for storage of individual syllable data including: number, sample rate, frequency data,
   ##time of syllable starting from 0 AND time relative to entire recording, and dominate frequency
@@ -176,7 +176,25 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
   }
 
   #determine if the user wants index data or full syllable data and output as dataframe
-  if(index_simp){
+  if(index_simp) {
+    #filter out small non-syllables if syllable filter is true
+    if(syllable_filter) {
+      filt_starts = c()
+      filt_ends = c()
+      syl_filt_b = syl_filt*Fs
+      for (s in seq(1, length(starts))) {
+        if(length(starts[[s]]) >= syl_filt_b) {
+          filt_starts[[s]] = starts[[s]]
+        }
+        if(length(ends[[s]]) >= syl_filt_b) {
+          filt_ends[[s]] = ends[[s]]
+        }
+      }
+      #generate final lists by replacing storage lists with temporary lists - null values
+      starts = filt_starts[-which(sapply(filt_starts, is.null))]
+      ends = filt_ends[-which(sapply(filt_ends, is.null))]
+    }
+    #output
     index_out = data.frame(syllable_number = c(1:length(starts)),
                            syllable_start = starts,
                            syllable_ends = ends,
