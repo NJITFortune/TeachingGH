@@ -14,7 +14,6 @@
 #' @examples
 #' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
 
-
 sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt) {
 
   #make formal class for storage of individual syllable data including: number, sample rate, frequency data,
