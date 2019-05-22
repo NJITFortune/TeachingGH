@@ -15,7 +15,7 @@
 #' plot and you will be prompted to select a level.
 #' @param syllable_filter Defaults to false. Turns off/on the syllable filter set with syl_filt.
 #' @param syl_filt Sets a minimum sample length for syllables in order to filter out non-syllables
-#' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 50.
+#' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 30.
 #'
 #' @examples
 #' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
@@ -58,7 +58,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 
   #checks to see if there is a syl_filt specified, if not uses default of 50 samples
   if(missing(syl_filt)) {
-    syl_filt = 50
+    syl_filt = 30
   } else {
     syl_filt = syl_filt
   }
