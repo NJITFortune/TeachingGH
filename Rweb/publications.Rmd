@@ -3,13 +3,14 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
+<center><strong>Peer-Reviewed Publications</strong></center><p>
 
 <!-- UYANIK SENSORY 2019 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
 <img src="images/icons/iPMID_31024269.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle">
-Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory Cues Modulate Smooth Pursuit and Active Sensing Movements. Front. Behav. Neurosci., doi:10.3389/fnbeh.2019.00059., 
+Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory Cues Modulate Smooth Pursuit and Active Sensing Movements. Front. Behav. Neurosci., 
 [link](https://www.frontiersin.org/articles/10.3389/fnbeh.2019.00059/full), 
 [PMID:31024269](pdf/UyanikSensory2019).
 </td></tr></table>
@@ -35,6 +36,15 @@ N.J. Cowan (2018) High-resolution behavioral mapping of electrical fishes in
 Amazonian habitats. Scientific Reports. 
 [link](https://www.nature.com/articles/s41598-018-24035-5), 
 [PMID:29643472](pdf/MadhavHigh-Resolution2018.pdf).
+</td></tr></table>
+<hr>
+
+<!-- SUTTON DYNAMIC 2016 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_27170650.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Sutton, E.E., Demir, A., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2016) Dynamic modulation of visual and electrosensory gains for locomotor control. J R Soc Interface. 13(118).pii:20160057, [PMID:27170650](pdf/RouseReproductive2015.pdf).  
 </td></tr></table>
 <hr>
 
@@ -118,3 +128,51 @@ Stamper, S.A., Roth, E., Cowan, N.J., and E.S. Fortune (2012) Active sensing via
  [PMID:22496294](pdf/StamperActive2012_pmid22496294.pdf).  
 </td></tr></table>
 <hr>
+
+<!-- FORTUNE NEURAL 2011 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_22053048.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S., Rodriguez, C., Li, D., Ball, G.F., and M.J. Coleman (2011) Neural mechanisms for the coordination of duet singing in wrens. Science., 334:666-669,
+ [PMID:22052048](pdf/FortuneNeural2011_pmid22053048.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- ROTH STIMULUS 2011 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_21389203.gif" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Roth, E., Zhuang, K., Stamper, S.A., Fortune, E.S., and N.J. Cowan 
+(2011) Stimulus predictability mediates a switch in locomotor 
+smooth pursuit performance for <i>Eigenmannia virescens</i>.,
+ [PMID:21389203](pdf/RothStimulus2011_pmid21389203.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- KHOSRAVI BURSTS 2011 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_21775723.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Khosravi-Hashemi, N., Fortune, E.S., and M.J. Chacron
+(2011) Coding movement direction by burst firing in electrosensory neurons.,
+ [PMID:21775723](pdf/KhosraviCoding2011_pmid21775723.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- CHACRON SUBTHRESHOLD 2011 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_20445028.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Chacron, M.J. and E.S. Fortune (2010) Subthreshold membrane
+conductances enhance directional selectivity in vertebrate sensory neurons.  J.
+Neurophysiol., 4(2):e32, 
+ [PMID:20445028](pdf/ChacronSubthreshold2010_pmid20445028.pdf").  
+</td></tr></table>
+<hr>
+
+
+
