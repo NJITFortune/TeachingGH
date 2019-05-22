@@ -1,0 +1,18 @@
+---
+---
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+<img src="images/esf.jpg" style="width:25%; border:10px solid; margin-right: 20px" align="left">
+
+<b>Eric S Fortune PhD</b>  
+Federated Department of Biological Sciences  
+New Jersey Institute of Technology and Rutgers University  
+323 Dr Martin Luther King Jr Blvd  
+Newark, NJ 07102 USA  
+
+Tel: +1 443 312 9610 <br>
+e-mail: eric.fortune@njit.edu <p>
+
+My full CV is available [here](pdf/NSF2018_Fortune_BioSketch.pdf).
+
