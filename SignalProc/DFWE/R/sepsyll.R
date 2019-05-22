@@ -14,7 +14,7 @@
 #' @param thresh Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
 #' plot and you will be prompted to select a level.
 #' @param syllable_filter Defaults to false. Turns off/on the syllable filter set with syl_filt.
-#' @param syl_filt Sets a minimum sample length for syllables in order to filter out non-syllables
+#' @param syl_filt Sets a minimum time for syllables in order to filter out non-syllables
 #' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 30.
 #' @param plot_thresh If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
 #' Turn of if you know your threshold and don't want to waste time plotting and confirming.
@@ -190,16 +190,18 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
 
   }
 
+
   #checks to see if syllables (and timm, timmy) meet the minimum sample length requirement and create new, temporary lists of data
   if(syllable_filter){
+    syl_filt_b = syl_filt*Fs
     for (s in seq(1, length(syllable))) {
-      if(length(syllable[[s]]) >= syl_filt) {
+      if(length(syllable[[s]]) >= syl_filt_b) {
         filt_syl[[s]] = syllable[[s]]
       }
-      if(length(timmy[[s]]) >= syl_filt) {
+      if(length(timmy[[s]]) >= syl_filt_b) {
         filt_timmy[[s]] = timmy[[s]]
       }
-      if(length(timm[[s]]) >= syl_filt) {
+      if(length(timm[[s]]) >= syl_filt_b) {
         filt_timm[[s]] = timm[[s]]
       }
     }
