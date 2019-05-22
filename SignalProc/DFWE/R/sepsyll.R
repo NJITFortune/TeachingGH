@@ -18,13 +18,15 @@
 #' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 30.
 #' @param plot_thresh If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
 #' Turn of if you know your threshold and don't want to waste time plotting and confirming.
+#' @param plot_syl Plot a spectrogram with the start and ends of each syllable marked in green/red respectively
+#' @param index_simp Changes output from default data to indices and times of syllables as a dataframe. Default FALSE.
 #'
 #' @examples
 #' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
 #'
 #' @export
 
-sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt, plot_thresh = TRUE) {
+sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt, plot_thresh = TRUE, plot_syl = FALSE, index_simp = FALSE) {
 
   #make formal class for storage of individual syllable data including: number, sample rate, frequency data,
   ##time of syllable starting from 0 AND time relative to entire recording, and dominate frequency
@@ -173,46 +175,63 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
     start = start[1:length(start)-1]
   }
 
-  #create empty lists to store syllable data in
-  syllable = c()
-  timmy = c()
-  timm = c()
-  filt_syl = c()
-  filt_timm = c()
-  filt_timmy = c()
+  #determine if the user wants index data or full syllable data and output as dataframe
+  if(index_simp){
+    index_out = data.frame(syllable_number = c(1:length(starts)),
+                           syllable_start = starts,
+                           syllable_ends = ends,
+                           syllable_start_time = starts/Fs,
+                           syllable_end_time = ends/Fs)
+    return(index_out)
+  } else {
+    #create empty lists to store syllable data in
+    syllable = c()
+    timmy = c()
+    timm = c()
+    filt_syl = c()
+    filt_timm = c()
+    filt_timmy = c()
 
 
-  #create our output data for syllable locations
-  for (i in seq(1,length(starts))) {
-    syllable[[i]] = wav_file[starts[i]:ends[i]]
-    timmy[[i]] = tim[starts[i]:ends[i]]
-    timm[[i]] = seq(1/Fs, (1 + ends[i] - starts[i])/Fs, 1/Fs)
+    #create our output data for syllable locations
+    for (i in seq(1,length(starts))) {
+      syllable[[i]] = wav_file[starts[i]:ends[i]]
+      timmy[[i]] = tim[starts[i]:ends[i]]
+      timm[[i]] = seq(1/Fs, (1 + ends[i] - starts[i])/Fs, 1/Fs)
 
-  }
-
-
-  #checks to see if syllables (and timm, timmy) meet the minimum sample length requirement and create new, temporary lists of data
-  if(syllable_filter){
-    syl_filt_b = syl_filt*Fs
-    for (s in seq(1, length(syllable))) {
-      if(length(syllable[[s]]) >= syl_filt_b) {
-        filt_syl[[s]] = syllable[[s]]
-      }
-      if(length(timmy[[s]]) >= syl_filt_b) {
-        filt_timmy[[s]] = timmy[[s]]
-      }
-      if(length(timm[[s]]) >= syl_filt_b) {
-        filt_timm[[s]] = timm[[s]]
-      }
     }
-    #generate final lists by replacing storage lists with temporary lists - null values
-    syllable = filt_syl[-which(sapply(filt_syl, is.null))]
-    timmy = filt_timmy[-which(sapply(filt_timmy, is.null))]
-    timm = filt_timm[-which(sapply(filt_timm, is.null))]
-  }
 
-  all_syllables = c("syllable" = syllable, "timm" = timm, "timmy" = timmy)
-  return(all_syllables)
+
+    #checks to see if syllables (and timm, timmy) meet the minimum sample length requirement and create new, temporary lists of data
+    if(syllable_filter){
+      syl_filt_b = syl_filt*Fs
+      for (s in seq(1, length(syllable))) {
+        if(length(syllable[[s]]) >= syl_filt_b) {
+          filt_syl[[s]] = syllable[[s]]
+        }
+        if(length(timmy[[s]]) >= syl_filt_b) {
+          filt_timmy[[s]] = timmy[[s]]
+       }
+        if(length(timm[[s]]) >= syl_filt_b) {
+          filt_timm[[s]] = timm[[s]]
+        }
+      }
+      #generate final lists by replacing storage lists with temporary lists - null values
+      syllable = filt_syl[-which(sapply(filt_syl, is.null))]
+      timmy = filt_timmy[-which(sapply(filt_timmy, is.null))]
+      timm = filt_timm[-which(sapply(filt_timm, is.null))]
+    }
+
+    if(plot_syl) {
+      specplot(wav_file, Fs)
+      par(new = TRUE)
+      abline(v = starts, col = "Green")
+      abline(v = ends, col = "Red")
+    }
+
+    all_syllables = c("syllable" = syllable, "timm" = timm, "timmy" = timmy)
+    return(all_syllables)
+  }
 
 }
 
