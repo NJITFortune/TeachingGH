@@ -158,8 +158,6 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
   #extract start and end indices
   starts = which(yy == 1)
   ends = which(yy == -1)
-  print(starts)
-  print(ends)
 
 
   #correct for partial syllables by removing the first/last syllable if the recording does not begin
@@ -175,13 +173,13 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
     start = start[1:length(start)-1]
   }
 
-  print(starts)
-  print(ends)
-
   #create empty lists to store syllable data in
   syllable = c()
   timmy = c()
   timm = c()
+  filt_syl = c()
+  filt_timm = c()
+  filt_timmy = c()
 
 
   #create our output data for syllable locations
@@ -192,21 +190,24 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt,
 
   }
 
-  #checks to see if syllables (and timm, timmy) meet the minimum sample length requirement. if not, delete
+  #checks to see if syllables (and timm, timmy) meet the minimum sample length requirement and create new, temporary lists of data
   if(syllable_filter){
     for (s in seq(1, length(syllable))) {
-      if(length(syllable[[s]]) <= syl_filt) {
-        syllable[s] = NULL
+      if(length(syllable[[s]]) >= syl_filt) {
+        filt_syl[[s]] = syllable[[s]]
       }
-      if(length(timmy[[s]]) <= syl_filt) {
-        timmy[s] = NULL
+      if(length(timmy[[s]]) >= syl_filt) {
+        filt_timmy[[s]] = timmy[[s]]
       }
-      if(length(timm[[s]]) <= syl_filt) {
-        timm[s] = NULL
+      if(length(timm[[s]]) >= syl_filt) {
+        filt_timm[[s]] = timm[[s]]
       }
     }
+    #generate final lists by replacing storage lists with temporary lists
+    syllable = filt_syl[-which(sapply(filt_syl, is.null))]
+    timmy = filt_timmy[-which(sapply(filt_timmy, is.null))]
+    timm = filt_timm[-which(sapply(filt_timm, is.null))]
   }
-
 
   all_syllables = c("syllable" = syllable, "timmy" = timmy, "timm" = timm)
   return(all_syllables)
