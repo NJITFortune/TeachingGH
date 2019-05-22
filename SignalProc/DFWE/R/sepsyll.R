@@ -148,23 +148,22 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
   #take difference, this will give us a list of 1s and -1s marking start and end times
   yy = diff(zz)
 
-  yy_se = which((yy == 1)  (yy == -1))
+  yy_se = which((yy == 1) | (yy == -1))
 
   #identify our start and end points
   #correct for partial syllables by removing the first/last syllable if the recording does not begin
   #with a start(1) or end with and end(-1)
-  if(yy[1] == 1) {
-    starts = which(yy == 1)
+  if(yy_se[1] == 1) {
+    starts = which(yy_se == 1)
   } else {
-    print(yy[1])
-    yy[1] = NULL
-    starts = which(yy == 1)
+    yy_se[1] = NULL
+    starts = which(yy_se == 1)
   }
-  if(yy[length(yy)] == -1) {
-    ends = which(yy == -1)
+  if(yy_se[length(yy_se)] == -1) {
+    ends = which(yy_se == -1)
   } else {
-    yy[length(yy)] = NULL
-    ends = which(yy == -1)
+    yy_se[length(yy_se)] = NULL
+    ends = which(yy_se == -1)
   }
 
   #create empty lists to store syllable data in
