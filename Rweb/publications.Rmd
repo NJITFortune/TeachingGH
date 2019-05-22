@@ -219,7 +219,7 @@ electrosensory behavior of weakly electric fish.  ILAR J., 50:361-372,
 </td><td valign="middle"> 
 Fortune, E.S. and M.J. Chacron (2009) From molecules to behavior:
 organismal-level regulation of ion channel trafficking. PLoS Biol., 7:e1000211,
-[link](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000211)
+[link](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000211),
 [PMID:19787034](pdf/FortuneMolecules2009_pmid19787034.pdf).  
 </td></tr></table>
 <hr>
