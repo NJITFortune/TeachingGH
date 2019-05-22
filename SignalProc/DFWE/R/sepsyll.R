@@ -16,13 +16,15 @@
 #' @param syllable_filter Defaults to false. Turns off/on the syllable filter set with syl_filt.
 #' @param syl_filt Sets a minimum sample length for syllables in order to filter out non-syllables
 #' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 30.
+#' @param plot_thresh If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
+#' Turn of if you know your threshold and don't want to waste time plotting and confirming.
 #'
 #' @examples
 #' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
 #'
 #' @export
 
-sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt) {
+sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt, plot_thresh = TRUE) {
 
   #make formal class for storage of individual syllable data including: number, sample rate, frequency data,
   ##time of syllable starting from 0 AND time relative to entire recording, and dominate frequency
@@ -95,7 +97,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
   if (missing(thresh)) {
     con_plot_thresh = 2
   } else {
-    #if threshold is specified plot and prompt for confirmation
+    #if threshold is specified plot
     thresh = thresh
     plot(tim, mrz,
          type = "l",
@@ -106,7 +108,12 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
     par(new = TRUE)
     abline(h = thresh, col = "Blue")
 
-    con_plot_thresh = as.integer(readline(prompt = "Is this threshold okay? 1 = Yes ; 2 = No  "))
+    #if plot_thresh is TRUE plot user entered threshold and prompt for confirmation
+    if(plot_thresh){
+      con_plot_thresh = as.integer(readline(prompt = "Is this threshold okay? 1 = Yes ; 2 = No  "))
+    } else {
+      con_plot_thresh = 1
+    }
   }
   #if no threshold specified prompt user to click plot and select threshold.
   #Confirm threshold or restart
@@ -147,8 +154,10 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
   zz[syls] = 1
   #take difference, this will give us a list of 1s and -1s marking start and end times
   yy = diff(zz)
+  print(yy)
 
   yy_se = which((yy == 1) | (yy == -1))
+  print(yy_se)
 
   #identify our start and end points
   #correct for partial syllables by removing the first/last syllable if the recording does not begin
