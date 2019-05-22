@@ -1,19 +1,20 @@
-#function requires seeWave and TuneR 
-sepsyll = function(wave_file, Fs, sms, thresh) {
+#function uses specplot function, requires 
+
+sepsyll = function(wav_file, Fs, sms, thresh) {
   
   #make formal class for storage of individual syllable data including: number, sample rate, frequency data, 
   ##time of syllable starting from 0 AND time relative to entire recording, and dominate frequency
-  setClass("Syllable", slots = list(syllable.number = "integer", 
-                                    samp.rate = "integer", 
-                                    frequency.data = "integer", 
-                                    timmy = "numeric", 
-                                    timm = "numeric", 
-                                    dom.freq = "integer"))
+  #setClass("Syllable", slots = list(syllable.number = "integer", 
+                                    #samp.rate = "integer", 
+                                    #frequency.data = "integer", 
+                                    #timmy = "numeric", 
+                                    #timm = "numeric", 
+                                    #dom.freq = "integer"))
   
-  #creates a user input for sampling frequency. If no user input then the function will try to extract from .wav file
-  ##This may only work with seewave's readWave() function
+  #creates a user input for sampling frequency. 
+  #If no user input then the function will try to extract from .wav file
   if(missing(Fs)) {
-    Fs = wave_file@samp.rate
+    Fs = wav_file@samp.rate
   } else {
     Fs = Fs
   }
@@ -25,12 +26,19 @@ sepsyll = function(wave_file, Fs, sms, thresh) {
     sms = sms
   }
   
+  #check to see if input file is .wav.
+  #if .wav, extract freq data, else directly use the data provided
+  if(isS4(wav_file) == TRUE) {
+    wav_file = wav_file@left
+  } else {
+    wav_file = wav_file
+  }
+  
   #centers signal at zero 
-  ##needs .wav read by seewave
-  data_center = wave_file@left - mean(wave_file@left) 
+  data_center = wav_file - mean(wav_file) 
   
   #creates tim variable 
-  tim = seq(1/Fs, length(wave_file@left)/Fs, 1/Fs)
+  tim = seq(1/Fs, length(wave_file)/Fs, 1/Fs)
   
   #take absolute value of the centered data
   rz = abs(data_center)
@@ -99,11 +107,24 @@ sepsyll = function(wave_file, Fs, sms, thresh) {
   zz = rep(0, length((wave_file@left)))
   #sets all points about threshold = 1
   zz[syls] = 1
-  #take difference
+  #take difference, this will give us a list of 1s and -1s marking start and end times
   yy = diff(zz)
+  
   #identify our start and end points
-  starts = which(yy == 1)
-  ends = which(yy == -1)
+  #correct for partial syllables by removing the first/last syllable if the recording does not begin 
+  #with a start(1) or end with and end(-1)
+  if(yy[1] == 1) {
+    starts = which(yy == 1)
+  } else {
+    yy[1] = NULL
+    starts = which(yy == 1)
+  }
+  if(yy[length(yy)] == -1) {
+    ends = which(yy == -1)
+  } else {
+    yy[length(yy)] = NULL
+    ends = which(yy == -1)
+  }
   
   #create empty lists to store our syllable data in
   syllable = c()
