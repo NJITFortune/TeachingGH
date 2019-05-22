@@ -3,21 +3,45 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
+
+<!-- UYANIK SENSORY 2019 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
-<img src="images/MadhavIcon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+<img src="images/icons/iPMID_31024269.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle">
-Madhav, M.S., Jayakumar R.P., Demir, A., Stamper S.A., Fortune, E.S., and
-Cowan N.J. (2018) High-resolution behavioral mapping of electrical fishes in
-Amazonian habitats. Scientific Reports. 
-[link](url/"https://www.nature.com/articles/s41598-018-24035-5"), 
-[PMID:12341234](pdf/MadhavHigh-Resolution2018.pdf).
+Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory Cues Modulate Smooth Pursuit and Active Sensing Movements. Front. Behav. Neurosci., doi:10.3389/fnbeh.2019.00059., 
+[link](https://www.frontiersin.org/articles/10.3389/fnbeh.2019.00059/full), 
+[PMID:31024269](pdf/UyanikSensory2019).
 </td></tr></table>
 <hr>
 
+<!-- BISWAS CLOSED-LOOP 2018 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
-<img src="OldImages/iPMID_25989596.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+<img src="images/icons/iPMID_30503617.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Biswas, D., Arend, L.A., Stamper, S.A., Vagvolgyi, B.P., Fortune, E.S., and N.J. Cowan. (2018) Closed-Loop Control of Active Sensing Movements Regulates Sensory Slip. Curr. Biol., 28(24):4029-4036.e4, 
+[PMID:30503617](pdf/BiswasClosed-Loop2018.pdf).
+</td></tr></table>
+<hr>
+
+<!-- MADHAV HIGH-RESOLUTION 2018 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/MadhavIcon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Madhav, M.S., Jayakumar R.P., Demir, A., Stamper S.A., Fortune, E.S., and
+N.J. Cowan (2018) High-resolution behavioral mapping of electrical fishes in
+Amazonian habitats. Scientific Reports. 
+[link](https://www.nature.com/articles/s41598-018-24035-5), 
+[PMID:29643472](pdf/MadhavHigh-Resolution2018.pdf).
+</td></tr></table>
+<hr>
+
+<!-- ROUSE REPRODUCTIVE 2015 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_25989596.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle">
 Rouse, M.L., Stevenson, T.J., Fortune, E.S., and G.F. Ball (2015) Reproductive
 state modulates testosterone-induced singing in adult female European starlings
@@ -25,9 +49,10 @@ state modulates testosterone-induced singing in adult female European starlings
 </td></tr></table>
 <hr>
 
+<!-- COWAN FEEDBACK 2014 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
-<img src="OldImages/iPMID_24893678.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+<img src="images/icons/iPMID_24893678.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle">
 Cowan, N.J., Ankarali, M.M., Dyhr, J.P., Madhav, M.S., Roth, E., Sefati, S.,
 Stamper, S.A., Fortune, E.S., and T.L. Daniel (2014) Feedback control as 
@@ -36,3 +61,60 @@ a framework for understanding tradeoffs in biology.  Integr. Comp. Biol.,
 </td></tr></table>
 <hr>
 
+<!-- SEFATI MUTUALLY 2013 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_24191034.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Sefati, S., Neveln I.D., Roth E., Mitchell T.R., Snyder J.B., Maciver M.A., Fortune E.S., and N.J. Cowan (2013) Mutually opposing forces during locomotion can eliminate the tradeoff between maneuverability and stability.
+PNAS, 110:19798-18803, [PMID:24191034](pdf/SefatiMutually2013_pmid24191034.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- MADHAV JAR 2013 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_23997196.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Madhav M.S., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2013) Closed-loop stabilization of the Jamming Avoidance Response reveals its locally unstable and globally nonlinear dynamics., J. Exp. Biol., 216:4272-4284, [PMID:23997196](pdf/MadhavClosed2013_pmid23997196.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- STAMPER ENVELOPE REVIEW 2013 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_23761464.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Stamper, S.A., Fortune, E.S., and M.J. Chacron (2013) Perception and coding of envelopes in weakly electric fishes. J. Exp. Biol., 216:2393-2402, [PMID:23761464](pdf/StamperPerception2013_pmid23761464.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- STAMPER BEYOND 2012 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_23136154.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Stamper S.A., Madhav M.S., Cowan N.J., and Fortune E.S. (2012) Beyond the Jamming Avoidance Response: weakly electric fish respond to the envelope of social electrosensory signals, J. Exp. Biol., 215:4196-4207,
+ [PMID:23136154](pdf/StamperBeyond2012_pmid23136154.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- McGILLIVRAY PARALLEL 2012 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_22514313.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+McGilligray, P., Vonderschen, K., Fortune, E.S., and M.J. Chacron (2012) Parallel coding of first- and second-order stimulusattributes by midbrain electrosensory neurons. J. Neurosci., 32:5510-5524,
+ [PMID:22514313](pdf/McGillivrayParallel2012_pmid22514313.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- STAMPER ACTIVE 2012 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_22496294.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Stamper, S.A., Roth, E., Cowan, N.J., and E.S. Fortune (2012) Active sensing via movement shapes spatiotemporal patterns of sensory feedback. J. Exp. Biol., 215:1567-1574,
+ [PMID:22496294](pdf/StamperActive2012_pmid22496294.pdf).  
+</td></tr></table>
+<hr>

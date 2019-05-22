@@ -26,7 +26,7 @@ the lab focus on two main questions:   </p>
 </td></tr></table>
 </center>
 <p>
-<p class="lead">We use methodologies that cross levels of biological
+<p class="lead">We use approaches that cross levels of biological
 organization from the computational consequences of transmembrane molecules to
 the behavior of multispecies flocks. </p>
 
