@@ -225,6 +225,22 @@ organismal-level regulation of ion channel trafficking. PLoS Biol., 7:e1000211,
 <hr>
 
 
+<!-- CARVER SYNAPTIC 2008 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_18282087.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Carver, S., Roth, E., Cowan, N.J. and E.S. Fortune
+(2008) Synaptic plasticity can produce and enhance direction selectivity.  PLoS
+Comput. Biol., 4(2):e32,
+[link](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0040032),
+[PMID:18282087](pdf/CarverSynaptic2008_pmid18282087.pdf).  
+</td></tr></table>
+<hr>
+
+
+
+
 
 
 
