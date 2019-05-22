@@ -1,11 +1,16 @@
 Package: DFWE
 Type: Package
-Title: Dr. Eric Fortune's Wonder Emporium
+Title: Acoustic Toolbox
 Version: 0.1.0
 Author: Alfred Amendolara
 Maintainer: Alfred Amendolara <aba39@njit.edu>
 Description: All the wonderful functions you could possibly want to do acoustic analysis. 
     Currated by Dr. Eric Fortune who hates R and would rather use MatLab. Brought to you in R by Alfred Amendolara.  
+Imports: 
+   oce,
+   signal,
+Suggests:
+   tuneR 
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
