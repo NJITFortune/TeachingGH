@@ -2,4 +2,29 @@
 ---
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-This is the BioMinute link.
+ <!-- BIOLOGY MINUTE SECTION -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Biology Minute</h2>
+       		</div>
+
+
+            <div style="text-align:center"> <!-- HOW the heck and a half do i center this im getting the anixety -->
+
+	    <div class="col-md-6 col-sm-1 portfolio-item">
+	<iframe width=390 height=236 src="https://www.youtube.com/embed/h2e-nA_Zrxg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div class="portfolio-caption">
+                         <h4>Poo Pills</h4>
+                            <p class="text-muted">Yasmine Ghattas explains a microbiotic approach.</p>
+                 </div>
+
+       	    </div>
+
+	    <div class="col-md-6 col-sm-1 portfolio-item">
+	<iframe width=390 height=236 src="https://www.youtube.com/embed/h2e-nA_Zrxg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+	    </div>
+
+
+        </div>
