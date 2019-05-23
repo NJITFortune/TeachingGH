@@ -92,5 +92,125 @@ Professor, [Johns Hopkins University](https://limbs.lcsr.jhu.edu/)<br>
 <h1 class="display-3" align="center">Lab Memories</h1>
 <hr>
 
+<!-- Eric Tan -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/ewt.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Eric Tan MD</strong><p>
+Assistant Professor, [University of Southern California](https://providers.keckmedicine.org/provider/Eric+W.+Tan/205713)<br>
+</td></tr></table>
+<hr>
+
+<!-- Jonathan Nizar -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/JonathanNizar.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Jonathan Nizar MD</strong><p>
+Assistant Professor, [University of Iowa](https://medicine.uiowa.edu/internalmedicine/profile/jonathan-nizar)<br>
+</td></tr></table>
+<hr>
+
+<!-- Sarah Stamper PhD -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/sas_work.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Sarah A. Stamper PhD</strong><p>
+Associate Director of Research, [Art and Science Group](https://www.artsci.com/team/sarah-stamper)<br>
+</td></tr></table>
+<hr>
+
+<!-- John U. Ramcharitar PhD -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/jqr.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>John U. Ramcharitar PhD</strong><p>
+Associate Professor, [University of Trinidad and Tobago](https://utt.edu.tt/index.php?wk=5&staff=1&staff_key=2833)<br>
+</td></tr></table>
+<hr>
+
+<!-- Sean G. Carver PhD -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/sgc.gif" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Sean G. Carver PhD</strong><p>
+Assistant Professor, [American University](https://www.american.edu/cas/faculty/carver.cfm)<br>
+</td></tr></table>
+<hr>
+
+<!-- Diana Pamela Rivera Parra -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/rivera.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Diana Pamela Rivera Parra MSc</strong><p>
+Assistant Professor, [Escuela Politecnica Nacional](https://www.epn.edu.ec/)<br>
+</td></tr></table>
+<hr>
+
+<!-- Monica Khattak -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/khattak.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Monica Khattak</strong><p>
+Medical Student, [Rowan School of Medicine](https://www.linkedin.com/in/monica-khattak-a4b9b593)<br>
+</td></tr></table>
+<hr>
+
+<!-- Andrea Roeser -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/roeser.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Andrea Roeser</strong><p>
+Graduate Student, [Cornell University](https://nbb.cornell.edu/andrea-roeser)<br>
+</td></tr></table>
+<hr>
+
+<!-- Hannah Gattuso -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/HannahGattusoLabPhoto.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Hannah Gattuso</strong><p>
+Graduate Student, [New York University](https://www.linkedin.com/in/hannah-gattuso-35b25a139)<br>
+</td></tr></table>
+<hr>
+
+<!-- David Liptsyn -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/david.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>David Liptsyn</strong><p>
+Intern, [Tesla](https://www.linkedin.com/in/davidliptsyn)<br>
+</td></tr></table>
+<hr>
+
+<!-- Nicole Andanar -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/nicole.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Nicole Andanar</strong><p>
+Chemical Researcher, [Battelle](https://www.linkedin.com/in/nicoleandanar)<br>
+</td></tr></table>
+<hr>
 
 
+<!-- Oswaldo Gil -->
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<tr><td colspan=1 width=300>
+<img src="images/people/gil.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+</td><td valign="middle" align="center" >
+<strong>Oswaldo Gil</strong><p>
+Graduate Student, [Universidad del Rosario](https://www.linkedin.com/in/oswaldogilguevara)<br>
+</td></tr></table>
+<hr>
+
+And many others...
