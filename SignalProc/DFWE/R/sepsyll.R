@@ -160,6 +160,9 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   #extract start and end indices
   starts = which(yy == 1)
   ends = which(yy == -1)
+  #create temp variables for index output
+  filt_starts = c()
+  filt_ends = c()
 
 
   #correct for partial syllables by removing the first/last syllable if the recording does not begin
@@ -179,18 +182,17 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   if(index_simp) {
     #filter out small non-syllables if syllable filter is true
     if(syllable_filter) {
-      filt_starts = c()
-      filt_ends = c()
+      starts = starts
+      ends = ends
       syl_filt_b = syl_filt*Fs
       for (s in seq(1, length(starts))) {
-        if(length(starts[[s]]) >= syl_filt_b) {
+        if(starts[[s]] - ends[[s]] >= syl_filt_b) {
           filt_starts[[s]] = starts[[s]]
-        }
-        if(length(ends[[s]]) >= syl_filt_b) {
           filt_ends[[s]] = ends[[s]]
         }
-        print(filt_starts)
       }
+      print(filt_starts)
+      print(starts)
       #generate final lists by replacing storage lists with temporary lists - null values
       starts = filt_starts[-which(sapply(filt_starts, is.null))]
       ends = filt_ends[-which(sapply(filt_ends, is.null))]
