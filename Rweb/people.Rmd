@@ -10,7 +10,7 @@
 <tr><td colspan=1 width=300>
 <img src="images/people/ericf.jpg" style="width:250px; border:1px solid; margin-right: 100px" align="left">
 </td><td valign="middle" align="center">
-<strong>Eric Fortune PhD</strong><p>
+<h3 class="display-3" align="center">Eric Fortune PhD</h3><p>
 Old man in charge<br>
 [eric.fortune@njit.edu](mailto:eric.fortune@njit.edu)
 </td></tr></table>
@@ -21,7 +21,7 @@ Old man in charge<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/IsmailUyanikPhD.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center">
-<strong>Ismail Uyanik PhD</strong><p>
+<h3 class="display-3" align="center">Ismail Uyanik PhD</h3><p>
 Post-doctoral fellow<br>
 </td></tr></table>
 <hr>
@@ -31,7 +31,7 @@ Post-doctoral fellow<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/keg.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center">
-<strong>Kathryn Gallman</strong><p>
+<h3 class="display-3" align="center">Kathryn Gallman</h3><p>
 Graduate Student (Dr. Soares)<br>
 </td></tr></table>
 <hr>
@@ -41,7 +41,7 @@ Graduate Student (Dr. Soares)<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/YasmineGhattas.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Yasmine Ghattas</strong><p>
+<h3 class="display-3" align="center">Yasmine Ghattas</h3><p>
 Undergraduate student<br>
 </td></tr></table>
 <hr>
@@ -51,7 +51,7 @@ Undergraduate student<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/AlfredAmendolara.jpeg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Alfred Amendolara</strong><p>
+<h3 class="display-3" align="center">Alfred Amendolara</h3><p>
 Masters student<br>
 </td></tr></table>
 <hr>
@@ -64,7 +64,7 @@ Masters student<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/maurice.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Maurice Chacron PhD</strong><p>
+<h3 class="display-3" align="center">Maurice Chacron PhD</h3><p>
 Professor, [McGill University](http://www.medicine.mcgill.ca/physio/chacronlab/default.htm)<br>
 </td></tr></table>
 <hr>
@@ -74,7 +74,7 @@ Professor, [McGill University](http://www.medicine.mcgill.ca/physio/chacronlab/d
 <tr><td colspan=1 width=300>
 <img src="images/people/melissa.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Melissa Coleman PhD</strong><p>
+<h3 class="display-3" align="center">Melissa Coleman PhD</h3><p>
 Associate Professor, [Claremont McKenna College](https://www.cmc.edu/academic/faculty/profile/melissa-coleman)<br>
 </td></tr></table>
 <hr>
@@ -84,7 +84,7 @@ Associate Professor, [Claremont McKenna College](https://www.cmc.edu/academic/fa
 <tr><td colspan=1 width=300>
 <img src="images/people/noah.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Noah Cowan PhD</strong><p>
+<h3 class="display-3" align="center">Noah Cowan PhD</h3><p>
 Professor, [Johns Hopkins University](https://limbs.lcsr.jhu.edu/)<br>
 </td></tr></table>
 <hr>
@@ -97,7 +97,7 @@ Professor, [Johns Hopkins University](https://limbs.lcsr.jhu.edu/)<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/ewt.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Eric Tan MD</strong><p>
+<h3 class="display-3" align="center">Eric Tan MD</h3><p>
 Assistant Professor, [University of Southern California](https://providers.keckmedicine.org/provider/Eric+W.+Tan/205713)<br>
 </td></tr></table>
 <hr>
@@ -107,7 +107,7 @@ Assistant Professor, [University of Southern California](https://providers.keckm
 <tr><td colspan=1 width=300>
 <img src="images/people/JonathanNizar.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Jonathan Nizar MD</strong><p>
+<h3 class="display-3" align="center">Jonathan Nizar MD</h3><p>
 Assistant Professor, [University of Iowa](https://medicine.uiowa.edu/internalmedicine/profile/jonathan-nizar)<br>
 </td></tr></table>
 <hr>
@@ -117,7 +117,7 @@ Assistant Professor, [University of Iowa](https://medicine.uiowa.edu/internalmed
 <tr><td colspan=1 width=300>
 <img src="images/people/sas_work.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Sarah A. Stamper PhD</strong><p>
+<h3 class="display-3" align="center">Sarah A. Stamper PhD</h3><p>
 Associate Director of Research, [Art and Science Group](https://www.artsci.com/team/sarah-stamper)<br>
 </td></tr></table>
 <hr>
@@ -127,7 +127,7 @@ Associate Director of Research, [Art and Science Group](https://www.artsci.com/t
 <tr><td colspan=1 width=300>
 <img src="images/people/jqr.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>John U. Ramcharitar PhD</strong><p>
+<h3 class="display-3" align="center">John U. Ramcharitar PhD</h3><p>
 Associate Professor, [University of Trinidad and Tobago](https://utt.edu.tt/index.php?wk=5&staff=1&staff_key=2833)<br>
 </td></tr></table>
 <hr>
@@ -137,7 +137,7 @@ Associate Professor, [University of Trinidad and Tobago](https://utt.edu.tt/inde
 <tr><td colspan=1 width=300>
 <img src="images/people/sgc.gif" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Sean G. Carver PhD</strong><p>
+<h3 class="display-3" align="center">Sean G. Carver PhD</h3><p>
 Assistant Professor, [American University](https://www.american.edu/cas/faculty/carver.cfm)<br>
 </td></tr></table>
 <hr>
@@ -147,8 +147,8 @@ Assistant Professor, [American University](https://www.american.edu/cas/faculty/
 <tr><td colspan=1 width=300>
 <img src="images/people/rivera.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Diana Pamela Rivera Parra MSc</strong><p>
-Assistant Professor, [Escuela Politecnica Nacional](https://www.epn.edu.ec/)<br>
+<h3 class="display-3" align="center">Diana Pamela Rivera Parra MSc</h3><p>
+Assistant Professor, [Escuela Polit&eacute;cnica Nacional](https://www.epn.edu.ec/)<br>
 </td></tr></table>
 <hr>
 
@@ -157,7 +157,7 @@ Assistant Professor, [Escuela Politecnica Nacional](https://www.epn.edu.ec/)<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/khattak.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Monica Khattak</strong><p>
+<h3 class="display-3" align="center">Monica Khattak</h3><p>
 Medical Student, [Rowan School of Medicine](https://www.linkedin.com/in/monica-khattak-a4b9b593)<br>
 </td></tr></table>
 <hr>
@@ -167,7 +167,7 @@ Medical Student, [Rowan School of Medicine](https://www.linkedin.com/in/monica-k
 <tr><td colspan=1 width=300>
 <img src="images/people/roeser.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Andrea Roeser</strong><p>
+<h3 class="display-3" align="center">Andrea Roeser</h3><p>
 Graduate Student, [Cornell University](https://nbb.cornell.edu/andrea-roeser)<br>
 </td></tr></table>
 <hr>
@@ -177,7 +177,7 @@ Graduate Student, [Cornell University](https://nbb.cornell.edu/andrea-roeser)<br
 <tr><td colspan=1 width=300>
 <img src="images/people/HannahGattusoLabPhoto.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Hannah Gattuso</strong><p>
+<h3 class="display-3" align="center">Hannah Gattuso</h3><p>
 Graduate Student, [New York University](https://www.linkedin.com/in/hannah-gattuso-35b25a139)<br>
 </td></tr></table>
 <hr>
@@ -187,7 +187,7 @@ Graduate Student, [New York University](https://www.linkedin.com/in/hannah-gattu
 <tr><td colspan=1 width=300>
 <img src="images/people/david.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>David Liptsyn</strong><p>
+<h3 class="display-3" align="center">David Liptsyn</h3><p>
 Intern, [Tesla](https://www.linkedin.com/in/davidliptsyn)<br>
 </td></tr></table>
 <hr>
@@ -197,7 +197,7 @@ Intern, [Tesla](https://www.linkedin.com/in/davidliptsyn)<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/nicole.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Nicole Andanar</strong><p>
+<h3 class="display-3" align="center">Nicole Andanar</h3><p>
 Chemical Researcher, [Battelle](https://www.linkedin.com/in/nicoleandanar)<br>
 </td></tr></table>
 <hr>
@@ -208,7 +208,7 @@ Chemical Researcher, [Battelle](https://www.linkedin.com/in/nicoleandanar)<br>
 <tr><td colspan=1 width=300>
 <img src="images/people/gil.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
-<strong>Oswaldo Gil</strong><p>
+<h3 class="display-3" align="center">Oswaldo Gil</h3><p>
 Graduate Student, [Universidad del Rosario](https://www.linkedin.com/in/oswaldogilguevara)<br>
 </td></tr></table>
 <hr>
