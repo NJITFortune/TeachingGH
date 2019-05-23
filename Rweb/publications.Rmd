@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-<center><strong>Peer-Reviewed Publications</strong></center><p>
+<center><strong>Journal Publications</strong></center><p>
 
 <!-- UYANIK SENSORY 2019 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
@@ -23,6 +23,16 @@ Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory Cues Mod
 </td><td valign="middle">
 Biswas, D., Arend, L.A., Stamper, S.A., Vagvolgyi, B.P., Fortune, E.S., and N.J. Cowan. (2018) Closed-Loop Control of Active Sensing Movements Regulates Sensory Slip. Curr. Biol., 28(24):4029-4036.e4, 
 [PMID:30503617](pdf/BiswasClosed-Loop2018.pdf).
+</td></tr></table>
+<hr>
+
+<!-- COLEMAN QUICK 2018 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/QuickGuide.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Coleman, M.J. and E.S. Fortune (2018) Quick Guide: Duet Singing in plain-tailed wrens. Curr. Biol., 
+[doi.org/10.1016/j.cub.2018.02.066](pdf/ColemanQuick2018.pdf).
 </td></tr></table>
 <hr>
 
@@ -283,18 +293,177 @@ electrosensory systems.  J. Comp. Physiol. A, 192:625-635,
 </td></tr></table>
 <hr>
 
-<!-- FORTUNE ENCODING 2006 -->
+<!-- RAMCHARITAR EFFECTS 2005 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
-<img src="images/icons/iPMID_16450118.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+<img src="images/icons/iPMID_16001182.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle"> 
-Fortune, E.S., Rose, G.J., and M. Kawasaki (2006)
-Encoding and processing biologically relevant temporal information in
-electrosensory systems.  J. Comp. Physiol. A, 192:625-635,
-[PMID:16450118](pdf/FortuneEncoding2006_pmid16450118.pdf).  
+Ramcharitar, J.U., Tan, E.W., and E.S. Fortune (2005)  
+Effects of global electrosensory signals on motion processing in the midbrain
+of <i>Eigenmannia</i>.  J. Comp. Physiol. A, 191:865-872,
+[PMID:16001182](pdf/RamcharitarEffects2005_pmid16001182.pdf).  
 </td></tr></table>
 <hr>
 
+<!-- TAN ELECTROSENSORY 2005 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_16099058.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Tan, E.W., Nizar, J.M., Carrera-G, E., and E.S. Fortune
+(2005)  Electrosensory interference in naturally occurring aggregates of a
+species of weakly electric fish, <i>Eigenmannia virescens</i>. Behav. Brain
+Res., 164:83-92,
+[PMID:16099058](pdf/TanElectrosensory2005_pmid16099058.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- FORTUNE VOLTAGE 2003 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_12750421.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S. and G.J. Rose (2003)  Voltage-gated
+Na<sup>+</sup> channels enhance the temporal filtering properties of
+electrosensory neurons in the torus. J. Neurophys., 90:924-929,
+[PMID:12750421](pdf/FortuneVoltage2003_pmid12750421.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- FORTUNE ROLES 2002 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_14692501.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S. and G.J. Rose (2002)  Roles for short-term
+synaptic plasticity in behavior. J Physiol Paris, 96:539-545,
+[PMID:14692501](pdf/FortuneRoles2002_pmid14692501.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- FORTUNE TINS 2001 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_11410267.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S. and G.J. Rose (2001)  Short-term
+synaptic plasticity as a temporal filter. Trends in Neurosciences,
+24:381-385,
+[PMID:11410267](pdf/FortuneShort2001_pmid11410267.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- ROSE FREQUENCY-DEPENDENT 1999 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_10460268.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Rose, G.J. and E.S. Fortune (1999)
+Frequency-dependent PSP depression contributes to low-pass temporal
+filtering in <i>Eigenmannia</i>.  J. Neurosci., 19:7629-7639,
+[PMID:10460268](pdf/RoseFrequency1999_pmid10460268.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- ROSE MECHANISMS 1999 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_10210668.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Rose, G.J. and E.S. Fortune (1999) Mechanisms for
+generating temporal filters in the electrosensory system.  J. Exp.
+Biol., 202:1281-1289,
+[PMID:10210668](pdf/RoseMechanisms1999_pmid10210668.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- FORTUNE PASSIVE 1997 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_9133400.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S. and G.J. Rose (1997) Passive and
+active membrane properties contribute to the temporal filtering
+properties of midbrain neurons, <i>in vivo</i>. J. Neurosci.,
+17:3815-3825,
+[PMID:9133400](pdf/FortunePassive1997_pmid9133400.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- FORTUNE TEMPORAL 1997 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_9167857.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S. and G.J. Rose (1997) Temporal
+filtering properties of ampullary electrosensory neurons in the torus
+semicircularis of <i>Eigenmannia</i>: evolutionary and computational
+implications.  Brain, Behav., and Evol., 49:312-323,
+[PMID:9167857](pdf/FortuneTemporal1997_pmid9167857.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- ROSE NEW 1996 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_8895897.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Rose, G.J. and E.S. Fortune (1996) New techniques
+for making whole-cell recordings from CNS neurons <i>in vivo</i>. 
+Neurosci. Res. 26:89-94,
+[PMID:8895897](pdf/RoseNew1996_pmid8895897.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- FORTUNE PARALLEL 1995 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_8543649.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S. and D. Margoliash (1995) Parallel
+pathways and convergence onto HVc and adjacent neostriatum of adult
+male zebra finches (<i>Taeniopygia guttata</i>). J. Comp. Neurol. 360(3):413-441,
+[PMID:8543649](pdf/FortuneParallel1995_pmid8543649.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- MARGOLIASH DISTRIBUTED 1994 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_7842284.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Margoliash, D., E.S. Fortune, M. Sutter, C-H. Yu,
+D. Hardin, and A.Dave (1994) Distributed representation in the song
+system of oscines: evolutionary implications and functional consequences.
+Brain Behav. Evol. 44:247-264, 
+[PMID:7842284](pdf/MargoliashDistributed1994_pmid7842284.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- FORTUNE CYTOARCHITECTONIC 1992 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_1447407.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Fortune, E.S. and D. Margoliash (1992)
+Cytoarchitectonic organization and morphology of cells of the field L
+complex in adult male zebra finches (<i>Taeniopygia guttata</i>).  J. Comp.
+Neurol., 325:388-404,
+[PMID:1447407](pdf/FortuneCytoarchitectonic1992_pmid1447407.pdf).  
+</td></tr></table>
+<hr>
+
+<!-- MARGOLIASH TEMPORAL 1992 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/iPMID_1432096.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle"> 
+Margoliash, D. and E.S. Fortune (1992) Temporal
+and harmonic combination-sensitive neurons in the zebra finch's HVc. 
+J. Neurosci., 12:4309-4326,
+[PMID:1432096](pdf/MargoliashTemporal1992_pmid1432096.pdf).  
+</td></tr></table>
+<hr>
 
 
 
