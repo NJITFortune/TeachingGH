@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-<center><strong>Journal Publications</strong></center><p>
+<h1 class="display-3" align="center">Journal Publications</h1>
 
 <!-- UYANIK SENSORY 2019 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
