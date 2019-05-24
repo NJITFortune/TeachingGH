@@ -65,7 +65,7 @@ Masters student<br>
 <img src="images/people/maurice.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Maurice Chacron PhD</h3><p>
-Professor, [McGill University](http://www.medicine.mcgill.ca/physio/chacronlab/default.htm)<br>
+Professor, [McGill University](https://mcgill.ca/comp-sys-neuro-lab/research)<br>
 </td></tr></table>
 <hr>
 
