@@ -13,7 +13,7 @@
 </td><td valign="middle">
 Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory Cues Modulate Smooth Pursuit and Active Sensing Movements. Front. Behav. Neurosci., 
 [link](https://www.frontiersin.org/articles/10.3389/fnbeh.2019.00059/full), 
-[PMID:31024269](pdf/UyanikSensory2019).
+[PMID:31024269](pdf/UyanikSensory2019.pdf).
 </td></tr></table>
 <hr>
 
@@ -33,7 +33,7 @@ Biswas, D., Arend, L.A., Stamper, S.A., Vagvolgyi, B.P., Fortune, E.S., and N.J.
 <img src="images/icons/QuickGuide.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle">
 Coleman, M.J. and E.S. Fortune (2018) Quick Guide: Duet Singing in plain-tailed wrens. Curr. Biol., 
-[doi.org/10.1016/j.cub.2018.02.066](pdf/ColemanQuick2018.pdf).
+doi.org/10.1016/j.cub.2018.02.066, [pdf](pdf/ColemanQuick2018.pdf).
 </td></tr></table>
 <hr>
 
@@ -55,7 +55,7 @@ Amazonian habitats. Scientific Reports.
 <tr><td colspan=1 width=100>
 <img src="images/icons/iPMID_27170650.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle">
-Sutton, E.E., Demir, A., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2016) Dynamic modulation of visual and electrosensory gains for locomotor control. J R Soc Interface. 13(118).pii:20160057, [PMID:27170650](pdf/RouseReproductive2015.pdf).  
+Sutton, E.E., Demir, A., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2016) Dynamic modulation of visual and electrosensory gains for locomotor control. J R Soc Interface. 13(118).pii:20160057, [PMID:27170650](pdf/SuttonDynamic2016.pdf).  
 </td></tr></table>
 <hr>
 
