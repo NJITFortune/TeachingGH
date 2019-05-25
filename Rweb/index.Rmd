@@ -35,6 +35,15 @@ basin habitats, highly-controlled behavioral studies in the laboratory, a
 variety of neurophysiological approaches including intracellular recordings of
 CNS neurons in behaving animals, pharmachological studies, and mathematical
 modeling. </p>
+<hr>
+<h2 class="display-3" align="center">Projects</h2>
+
+<table width=90% cellspacing=5 cellpadding=5 border=0 columns=2 align=center>
+<tr><td width=45% align=middle valign=center>
+<img src="images/moth.gif" style="width:300px; border:1px solid;" alt="Moth flight"><p>
+<p class="lead">How do moths avoid being eaten by echolocating bats?</p></td>
+<td align=middle valign=center><p class="lead">How do?</p></td></tr></table>
+
 
 
 

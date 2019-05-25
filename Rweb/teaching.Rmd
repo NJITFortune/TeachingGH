@@ -56,7 +56,7 @@ This course addresses a fundamental question in Neuroscience – how do brains c
 <img src="images/teaching/neuroetologia.jpg" style="width:250px; border:1px solid; margin-right: 100px" align="left">
 </td><td valign="middle" align="center">
 <p class="text-success">Neuroetolog&iacute;a, Quito!</p>
-<p class="text-secondary">This course is held every few years in Quito and includes reviews of the major neuroethological model systems that occur within the country of Ecuador, including bats, owls, weakly electric fishes, songbirds, ants, bees, and other invertebrates. The course includes a 3 day field trip to the cloud forest [Yanayacu Biological Research Station](http://www.yanayacu.org). During this trip students gather behavioral data, design long-term experiments, and conduct neurophysiological recordings. The course includes tutorials on data analysis using R, a free computational platform.</p>
+<p class="text-secondary">This course is held every few years in Quito and includes reviews of the major neuroethological model systems that occur within the country of Ecuador, including bats, owls, weakly electric fishes, songbirds, ants, bees, and other invertebrates. The course includes a 3 day field trip to the cloud forest [Yanayacu Biological Research Station](http://www.yanayacu.org). During this trip students gather behavioral data, design long-term experiments, and conduct neurophysiological recordings. The course includes tutorials on data analysis using R, a free computational platform. Our [2014 Neuroetolog&iacute;a website](https://web.njit.edu/~efortune/n2014/) is still up.</p>
 </td></tr></table>
 <hr>
 
