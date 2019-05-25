@@ -213,4 +213,4 @@ Graduate Student, [Universidad del Rosario](https://www.linkedin.com/in/oswaldog
 </td></tr></table>
 <hr>
 
-And many others...
+<p font-class="lead">And many others...</p>
