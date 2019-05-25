@@ -198,11 +198,12 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
       ends = filt_ends[!sapply(filt_ends, is.null)]
     }
     #output
-    index_out = data.frame(syllable_number = c(1:length(starts)),
-                           syllable_start = starts,
-                           syllable_ends = ends,
-                           syllable_start_time = starts/Fs,
-                           syllable_end_time = ends/Fs)
+    index_out = c("syl_start" = starts, "syl_end" = ends)
+    #index_out = data.frame(syllable_number = c(1:length(starts)),
+                           #syllable_start = starts,
+                           #syllable_ends = ends,
+                           #syllable_start_time = starts/Fs,
+                           #syllable_end_time = ends/Fs)
     return(index_out)
   } else {
     #create empty lists to store syllable data in
