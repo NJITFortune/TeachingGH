@@ -13,7 +13,7 @@
 #' @param sms Sets the filter threshold. Defaults to 20ms (0.020 seconds)
 #' @param thresh Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
 #' plot and you will be prompted to select a level.
-#' @param syllable_filter Defaults to TRUE. Turns off/on the syllable filter set with syl_filt.
+#' @param syllable_filter Defaults to TRUE. Turns off/on the syllable filter (filter defined with syl_filt).
 #' @param syl_filt Sets a minimum time for syllables in order to filter out non-syllables
 #' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 0.02s.
 #' @param plot_thresh If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
@@ -60,9 +60,9 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
     wav_file = wav_file
   }
 
-  #checks to see if there is a syl_filt specified, if not uses default of 50 samples
+  #checks to see if there is a syl_filt specified, if not uses default of 0.02 seconds
   if(missing(syl_filt)) {
-    syl_filt = 30
+    syl_filt = .02
   } else {
     syl_filt = syl_filt
   }
@@ -237,6 +237,8 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
           filt_timm[[s]] = timm[[s]]
         }
       }
+
+      print(filt_syl)
       #generate final lists by replacing storage lists with temporary lists - null values
       syllable = filt_syl[-which(sapply(filt_syl, is.null))]
       timmy = filt_timmy[-which(sapply(filt_timmy, is.null))]
