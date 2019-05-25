@@ -15,7 +15,7 @@ bat_syllables = sepsyll(bat_sounds,
                         index_simp = TRUE)
 document()
 
-
+roxygen2::roxygenize()
 
 
 
