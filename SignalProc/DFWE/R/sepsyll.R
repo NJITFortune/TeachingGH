@@ -237,8 +237,6 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
           filt_timm[[s]] = timm[[s]]
         }
       }
-
-      print(filt_syl)
       #generate final lists by replacing storage lists with temporary lists - null values
       syllable = filt_syl[-which(sapply(filt_syl, is.null))]
       timmy = filt_timmy[-which(sapply(filt_timmy, is.null))]
