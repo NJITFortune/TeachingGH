@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="styles.css" type="text/css">
 
 <p>
-<p class="lead">We develop code for the aquisition and analysis of behavioral and neurophysiological data. We primarily use Matlab, but as of 2019, we are also developing code in R.</p>
+<p class="font-weight-normal">We develop code for the aquisition and analysis of behavioral and neurophysiological data. We primarily use Matlab, but as of 2019 we are also developing code in R. </p>
 <hr>
 <h1 class="display-3" align="center">Tutorials in coding for signal processing</h1>
 <hr>
