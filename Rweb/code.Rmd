@@ -2,4 +2,15 @@
 ---
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-This is the code link.
+<p>
+<p class="lead">We develop code for the aquisition and analysis of behavioral and neurophysiological data. We primarily use Matlab, but as of 2019, we are also developing code in R.</p>
+<hr>
+<h1 class="display-3" align="center">Tutorials in coding for signal processing</h1>
+<hr>
+
+<p class="lead">[MATLAB: Tutorial 1](https://web.njit.edu/~efortune/n2014/matoct1.html)</p>
+<p class="lead">[MATLAB: Tutorial 2](https://web.njit.edu/~efortune/n2014/matoct2.html)</p>
+<p class="lead">[MATLAB: Tutorial 3](https://web.njit.edu/~efortune/n2014/matoct3.html)</p>
+
+
+
