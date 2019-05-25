@@ -94,8 +94,8 @@ Professor, [Johns Hopkins University](https://limbs.lcsr.jhu.edu/)<br>
 
 <!-- Eric Tan -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/ewt.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/ewt.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Eric Tan MD</h3><p>
 Assistant Professor, [University of Southern California](https://providers.keckmedicine.org/provider/Eric+W.+Tan/205713)<br>
@@ -114,8 +114,8 @@ Assistant Professor, [University of Iowa](https://medicine.uiowa.edu/internalmed
 
 <!-- Sarah Stamper PhD -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/sas_work.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/sas_work.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Sarah A. Stamper PhD</h3><p>
 Associate Director of Research, [Art and Science Group](https://www.artsci.com/team/sarah-stamper)<br>
@@ -124,8 +124,8 @@ Associate Director of Research, [Art and Science Group](https://www.artsci.com/t
 
 <!-- John U. Ramcharitar PhD -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/jqr.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/jqr.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">John U. Ramcharitar PhD</h3><p>
 Associate Professor, [University of Trinidad and Tobago](https://utt.edu.tt/index.php?wk=5&staff=1&staff_key=2833)<br>
@@ -144,8 +144,8 @@ Assistant Professor, [American University](https://www.american.edu/cas/faculty/
 
 <!-- Diana Pamela Rivera Parra -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/rivera.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/rivera.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Diana Pamela Rivera Parra MSc</h3><p>
 Assistant Professor, [Escuela Polit&eacute;cnica Nacional](https://www.epn.edu.ec/)<br>
@@ -164,8 +164,8 @@ Medical Student, [Rowan School of Medicine](https://www.linkedin.com/in/monica-k
 
 <!-- Andrea Roeser -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/roeser.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/roeser.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Andrea Roeser</h3><p>
 Graduate Student, [Cornell University](https://nbb.cornell.edu/andrea-roeser)<br>
@@ -174,8 +174,8 @@ Graduate Student, [Cornell University](https://nbb.cornell.edu/andrea-roeser)<br
 
 <!-- Hannah Gattuso -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/HannahGattusoLabPhoto.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/HannahGattusoLabPhoto.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Hannah Gattuso</h3><p>
 Graduate Student, [New York University](https://www.linkedin.com/in/hannah-gattuso-35b25a139)<br>
@@ -184,8 +184,8 @@ Graduate Student, [New York University](https://www.linkedin.com/in/hannah-gattu
 
 <!-- David Liptsyn -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/david.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/david.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">David Liptsyn</h3><p>
 Intern, [Tesla](https://www.linkedin.com/in/davidliptsyn)<br>
@@ -194,8 +194,8 @@ Intern, [Tesla](https://www.linkedin.com/in/davidliptsyn)<br>
 
 <!-- Nicole Andanar -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/nicole.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/nicole.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Nicole Andanar</h3><p>
 Chemical Researcher, [Battelle](https://www.linkedin.com/in/nicoleandanar)<br>
@@ -205,8 +205,8 @@ Chemical Researcher, [Battelle](https://www.linkedin.com/in/nicoleandanar)<br>
 
 <!-- Oswaldo Gil -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/gil.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/gil.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Oswaldo Gil</h3><p>
 Graduate Student, [Universidad del Rosario](https://www.linkedin.com/in/oswaldogilguevara)<br>
