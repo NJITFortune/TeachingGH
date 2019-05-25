@@ -13,7 +13,7 @@ bat_syllables = sepsyll(bat_sounds,
                         syl_filt = .002,
                         plot_syl = FALSE,
                         index_simp = TRUE)
-
+document()
 
 
 
