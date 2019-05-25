@@ -38,8 +38,8 @@ Graduate Student (Dr. Soares)<br>
 
 <!-- YASMINE GHATTAS -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/YasmineGhattas.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/YasmineGhattas.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Yasmine Ghattas</h3><p>
 Undergraduate student<br>
@@ -48,8 +48,8 @@ Undergraduate student<br>
 
 <!-- Alfred Amendolara -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/AlfredAmendolara.jpeg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/AlfredAmendolara.jpeg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Alfred Amendolara</h3><p>
 Masters student<br>
@@ -61,8 +61,8 @@ Masters student<br>
 
 <!-- Maurice Chacron -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/maurice.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/maurice.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Maurice Chacron PhD</h3><p>
 Professor, [McGill University](https://mcgill.ca/comp-sys-neuro-lab/research)<br>
@@ -71,8 +71,8 @@ Professor, [McGill University](https://mcgill.ca/comp-sys-neuro-lab/research)<br
 
 <!-- Melissa Coleman -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/melissa.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/melissa.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Melissa Coleman PhD</h3><p>
 Associate Professor, [Claremont McKenna College](https://www.cmc.edu/academic/faculty/profile/melissa-coleman)<br>
@@ -81,8 +81,8 @@ Associate Professor, [Claremont McKenna College](https://www.cmc.edu/academic/fa
 
 <!-- Noah Cowan -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-<tr><td colspan=1 width=300>
-<img src="images/people/noah.jpg" style="width:250px; border:1px solid; margin-right:100px" align="left">
+<tr><td colspan=1 style="padding: 10px; border: 0px none;">
+<img src="images/people/noah.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Noah Cowan PhD</h3><p>
 Professor, [Johns Hopkins University](https://limbs.lcsr.jhu.edu/)<br>
