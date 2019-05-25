@@ -194,8 +194,8 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
       print(filt_starts)
       print(starts)
       #generate final lists by replacing storage lists with temporary lists - null values
-      starts = filt_starts[-which(sapply(filt_starts, is.null))]
-      ends = filt_ends[-which(sapply(filt_ends, is.null))]
+      starts = filt_starts[!sapply(filt_starts, is.null)]
+      ends = filt_ends[!sapply(filt_ends, is.null)]
     }
     #output
     index_out = data.frame(syllable_number = c(1:length(starts)),
@@ -238,20 +238,21 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
         }
       }
       #generate final lists by replacing storage lists with temporary lists - null values
-      syllable = filt_syl[-which(sapply(filt_syl, is.null))]
-      timmy = filt_timmy[-which(sapply(filt_timmy, is.null))]
-      timm = filt_timm[-which(sapply(filt_timm, is.null))]
+      syllable = filt_syl[!sapply(filt_syl, is.null)]
+      timmy = filt_timmy[!sapply(filt_timmy, is.null)]
+      timm = filt_timm[!sapply(filt_timm, is.null)]
     }
 
-    if(plot_syl) {
-      specplot(wav_file, Fs)
-      par(new = TRUE)
-      abline(v = starts, col = "Green")
-      abline(v = ends, col = "Red")
-    }
-
-    all_syllables = c("syllable" = syllable, "timm" = timm, "timmy" = timmy)
+    #create final output as nested list
+    all_syllables = c("syl" = syllable, "syl_time" = timm, "time" = timmy)
     return(all_syllables)
+  }
+
+  if(plot_syl) {
+    specplot(wav_file, Fs)
+    par(new = TRUE)
+    abline(v = starts, col = "Green")
+    abline(v = ends, col = "Red")
   }
 
 }
