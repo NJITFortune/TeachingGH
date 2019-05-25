@@ -1,3 +1,22 @@
+#' getclicks
+#'
+#' This function gets the location of user-input clicks on the plotting window in order to extract
+#' extract data from song spectrograms. You can input one or more series of clicks.
+#' The program is interactive and requires user input. Will cyle through spectrogram in user defined
+#' increments.
+#'
+#' @return A nested list of x-positions(time in seconds)
+#'
+#' @usage getclicks(zfinch_data)
+#'
+#' @param wav_file A .wav file of vector/list of frequency data
+#' @param Fs The sampling rate. Does not need to be provided if it is included in the .wav
+#' @param frame_shift User defined display window size for collecting clicks. Will default to
+#' 2 seconds. Input in seconds.
+#'
+#' @examples
+#' getclicks(zfinch_data, frame_shift = 1)
+
 
 getclicks = function(wav_file, Fs, frame_shift){
 
