@@ -115,7 +115,7 @@ Assistant Professor, [University of Iowa](https://medicine.uiowa.edu/internalmed
 <!-- Sarah Stamper PhD -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
 <tr><td colspan=1 style="padding: 10px; border: 0px none;">
-<img src="images/people/sas_work.jpg" style="width:250px; border:1px solid;" align="left">
+<img src="images/people/sarah.jpg" style="width:250px; border:1px solid;" align="left">
 </td><td valign="middle" align="center" >
 <h3 class="display-3" align="center">Sarah A. Stamper PhD</h3><p>
 Associate Director of Research, [Art and Science Group](https://www.artsci.com/team/sarah-stamper)<br>
