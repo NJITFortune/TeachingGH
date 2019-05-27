@@ -16,7 +16,8 @@
 #'
 #' @examples
 #' getclicks(zfinch_data, frame_shift = 1)
-
+#'
+#' @export
 
 getclicks = function(wav_file, Fs, frame_shift){
 
