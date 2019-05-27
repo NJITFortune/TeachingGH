@@ -13,12 +13,14 @@
 #' @param Fs The sampling rate. Does not need to be provided if it is included in the .wav
 #' @param frame_shift User defined display window size for collecting clicks. Will default to
 #' 2 seconds. Input in seconds.
+#' @param data_frame Choose to whether or not to export data as a dataframe. Dataframe will include NA's
 #'
 #' @examples
 #' getclicks(zfinch_data, frame_shift = 1)
+#'
+#' @export
 
-
-getclicks = function(wav_file, Fs, frame_shift){
+getclicks = function(wav_file, Fs, frame_shift, data_frame = TRUE){
 
   #variable to continue/end click collection
   continue = 1
@@ -120,15 +122,31 @@ getclicks = function(wav_file, Fs, frame_shift){
       nshift = nshift + 1
     }
 
-  #rename set of clicks to user generated name
-  names(internal_list) = name_set
-  #add newly generated and named list to function variable for storage
-  internal_data_collect = append(internal_data_collect, internal_list)
+    #rename set of clicks to user generated name
+    names(internal_list) = name_set
+    #add newly generated and named list to function variable for storage
+    internal_data_collect = append(internal_data_collect, internal_list)
 
-  continue = as.integer(readline(prompt = "Would you like to select another series of points? 1 = Yes ; 2 = No  "))
+    continue = as.integer(readline(prompt = "Would you like to select another series of points? 1 = Yes ; 2 = No  "))
+
+  }
+
+  if(data_frame) {
+    #find longest element
+    max = which.max(internal_data_collect)
+
+    #pad with NA's
+    for(i in seq(1,length(internal_data_collect))){
+      internal_data_collect[[i]] = c(internal_data_collect[[i]], rep(NA, max.len - length(internal_data_collect[[i]])))
+    }
+    df_internal = data.frame()
   }
   return(internal_data_collect)
 }
 
-document()
+
+
+
+
+
 

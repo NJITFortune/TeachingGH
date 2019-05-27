@@ -68,7 +68,7 @@ This course addresses a fundamental question in Neuroscience – how do brains c
 </td></tr>
 <tr><td valign="middle" align="center">
 <p class="text-success">Neural Systems and Behavior, Weakly Electric Fishes</p>
-<p class="text-dark">The [NS&B](http://www.mbl.edu/nsb) course is an intensive 8-week hands-on depp dive into the behavioral neurosciences for graduate students, post-docs, and faculty. The course is divided into four 2-week cycles. Each cycle features 1 to 4 model systems that varies from year to year. Model systems have included leech, stomatogastric ganglia, electric fish, fly flight, chick auditory brainstem, insect social behavior, songbird learning and production, whisking in rodents, learning in cerebellar circuits, and behavioral genetics in C. elegans, mice, and zebra fish. I have been faculty in the course for electric fish and birdsong systems.</p>
+<p class="text-dark">The [NS&B](http://www.mbl.edu/nsb) course is an intensive 8-week hands-on deep dive into the behavioral neurosciences for graduate students, post-docs, and faculty. The course is divided into four 2-week cycles. Each cycle features 1 to 4 model systems that varies from year to year. Model systems have included leech, stomatogastric ganglia, electric fish, fly flight, chick auditory brainstem, insect social behavior, songbird learning and production, whisking in rodents, learning in cerebellar circuits, and behavioral genetics in C. elegans, mice, and zebra fish. I have been faculty in the course for electric fish and birdsong systems.</p>
 </td></tr></table>
 <hr>
 

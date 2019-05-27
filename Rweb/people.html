@@ -72,9 +72,7 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -193,8 +191,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -268,6 +264,15 @@ $(document).ready(function () {
 
 
 
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -302,18 +307,30 @@ $(document).ready(function () {
 </div>
 
 
-<p><link rel="stylesheet" href="styles.css" type="text/css"></p>
+<p><link rel="stylesheet" href="styles.css" type="text/css"> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></p>
 <h1 class="display-3" align="center">
 Laboratory Humans
 </h1>
 <hr>
+<div class="container-fluid">
+<div class="row">
+<pre><code>&lt;div class=&quot;col-sm-3 col-md-6 col-lg-4&quot;&gt;
+  &lt;img src=&quot;images/people/ericf.jpg&quot; style=&quot;width:230px; border:1px solid;&quot; align=&quot;left&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-sm-9 col-md-6 col-lg-8&quot;&gt;
+  &lt;h3 class=&quot;display-3&quot; align=&quot;center&quot;&gt;Eric Fortune PhD&lt;/h3&gt;&lt;p&gt;
+  Old man in charge&lt;br&gt;
+  [eric.fortune@njit.edu](mailto:eric.fortune@njit.edu)
+&lt;/div&gt;</code></pre>
+</div>
+</div>
 <!-- ERIC FORTUNE -->
-<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+<table align="center"; table-layout: fixed; border:0px none; width=90%>
 <tr>
-<td colspan="1" style="padding: 10px; border: 0px none;">
+<td class="fluid visible" style="padding: 10px; border: 0px none; min-width: 50%">
 <img src="images/people/ericf.jpg" style="width:230px; border:1px solid;" align="left">
 </td>
-<td style="padding: 10px; border: 0px none;" valign="middle" align="center">
+<td class="fluid visible" style="padding: 10px; border: 0px none;" valign="middle" align="center">
 <h3 class="display-3" align="center">
 Eric Fortune PhD
 </h3>

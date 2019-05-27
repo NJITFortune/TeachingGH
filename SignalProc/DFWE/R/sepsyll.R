@@ -1,10 +1,12 @@
 #' sepsyll
 #'
 #' This function seperates syllables from a recording. This recording can be a .wav file read by tuneR or
-#' frequency data. It will return a list of lists and can be searched by index. All syllables and times will be numbered.
-#' Syllable frequency data, syllable time, and syllable time relative to recording are all included.
+#' frequency data. This function has two options for output: It can return a list of lists that includes syllable frequency data,
+#' syllable time, and syllable time relative to recordin. Alternatively it can output a datafram of syllable start and end indices and times.
 #'
 #' @return A list of syllables and times. Timmy is the time in relation to the entire song. Timm is the time of the individual syllable.
+#' -OR-
+#' A dataframe containing the start and end indices and times of each syllable.
 #'
 #' @usage sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 #'
@@ -182,28 +184,25 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   if(index_simp) {
     #filter out small non-syllables if syllable filter is true
     if(syllable_filter) {
-      starts = starts
-      ends = ends
+      syl_index = ends - starts
       syl_filt_b = syl_filt*Fs
       for (s in seq(1, length(starts))) {
-        if(starts[[s]] - ends[[s]] >= syl_filt_b) {
+        if(syl_index[[s]] >= syl_filt_b) {
           filt_starts[[s]] = starts[[s]]
           filt_ends[[s]] = ends[[s]]
         }
       }
-      print(filt_starts)
-      print(starts)
       #generate final lists by replacing storage lists with temporary lists - null values
-      starts = filt_starts[!sapply(filt_starts, is.null)]
-      ends = filt_ends[!sapply(filt_ends, is.null)]
+      starts = filt_starts[!sapply(filt_starts, is.na)]
+      ends = filt_ends[!sapply(filt_ends, is.na)]
     }
     #output
-    index_out = c("syl_start" = starts, "syl_end" = ends)
-    #index_out = data.frame(syllable_number = c(1:length(starts)),
-                           #syllable_start = starts,
-                           #syllable_ends = ends,
-                           #syllable_start_time = starts/Fs,
-                           #syllable_end_time = ends/Fs)
+    #index_out = c("syl_start" = starts, "syl_end" = ends)
+    index_out = data.frame(syllable_number = c(1:length(starts)),
+                           syllable_start = starts,
+                           syllable_ends = ends,
+                           syllable_start_time = starts/Fs,
+                           syllable_end_time = ends/Fs)
     return(index_out)
   } else {
     #create empty lists to store syllable data in
