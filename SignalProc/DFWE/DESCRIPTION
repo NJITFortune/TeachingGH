@@ -4,9 +4,9 @@ Title: Acoustic Analysis Toolbox
 Version: 0.0.0.9000
 Author: Alfred Amendolara
 Maintainer: Alfred Amendolara <aba39@njit.edu>
-Description: All the wonderful functions you could possibly want to do acoustic analysis. 
-    Currated by Dr. Eric Fortune who hates R and would rather use MatLab. Brought to you in R by Alfred Amendolara.Currently
-    version contains 3 functions to visualize acoustic signals and extract useful data for further analysis.
+Description: All the functions you could possibly want to do acoustic analysis. 
+    Currated by Dr. Eric Fortune who hates R and would rather use MatLab. Brought to you in R by Alfred Amendolara. Under 
+    development - current version contains 3 functions to visualize acoustic signals and extract useful data for further analysis.
 Imports: 
    oce,
    signal,
