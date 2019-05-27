@@ -122,12 +122,24 @@ getclicks = function(wav_file, Fs, frame_shift, data_frame = TRUE){
       nshift = nshift + 1
     }
 
-  #rename set of clicks to user generated name
-  names(internal_list) = name_set
-  #add newly generated and named list to function variable for storage
-  internal_data_collect = append(internal_data_collect, internal_list)
+    #rename set of clicks to user generated name
+    names(internal_list) = name_set
+    #add newly generated and named list to function variable for storage
+    internal_data_collect = append(internal_data_collect, internal_list)
 
-  continue = as.integer(readline(prompt = "Would you like to select another series of points? 1 = Yes ; 2 = No  "))
+    continue = as.integer(readline(prompt = "Would you like to select another series of points? 1 = Yes ; 2 = No  "))
+
+  }
+
+  if(data_frame) {
+    #find longest element
+    max = which.max(internal_data_collect)
+
+    #pad with NA's
+    for(i in seq(1,length(internal_data_collect))){
+      internal_data_collect[[i]] = c(internal_data_collect[[i]], rep(NA, max.len - length(internal_data_collect[[i]])))
+    }
+    df_internal = data.frame()
   }
   return(internal_data_collect)
 }
