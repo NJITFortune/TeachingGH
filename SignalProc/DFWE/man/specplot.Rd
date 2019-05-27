@@ -15,17 +15,18 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
 
 \item{wl}{Defaults to 1/2 nfft}
 
-\item{ovlp}{Overlap, give in percent. Defaults to 50%}
+\item{ovlp}{Overlap, give in percent. Defaults to 50 percent}
 
 \item{normal}{Normalize. Defaults to TRUE}
 
-\item{amp_range}{DB range. Provide as list c(a, b)}
+\item{amp_range}{DB range}
 
-\item{x_limit}{List of x-limits c(a,b)}
+\item{x_limit}{List of x-limits}
 
-\item{y_limit}{List of y-limits c(a,b)}
+\item{y_limit}{List of y-limits}
 
-\item{color}{Choose from 4 present color palettes; 1 = reverse heat (default), 2 = reverse greyscale, 3 = greyscale, 4 = heat}
+\item{color}{Choose from 4 present color palettes; 1 = reverse heat, 2 = reverse greyscale, 3 = greyscale, 4 = heat
+Defaults to reverse heat}
 
 \item{amp_value}{Display min and max dB. Defaults to FALSE}
 }
@@ -35,10 +36,10 @@ A plot of a spectrgram using the default R graphics
 \description{
 This function will plot spectrograms. It works with either a wav file read by tuneR or frequency data.
 When using frequency data alone, you need to specify a sample frequency. This function relies on the
-imagep() function from oce. specplot() uses custom color palettes with 30 colors. Most parameters have defaults
+imagep function from oce. specplot uses custom color palettes with 30 colors. Most parameters have defaults
 and do not need to be specified by the user.
 }
 \examples{
-specplot(zfinch_data, ovlp = 90, color = 2, amp_value = TRUE)
+specplot(zfinch_data, ovlp = 90, color = 2, amp_value = TRUE, amp_range = c(-45,-10))
 
 }
