@@ -13,13 +13,14 @@
 #' @param Fs The sampling rate. Does not need to be provided if it is included in the .wav
 #' @param frame_shift User defined display window size for collecting clicks. Will default to
 #' 2 seconds. Input in seconds.
+#' @param data_frame Choose to whether or not to export data as a dataframe. Dataframe will include NA's
 #'
 #' @examples
 #' getclicks(zfinch_data, frame_shift = 1)
 #'
 #' @export
 
-getclicks = function(wav_file, Fs, frame_shift){
+getclicks = function(wav_file, Fs, frame_shift, data_frame = TRUE){
 
   #variable to continue/end click collection
   continue = 1
