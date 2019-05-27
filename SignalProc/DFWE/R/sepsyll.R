@@ -1,7 +1,6 @@
 #' sepsyll
 #'
-#'
-#' @description  This function seperates syllables from a recording. This recording can be a .wav file read by tuneR or
+#' This function seperates syllables from a recording. This recording can be a .wav file read by tuneR or
 #' frequency data. This function has two options for output: It can return a list of lists that includes syllable frequency data,
 #' syllable time, and syllable time relative to recordin. Alternatively it can output a datafram of syllable start and end indices and times.
 #'
