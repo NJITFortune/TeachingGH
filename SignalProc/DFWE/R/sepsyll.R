@@ -5,6 +5,8 @@
 #' syllable time, and syllable time relative to recordin. Alternatively it can output a datafram of syllable start and end indices and times.
 #'
 #' @return A list of syllables and times. Timmy is the time in relation to the entire song. Timm is the time of the individual syllable.
+#' -OR-
+#' A dataframe containing the start and end indices and times of each syllable.
 #'
 #' @usage sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 #'
