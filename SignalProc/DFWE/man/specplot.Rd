@@ -2,11 +2,7 @@
 % Please edit documentation in R/specplot.R
 \name{specplot}
 \alias{specplot}
-\title{specplot
-This function will plot spectrograms. It works with either a wav file read by tuneR or frequency data.
-When using frequency data alone, you need to specify a sample frequency. This function relies on the
-imagep() function from oce. specplot() uses custom color palettes with 30 colors. Most parameters have defaults
-and do not need to be specified by the user.}
+\title{specplot}
 \usage{
 specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color, amp_value = FALSE)
 }
@@ -37,7 +33,6 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
 A plot of a spectrgram using the default R graphics
 }
 \description{
-specplot
 This function will plot spectrograms. It works with either a wav file read by tuneR or frequency data.
 When using frequency data alone, you need to specify a sample frequency. This function relies on the
 imagep() function from oce. specplot() uses custom color palettes with 30 colors. Most parameters have defaults

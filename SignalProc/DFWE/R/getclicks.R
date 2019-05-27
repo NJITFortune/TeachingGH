@@ -1,6 +1,6 @@
 #' getclicks
 #'
-#' This function gets the location of user-input clicks on the plotting window in order to extract
+#' @description This function gets the location of user-input clicks on the plotting window in order to extract
 #' extract data from song spectrograms. You can input one or more series of clicks.
 #' The program is interactive and requires user input. Will cyle through spectrogram in user defined
 #' increments.
