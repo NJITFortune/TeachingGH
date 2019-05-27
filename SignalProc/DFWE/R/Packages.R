@@ -7,10 +7,10 @@
 #install.packages("dplyr")
 
 
-#library(tuneR)
-#library(ggplot2)
-#library(oce)
-#library(signal)
-#library(roxygen2)
-#library(devtools)
-#library(dplyr)
+library(tuneR)
+library(ggplot2)
+library(oce)
+library(signal)
+library(roxygen2)
+library(devtools)
+
