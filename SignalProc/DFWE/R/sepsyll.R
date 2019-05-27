@@ -183,7 +183,6 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
     #filter out small non-syllables if syllable filter is true
     if(syllable_filter) {
       syl_index = ends - starts
-      print(syl_index)
       syl_filt_b = syl_filt*Fs
       for (s in seq(1, length(starts))) {
         if(syl_index[[s]] >= syl_filt_b) {
@@ -192,8 +191,8 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
         }
       }
       #generate final lists by replacing storage lists with temporary lists - null values
-      starts = filt_starts[!sapply(filt_starts, is.null)]
-      ends = filt_ends[!sapply(filt_ends, is.null)]
+      starts = filt_starts[!sapply(filt_starts, is.na)]
+      ends = filt_ends[!sapply(filt_ends, is.na)]
     }
     #output
     #index_out = c("syl_start" = starts, "syl_end" = ends)
