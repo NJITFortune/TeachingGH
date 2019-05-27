@@ -16,16 +16,20 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 \item{thresh}{Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
 plot and you will be prompted to select a level.}
 
-\item{syllable_filter}{Defaults to false. Turns off/on the syllable filter set with syl_filt.}
+\item{syllable_filter}{Defaults to TRUE. Turns off/on the syllable filter (filter defined with syl_filt).}
 
-\item{syl_filt}{Sets a minimum sample length for syllables in order to filter out non-syllables
-i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 30.}
+\item{syl_filt}{Sets a minimum time for syllables in order to filter out non-syllables
+i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 0.02s.}
 
 \item{plot_thresh}{If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
 Turn of if you know your threshold and don't want to waste time plotting and confirming.}
+
+\item{plot_syl}{Plot a spectrogram with the start and ends of each syllable marked in green/red respectively}
+
+\item{index_simp}{Changes output from default data to indices and times of syllables as a dataframe. Default FALSE.}
 }
 \value{
-A list of syllables and times
+A list of syllables and times. Timmy is the time in relation to the entire song. Timm is the time of the individual syllable.
 }
 \description{
 This function seperates syllables from a recording. This recording can be a .wav file read by tuneR or

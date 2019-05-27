@@ -23,7 +23,11 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, col
 
 \item{normal}{Normalize. Defaults to TRUE}
 
-\item{amp_range}{DB range}
+\item{amp_range}{DB range. Provide as list c(a, b)}
+
+\item{x_limit}{List of x-limits c(a,b)}
+
+\item{y_limit}{List of y-limits c(a,b)}
 
 \item{color}{Choose from 4 present color palettes; 1 = reverse heat (default), 2 = reverse greyscale, 3 = greyscale, 4 = heat}
 
