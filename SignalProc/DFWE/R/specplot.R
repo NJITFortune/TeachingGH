@@ -188,5 +188,3 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, x_l
         ylim = y_limit)
   box(col = box_col)
 }
-
-document()
