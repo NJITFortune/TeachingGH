@@ -30,11 +30,13 @@ Turn of if you know your threshold and don't want to waste time plotting and con
 }
 \value{
 A list of syllables and times. Timmy is the time in relation to the entire song. Timm is the time of the individual syllable.
+-OR-
+A dataframe containing the start and end indices and times of each syllable.
 }
 \description{
 This function seperates syllables from a recording. This recording can be a .wav file read by tuneR or
-frequency data. It will return a list of lists and can be searched by index. All syllables and times will be numbered.
-Syllable frequency data, syllable time, and syllable time relative to recording are all included.
+frequency data. This function has two options for output: It can return a list of lists that includes syllable frequency data,
+syllable time, and syllable time relative to recordin. Alternatively it can output a datafram of syllable start and end indices and times.
 }
 \examples{
 sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
