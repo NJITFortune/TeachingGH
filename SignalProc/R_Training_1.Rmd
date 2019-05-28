@@ -175,11 +175,10 @@ We can make a sonogram (spectrogram) of any signal to learn more about its spect
 R does not contain a native function to plot sonograms. In order to plot them we need to use a custom function called **specplot()**. Lets install the dependacies now, don't worry about the actual function (you can look at the code below if you're interested) ...
 
 ```{r}
-#install.packages("signal")
-#install.packages("oce")
-#install.packages("tuneR")
+library(DFWE)
 library(signal)
 library(oce)
+
 library(tuneR)
 
 ```
