@@ -9,9 +9,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Exercise 7: Reverse a signal
 
-Set up your workspace: 
+Set up your workspace. 
 
-```{r} 
+```{r,include=FALSE} 
 library(signal)
 library(tuneR)
 library(ggplot2)
