@@ -8,18 +8,19 @@ output:
 
 Welcome back! In this tutorial we will learn how to apply filters to our signals, as wells as learn how to sort though data. 
 
-# Exercise 5: Filter a signal 
-
-Remember to install and import any libraries we will be using:
-
-```{r}
-library(seewave)
+```{r, include=FALSE}
+library(signal)
 library(tuneR)
 library(ggplot2)
 library(oce)
-library(signal)
+library(seewave)
+library(gridExtra)
+library(DFWE)
 ```
 
+
+
+# Exercise 5: Filter a signal 
 
 First let's filter an artificial signal. We'll add two sinewaves together:
 
