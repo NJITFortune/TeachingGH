@@ -16,7 +16,7 @@ Once we have R studio running we can begin learning. To complete these tutorials
 We will install these packages now. In the future you may choose to use different packages or even make your own. For now lets just use these; copy and paste into a blank R script to run. You should only have to install these packages once and if you use the same R workspace, you shouldn't have to reload libraries.  
 
 ```{r, include=FALSE}
-install.packages("signal") #for producing specgram
+install.packages("signal")
 install.packages("tuneR") #for reading .wav files
 install.packages("ggplot2") # for plotting 
 install.packages("oce") #plot images 
