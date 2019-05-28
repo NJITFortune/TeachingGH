@@ -100,7 +100,7 @@ Set the SampleRate, in Hz. and make a time series...
 
 ```{r}
 sampleFs = 20000
-tim = seq(1/Fs, len, 1/Fs)
+tim = seq(1/sampleFs, len, 1/sampleFs)
 ```
 
 
