@@ -22,7 +22,7 @@ install.packages("oce") #plot images
 install.packages("seewave") #handling audio data
 install.packages("gridExtra") #for formatting ggplot graphs
 devtools::install_github("NJITFortune/DFWE") #custom package for plotting spectrogram 
-
+```{r}
 library(signal)
 library(tuneR)
 library(ggplot2)
@@ -30,6 +30,7 @@ library(oce)
 library(seewave)
 library(gridExtra)
 library(DFWE)
+```
 
 # Exercise 1: Make a sinewave
 
