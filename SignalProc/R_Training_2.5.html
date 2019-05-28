@@ -195,39 +195,7 @@ $(document).ready(function () {
 
 <div id="exercise-7-reverse-a-signal" class="section level1">
 <h1>Exercise 7: Reverse a signal</h1>
-<p>Set up your workspace:</p>
-<pre class="r"><code>library(signal)</code></pre>
-<pre><code>## 
-## Attaching package: 'signal'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, poly</code></pre>
-<pre class="r"><code>library(tuneR)
-library(ggplot2)</code></pre>
-<pre><code>## Registered S3 methods overwritten by 'ggplot2':
-##   method         from 
-##   [.quosures     rlang
-##   c.quosures     rlang
-##   print.quosures rlang</code></pre>
-<pre class="r"><code>library(oce)</code></pre>
-<pre><code>## Loading required package: testthat</code></pre>
-<pre><code>## Loading required package: gsw</code></pre>
-<pre><code>## 
-## Attaching package: 'oce'</code></pre>
-<pre><code>## The following object is masked from 'package:signal':
-## 
-##     decimate</code></pre>
-<pre class="r"><code>library(seewave)</code></pre>
-<pre><code>## 
-## Attaching package: 'seewave'</code></pre>
-<pre><code>## The following object is masked from 'package:oce':
-## 
-##     rescale</code></pre>
-<pre><code>## The following object is masked from 'package:signal':
-## 
-##     unwrap</code></pre>
-<pre class="r"><code>library(gridExtra)
-library(DFWE)</code></pre>
+<p>Set up your workspace.</p>
 <p>First we needs a signal – let’s use the zebra finch song</p>
 <pre class="r"><code>zf_data = readWave('zfinch.wav')</code></pre>
 <p>Now we reverse it. We extract the relevant data from our wave file, <strong><a href="mailto:zf_data@left">zf_data@left</a></strong> and then reorder by specifying a sequence.</p>
