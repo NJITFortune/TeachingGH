@@ -22,7 +22,7 @@ install.packages("ggplot2") # for plotting
 install.packages("oce") #plot images 
 install.packages("seewave") #handling audio data
 install.packages("gridExtra") #for formatting ggplot graphs
-devtools::install_github("NJITFortune/DFWE") #custom package for plotting spectrogram
+#devtools::install_github("NJITFortune/DFWE") #custom package for plotting spectrogram
 ```
  
 
