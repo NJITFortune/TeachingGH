@@ -26,7 +26,7 @@ We will install these packages now. In the future you may choose to use differen
 ```
  
 
-```{r, results="hide"} 
+```{r, include=FALSE} 
 library(signal)
 library(tuneR)
 library(ggplot2)
