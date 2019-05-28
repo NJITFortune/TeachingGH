@@ -136,7 +136,6 @@ getclicks = function(wav_file, Fs, frame_shift, data_frame = TRUE){
     #find longest element
     max_len_index = which.max(lengths(internal_data_collect))
     max_len = length(unlist(internal_data_collect[max_len_index]))
-    print(max_len)
 
     #pad with NA's
     for(i in seq(1,length(internal_data_collect))){
