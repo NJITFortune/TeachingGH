@@ -13,6 +13,8 @@ getclicks(zfinch_data)
 
 \item{frame_shift}{User defined display window size for collecting clicks. Will default to
 2 seconds. Input in seconds.}
+
+\item{data_frame}{Choose to whether or not to export data as a dataframe. Dataframe will include NA's}
 }
 \value{
 A nested list of x-positions(time in seconds)
