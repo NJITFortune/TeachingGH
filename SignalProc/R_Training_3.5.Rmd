@@ -9,6 +9,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Exercise 12: Spikes 
 
+```{r, include=FALSE}
+library(signal)
+library(tuneR)
+library(ggplot2)
+library(oce)
+library(seewave)
+library(gridExtra)
+library(DFWE)
+```
+
+
 In this exercise we will take a recording of a neural activity (spikes!) and turn it into data that we can start to analyze in useful ways. 
 
 I have provided two sample files that contain some nice neural activity. They are very different from each other. 
