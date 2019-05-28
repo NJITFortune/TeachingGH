@@ -175,6 +175,8 @@ zf_data_rev_half = zf_data@left[seq(to = 1, by = -2, length.out = length(zf_data
 Thats all there is to it! 
 
 ```{r}
+zf_data_plot = data.frame(tim, zf_data@left)
+
 ggplot(zf_data_plot, aes(x = tim, y = zf_data.left)) + 
   geom_line(color = "Blue") +
   scale_y_continuous(name = "Frequency", breaks = c(27,127,227), limits = c(0,250)) +
