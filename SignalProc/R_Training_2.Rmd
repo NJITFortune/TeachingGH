@@ -4,9 +4,6 @@ output:
   html_document:
     df_print: paged
 ---
-# Introduction
-
-Welcome back! In this tutorial we will learn how to apply filters to our signals, as wells as learn how to sort though data. 
 
 ```{r, include=FALSE}
 library(signal)
@@ -17,10 +14,9 @@ library(seewave)
 library(gridExtra)
 library(DFWE)
 ```
-
-
-
 # Exercise 5: Filter a signal 
+
+Welcome back! In this tutorial we will learn how to apply filters to our signals, as wells as learn how to sort though data. Don't forget to set up the workspace...
 
 First let's filter an artificial signal. We'll add two sinewaves together:
 
