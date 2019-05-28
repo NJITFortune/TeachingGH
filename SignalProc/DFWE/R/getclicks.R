@@ -131,17 +131,24 @@ getclicks = function(wav_file, Fs, frame_shift, data_frame = TRUE){
 
   }
 
+  #check if data_frame parameter is TRUE
   if(data_frame) {
     #find longest element
-    max = which.max(internal_data_collect)
+    max_len_index = which.max(lengths(internal_data_collect))
+    max_len = length(unlist(internal_data_collect[max_len_index]))
+    print(max_len)
 
     #pad with NA's
     for(i in seq(1,length(internal_data_collect))){
-      internal_data_collect[[i]] = c(internal_data_collect[[i]], rep(NA, max.len - length(internal_data_collect[[i]])))
+      internal_data_collect[[i]] = c(internal_data_collect[[i]], rep(NA, max_len - length(internal_data_collect[[i]])))
     }
-    df_internal = data.frame()
+    df_internal = data.frame(internal_data_collect)
   }
-  return(internal_data_collect)
+  if(data_frame) {
+    return(df_internal)
+  } else {
+    return(internal_data_collect)
+  }
 }
 
 
