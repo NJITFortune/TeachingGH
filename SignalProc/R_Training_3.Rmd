@@ -12,13 +12,18 @@ Welcome to the third tutorial! In this lesson we are going to look at actual bir
 
 Lets load our data. Remember to load any necessary libraries before you begin. 
 
-```{r}
-library(seewave)
+
+```{r,include=FALSE}
+library(signal)
 library(tuneR)
 library(ggplot2)
-library(gridExtra)
 library(oce)
-library(signal)
+library(seewave)
+library(gridExtra)
+library(DFWE)
+```
+
+```{r}
 zf_data = readWave('zfinch.wav')
 zfFs = zf_data@samp.rate
 tim = seq(1/zfFs, length(zf_data@left)/zfFs, 1/zfFs)
