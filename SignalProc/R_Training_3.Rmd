@@ -448,4 +448,4 @@ savewav(revsylsong, FS, "revsylsong.wav")
 
 With these tools you can make a wide range of arbitrary stimuli from your recordings of animal signals. These are powerful tolls for sensory electrophysiology. 
 
-###Practice:Try to redo this exercise with the data in wcs.wav. 
+### Practice: Try to redo this exercise with the data in wcs.wav. 
