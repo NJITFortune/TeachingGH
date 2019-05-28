@@ -200,22 +200,21 @@ $(document).ready(function () {
 <p>In these tutorials you’ll be learning some of the basics of acoustic analysis using R and R studio.</p>
 <p>The first steps are to download and install the most recent versions of both R and R studio onto your computer.</p>
 <p>Once we have R studio running we can begin learning. To complete these tutorials you’ll need several packages: signal, TuneR, ggplot2, oce, seeWave, and gridExtra. TuneR allows us to read .wav files, signal allows us to create spectrograms, and ggplot2 and gridExtra allow us to plot other graphs. We will also be using the built in graphing functions for certain plots (so you’ll learn to use both ggplot and built in R graphics)</p>
-<p>We will install these packages now. In the future you may choose to use different packages or even make your own. For now lets just use these; copy and paste into a blank R script to run. You should only have to install these packages once and if you use the same R workspace, you shouldn’t have to reload libraries.</p>
-<p>install.packages(“signal”) #for producing specgram; install.packages(“tuneR”) #for reading .wav files; install.packages(“ggplot2”) # for plotting; install.packages(“oce”) #plot images; install.packages(“seewave”) #handling audio data; install.packages(“gridExtra”) #for formatting ggplot graphs; devtools::install_github(“NJITFortune/DFWE”) #custom package for plotting spectrogram;</p>
-<pre class="r"><code>library(signal);</code></pre>
+<p>We will install these packages now. In the future you may choose to use different packages or even make your own. For now lets just use these; copy and paste into a blank R script to run (don’t forget to uncomment the install commands). You should only have to install these packages once and if you use the same R workspace, you shouldn’t have to reload libraries.</p>
+<pre class="r"><code>library(signal)</code></pre>
 <pre><code>## 
 ## Attaching package: 'signal'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
 ## 
 ##     filter, poly</code></pre>
-<pre class="r"><code>library(tuneR);
-library(ggplot2);</code></pre>
+<pre class="r"><code>library(tuneR)
+library(ggplot2)</code></pre>
 <pre><code>## Registered S3 methods overwritten by 'ggplot2':
 ##   method         from 
 ##   [.quosures     rlang
 ##   c.quosures     rlang
 ##   print.quosures rlang</code></pre>
-<pre class="r"><code>library(oce);</code></pre>
+<pre class="r"><code>library(oce)</code></pre>
 <pre><code>## Loading required package: testthat</code></pre>
 <pre><code>## Loading required package: gsw</code></pre>
 <pre><code>## 
@@ -223,7 +222,7 @@ library(ggplot2);</code></pre>
 <pre><code>## The following object is masked from 'package:signal':
 ## 
 ##     decimate</code></pre>
-<pre class="r"><code>library(seewave);</code></pre>
+<pre class="r"><code>library(seewave)</code></pre>
 <pre><code>## 
 ## Attaching package: 'seewave'</code></pre>
 <pre><code>## The following object is masked from 'package:oce':
@@ -232,8 +231,8 @@ library(ggplot2);</code></pre>
 <pre><code>## The following object is masked from 'package:signal':
 ## 
 ##     unwrap</code></pre>
-<pre class="r"><code>library(gridExtra);
-library(DFWE);</code></pre>
+<pre class="r"><code>library(gridExtra)
+library(DFWE)</code></pre>
 </div>
 <div id="exercise-1-make-a-sinewave" class="section level1">
 <h1>Exercise 1: Make a sinewave</h1>
