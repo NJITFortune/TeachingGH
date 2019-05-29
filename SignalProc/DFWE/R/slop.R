@@ -1,4 +1,17 @@
-slop = function(wav_file, syllable_data, Fs, ...) {
+#' slop
+#'
+#' Graphs spectrogram of bat or bird sounds and marks beginning and end of syllables. slop can also plot dominate frequency on
+#' top of the spectrogram.
+#'
+#' @return A plot containing marked syllables and dominate frequencies
+#'
+#' @param wav_file
+#' @param Fs
+#' @param syllable_data
+#' @param dom_freq
+#' @param ...
+
+slop = function(wav_file, Fs, syllable_data, dom_freq = FALSE, ...) {
 
   #check if sample rate is given, if not extract from .wav file
   if(missing(Fs)) {
