@@ -10,7 +10,8 @@ Description: All the functions you could possibly want to do acoustic analysis.
 Imports: 
    oce,
    signal,
-   tuneR
+   tuneR,
+   seewave
 Suggests:
 License: GPL-3
 Encoding: UTF-8
