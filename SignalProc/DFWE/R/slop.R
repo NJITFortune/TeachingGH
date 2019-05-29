@@ -5,11 +5,17 @@
 #'
 #' @return A plot containing marked syllables and dominate frequencies
 #'
+#' @usage slop(zfinch_data, zf_syllables)
+#'
 #' @param wav_file
 #' @param Fs
 #' @param syllable_data
 #' @param dom_freq
 #' @param ...
+#'
+#' @examples
+#'
+#' @export
 
 slop = function(wav_file, Fs, syllable_data, dom_freq = FALSE, ...) {
 
