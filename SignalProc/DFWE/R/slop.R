@@ -14,11 +14,11 @@
 #' @param dom_freq defaults to TRUE, includes dominate frequency plot
 #' @param bat Defaults to TRUE, a series of default values tuned to produce nice plots from bat data
 #'
-#' @examples
+#' @examples slop(wav_file = bat_sounds, syllable_data = bat_syl)
 #'
 #' @export
 
-slop = function(wav_file, syllable_data, Fs, nfft, dom_freq = TRUE, bat = TRUE, amp_range) {
+slop = function(wav_file, syllable_data, Fs, nfft, dom_freq = TRUE, bat = TRUE) {
 
   #check for and set nfft
   if(missing(nfft) & bat == FALSE ) {
@@ -30,14 +30,11 @@ slop = function(wav_file, syllable_data, Fs, nfft, dom_freq = TRUE, bat = TRUE, 
     nfft = nfft
   }
 
-  #set defaults for amp_range
-  if(missing(amp_range) & bat == TRUE) {
+  #set defaults for amp_range when bat = TRUE
+  if(bat) {
     ar = c(-10,0)
-  }
-  if(missing(amp_range) & bat == FALSE) {
-    ar = c(-25,0)
   } else {
-    ar = amp_range
+    ar = c(-25,0)
   }
 
 
