@@ -177,17 +177,36 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, x_l
   } else {
     y_limit = y_limit
   }
+  #check to see frequency max
+  if(max(f) > 100000) {
+    #plot in kHz
+    imagep(x = t, y = f, z = t(P),
+           zlim = amp_range,
+           col = col_select,
+           ylab = "Frequency [kHz]",
+           xlab = "Time [s]",
+           drawPalette = FALSE,
+           decimate = FALSE,
+           xlim = x_limit,
+           ylim = y_limit,
+           axes = FALSE,
+           ...)
+    axis(2, at = seq(0, max(f), 20000), labels = seq(0, max(f)/1000, 20))
+    axis(1)
+    box(col = box_col)
 
-  #plot
-  imagep(x = t, y = f, z = t(P),
-        zlim = amp_range,
-        col = col_select,
-        ylab = "Frequency [Hz]",
-        xlab = "Time [s]",
-        drawPalette = FALSE,
-        decimate = FALSE,
-        xlim = x_limit,
-        ylim = y_limit,
-        ...)
-  box(col = box_col)
+  } else {
+    #plot in [Hz]
+    imagep(x = t, y = f, z = t(P),
+          zlim = amp_range,
+          col = col_select,
+          ylab = "Frequency [Hz]",
+          xlab = "Time [s]",
+          drawPalette = FALSE,
+          decimate = FALSE,
+          xlim = x_limit,
+          ylim = y_limit,
+          ...)
+    box(col = box_col)
+  }
 }
