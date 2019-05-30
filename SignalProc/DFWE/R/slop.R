@@ -18,7 +18,7 @@
 #'
 #' @export
 
-slop = function(wav_file, syllable_data, Fs, nfft, dom_freq = TRUE, bat = TRUE) {
+slop = function(wav_file, syllable_data, Fs, nfft, dom_freq = TRUE, bat = TRUE, amp_range) {
 
   #check for and set nfft
   if(missing(nfft) & bat == FALSE ) {
@@ -30,11 +30,16 @@ slop = function(wav_file, syllable_data, Fs, nfft, dom_freq = TRUE, bat = TRUE) 
     nfft = nfft
   }
 
-  if(bat) {
+  #set defaults for amp_range
+  if(missing(amp_range) & bat == TRUE) {
     ar = c(-10,0)
-  } else {
-    ar =
   }
+  if(missing(amp_range) & bat == FALSE) {
+    ar = c(-25,0)
+  } else {
+    ar = amp_range
+  }
+
 
   #check if sample rate is given, if not extract from .wav file
   if(missing(Fs)) {
