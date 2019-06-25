@@ -22,7 +22,7 @@
 #' Turn of if you know your threshold and don't want to waste time plotting and confirming.
 #' @param plot_syl Plot a spectrogram with the start and ends of each syllable marked in green/red respectively.
 #' @param index_simp Changes output from default data to indices and times of syllables as a dataframe. Default FALSE.
-#' @param syl_buff Adds a buffer to each the start and end of each extracted syllable to avoid losing the beginning or end. Input in % of frame, defaults to 0.
+#' @param syl_buff Adds a buffer to each the start and end of each extracted syllable to avoid losing the beginning or end. Input in seconds, defaults to 0.
 #'
 #' @examples
 #' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
@@ -75,7 +75,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   if(missing(syl_buff)) {
     syl_buff = 0
   } else {
-    syl_buff = syl_buff/100
+    syl_buff = syl_buff*Fs
   }
 
   #centers signal at zero
@@ -197,32 +197,33 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
       #should modify any syllable that does not go into negative time or overlap with another syllable
       #modify any syllable that overlaps
       #should modify any syllable that goes into negative time
-      if(starts[[i]]-starts[[i]]*syl_buff >= 0 && starts[[i]]-starts[[i]]*syl_buff > ends[[i-1]]) {
-        starts[[i]] = starts[[i]]-starts[[i]]*syl_buff
-      } else if(starts[[i]]-starts[[i]]*syl_buff <= ends[[i-1]])  {
+      if(starts[[i]]-syl_buff >= 0 && starts[[i]]-syl_buff > ends[[i-1]]) {
+        starts[[i]] = starts[[i]]-syl_buff
+      } else if(starts[[i]]-syl_buff <= ends[[i-1]])  {
         starts[[i]] = starts[[i]]-((ends[[i-1]]-starts[[i]])-1)
       }
-    } else if(starts[[i]]-starts[[i]]*syl_buff <= 0) {
+    } else if(starts[[i]]-syl_buff <= 0) {
       starts[[i]] = 0
     }
   }
 
   for(i in seq(1, length(ends))) {
     #make sure starts[[i+1]] exists
-    if(i+1 < length(starts)) {
+    if(i+1 <= length(starts)) {
       #should modify any syllable that does not go overtime or overlap with another syllable
       #modify any syllable that overlaps
       #should modify any syllable that goes overtime
-      if(ends[[i]]+ends[[i]]*syl_buff <= length(wav_file) && ends[[i]]+ends[[i]]*syl_buff < starts[[i+1]]) {
-        ends[[i]] = ends[[i]]+ends[[i]]*syl_buff
-      } else if(ends[[i]]+ends[[i]]*syl_buff >= starts[[i+1]]) {
+      if(ends[[i]]+syl_buff <= length(wav_file) && ends[[i]]+syl_buff < starts[[i+1]]) {
+        ends[[i]] = ends[[i]]+syl_buff
+      } else if(ends[[i]]+syl_buff >= starts[[i+1]]) {
         ends[[i]] = ends[[i]]+((starts[[i+1]]-ends[[i]])-1)
       }
-    } else if(ends[[i]]+ends[[i]]*syl_buff >= length(wav_file)) {
+    } else if(ends[[i]]+syl_buff >= length(wav_file)) {
       ends[[i]] = length(wav_file)
     }
   }
 
+print(ends-starts)
 
   #determine if the user wants index data or full syllable data and output as dataframe
   if(index_simp) {
@@ -257,6 +258,20 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
     filt_timm = c()
     filt_timmy = c()
 
+    if(syllable_filter) {
+      syl_index = ends - starts
+      syl_filt_b = syl_filt*Fs
+      for (s in seq(1, length(starts))) {
+        if(syl_index[[s]] >= syl_filt_b) {
+          filt_starts[[s]] = starts[[s]]
+          filt_ends[[s]] = ends[[s]]
+        }
+      }
+      #generate final lists by replacing storage lists with temporary lists - null values
+      starts = filt_starts[!sapply(filt_starts, is.na)]
+      ends = filt_ends[!sapply(filt_ends, is.na)]
+    }
+
 
     #create our output data for syllable locations
     for (i in seq(1,length(starts))) {
@@ -264,27 +279,6 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
       timmy[[i]] = tim[starts[i]:ends[i]]
       timm[[i]] = seq(1/Fs, (1 + ends[i] - starts[i])/Fs, 1/Fs)
 
-    }
-
-
-    #checks to see if syllables (and timm, timmy) meet the minimum sample length requirement and create new, temporary lists of data
-    if(syllable_filter){
-      syl_filt_b = syl_filt*Fs
-      for (s in seq(1, length(syllable))) {
-        if(length(syllable[[s]]) >= syl_filt_b) {
-          filt_syl[[s]] = syllable[[s]]
-        }
-        if(length(timmy[[s]]) >= syl_filt_b) {
-          filt_timmy[[s]] = timmy[[s]]
-       }
-        if(length(timm[[s]]) >= syl_filt_b) {
-          filt_timm[[s]] = timm[[s]]
-        }
-      }
-      #generate final lists by replacing storage lists with temporary lists - null values
-      syllable = filt_syl[!sapply(filt_syl, is.null)]
-      timmy = filt_timmy[!sapply(filt_timmy, is.null)]
-      timm = filt_timm[!sapply(filt_timm, is.null)]
     }
 
     #create final output as nested list
