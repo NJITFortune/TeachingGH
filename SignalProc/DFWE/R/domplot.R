@@ -21,12 +21,12 @@ domplot = function(wav_file, Fs, nfft, amp_range, df_fix = TRUE, dfcol, bat = TR
 
   #set defaults for amp_range when bat = TRUE
   if(missing(amp_range) && bat == TRUE) {
-    ar = c(-10,0)
+    amp_range = c(-10,0)
   }
   if(missing(amp_range) && bat == FALSE) {
-    ar = c(-25,0)
+    amp_range = c(-25,0)
   } else {
-    ar = amp_range
+    amp_range = amp_range
   }
 
 
@@ -47,23 +47,24 @@ domplot = function(wav_file, Fs, nfft, amp_range, df_fix = TRUE, dfcol, bat = TR
 
   #check for dfcol to set default dominate frequency plot color
   if(missing(dfcol)) {
-    col = dfcol
+    dfcol = "Blue"
   } else {
-    col = "Blue"
+    dfcol = dfcol
   }
 
   #plot spectro and dominant frequency
-  specplot(wav_file, Fs, nfft = nfft, amp_range = ar, ...)
+  specplot(wav_file, Fs, nfft = nfft, amp_range = amp_range, ...)
   par(new = TRUE)
   #dfreq function from seewave
   dfreq(wav_file, f = Fs,
         type = "l",
         wl = nfft,
-        ovlp = 95,
+        ovlp = 70,
         xaxt = "none",
         yaxt = "none",
         xlab = "",
         ylab = "",
-        col = col,
-        lwd = 2)
+        col = dfcol,
+        lwd = 2,
+        threshold = 10)
 }
