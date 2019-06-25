@@ -224,10 +224,11 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
 
 
     #create our output data for syllable locations
+    #apply syllable buffer
     for (i in seq(1,length(starts))) {
-      syllable[[i]] = wav_file[starts[i]:ends[i]]
-      timmy[[i]] = tim[starts[i]:ends[i]]
-      timm[[i]] = seq(1/Fs, (1 + ends[i] - starts[i])/Fs, 1/Fs)
+      syllable[[i]] = wav_file[starts[i]-syl_buff:ends[i]+syl_buff]
+      timmy[[i]] = tim[starts[i]-syl_buff:ends[i]+syl_buff]
+      timm[[i]] = seq(1/Fs, (1 + (ends[i]+syl_buff) - (starts[i]-syl_buff))/Fs, 1/Fs)
 
     }
 
