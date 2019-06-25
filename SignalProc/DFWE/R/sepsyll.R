@@ -10,25 +10,26 @@
 #'
 #' @usage sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 #'
-#' @param wav_file Can be either a .wav file or a list of frequencies
-#' @param Fs Sampling rate, can be supplied by .wav or specified
-#' @param sms Sets the filter threshold. Defaults to 20ms (0.020 seconds)
+#' @param wav_file Can be either a .wav file or a list of frequencies.
+#' @param Fs Sampling rate, can be supplied by .wav or specified.
+#' @param sms Sets the filter threshold. Defaults to 20ms (0.020 seconds).
 #' @param thresh Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
-#' plot and you will be prompted to select a level.
+#' plot and you will be prompted to select a threshold level.
 #' @param syllable_filter Defaults to TRUE. Turns off/on the syllable filter (filter defined with syl_filt).
 #' @param syl_filt Sets a minimum time for syllables in order to filter out non-syllables
 #' i.e. syllables that are detected as a result of noise and are not of interest. Defaults to 0.02s.
 #' @param plot_thresh If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
 #' Turn of if you know your threshold and don't want to waste time plotting and confirming.
-#' @param plot_syl Plot a spectrogram with the start and ends of each syllable marked in green/red respectively
+#' @param plot_syl Plot a spectrogram with the start and ends of each syllable marked in green/red respectively.
 #' @param index_simp Changes output from default data to indices and times of syllables as a dataframe. Default FALSE.
+#' @param syl_buff Adds a buffer to each the start and end of each extracted syllable to avoid losing the beginning or end. Input in seconds. Defaults to 0s.
 #'
 #' @examples
 #' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
 #'
 #' @export
 
-sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, plot_thresh = TRUE, plot_syl = FALSE, index_simp = FALSE) {
+sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, plot_thresh = TRUE, plot_syl = FALSE, index_simp = FALSE, syl_buff) {
 
   #make formal class for storage of individual syllable data including: number, sample rate, frequency data,
   ##time of syllable starting from 0 AND time relative to entire recording, and dominate frequency
@@ -67,6 +68,14 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
     syl_filt = .02
   } else {
     syl_filt = syl_filt
+  }
+
+  #check to see if syl_buff is specified, if not default to 0s
+  #convert seconds to samples
+  if(missing(syl_buff)) {
+    syl_buff = 0
+  } else {
+    syl_buff = syl_buff*Fs
   }
 
   #centers signal at zero
@@ -154,7 +163,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   syls = which(mrz > thresh)
   #create a list of zeros with length = to the length of the file
   zz = rep(0, length((wav_file)))
-  #sets all points about threshold = 1
+  #sets all points above threshold = 1
   zz[syls] = 1
   #take difference, this will give us a list of 1s and -1s marking start and end times
   yy = diff(zz)
