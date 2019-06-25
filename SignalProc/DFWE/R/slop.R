@@ -18,7 +18,7 @@
 #'
 #' @export
 
-slop = function(wav_file, syllable_data, Fs, nfft, dom_freq = TRUE, bat = TRUE, ...) {
+slop = function(wav_file, syllable_data, Fs, nfft, bat = TRUE, ...) {
 
   #check for and set nfft
   if(missing(nfft) & bat == FALSE ) {
