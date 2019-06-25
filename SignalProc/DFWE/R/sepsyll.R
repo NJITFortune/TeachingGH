@@ -200,7 +200,9 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
       if(starts[[i]]-syl_buff >= 0 && starts[[i]]-syl_buff > ends[[i-1]]) {
         starts[[i]] = starts[[i]]-syl_buff
       } else if(starts[[i]]-syl_buff <= ends[[i-1]])  {
-        starts[[i]] = starts[[i]]-((ends[[i-1]]-starts[[i]])-1)
+        starts[[i]] = starts[[i]]-abs((ends[[i-1]]-starts[[i]])-1)
+      } else if(starts[[i]]-syl_buff <= 0) {
+        starts[[i]] = starts[[i]]-abs((ends[[i]]-starts[[i+1]])-1)
       }
     } else if(starts[[i]]-syl_buff <= 0) {
       starts[[i]] = 0
@@ -216,14 +218,14 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
       if(ends[[i]]+syl_buff <= length(wav_file) && ends[[i]]+syl_buff < starts[[i+1]]) {
         ends[[i]] = ends[[i]]+syl_buff
       } else if(ends[[i]]+syl_buff >= starts[[i+1]]) {
-        ends[[i]] = ends[[i]]+((starts[[i+1]]-ends[[i]])-1)
+        ends[[i]] = ends[[i]]+abs((starts[[i+1]]-ends[[i]])-1)
+      } else if(ends[[i]]+syl_buff >= length(wav_file)) {
+        ends[[i]] = ends[[i]]+abs((ends[[i]]-starts[[i+1]])-1)
       }
     } else if(ends[[i]]+syl_buff >= length(wav_file)) {
       ends[[i]] = length(wav_file)
     }
   }
-
-print(ends-starts)
 
   #determine if the user wants index data or full syllable data and output as dataframe
   if(index_simp) {
