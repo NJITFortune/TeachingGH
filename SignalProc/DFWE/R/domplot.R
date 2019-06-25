@@ -16,7 +16,6 @@
 #'
 #' @export
 
-
 domplot = function(wav_file, Fs, nfft, amp_range, dfcol, bat = TRUE, ...) {
 
   #check for and set nfft
@@ -87,5 +86,7 @@ domplot = function(wav_file, Fs, nfft, amp_range, dfcol, bat = TRUE, ...) {
                col = dfcol)
   abline(reg1, col = dfcol)
 
+  print(reg1)
   return(domf)
+
 }
