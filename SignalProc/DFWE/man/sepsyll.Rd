@@ -7,14 +7,14 @@
 sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = FALSE, syl_filt)
 }
 \arguments{
-\item{wav_file}{Can be either a .wav file or a list of frequencies}
+\item{wav_file}{Can be either a .wav file or a list of frequencies.}
 
-\item{Fs}{Sampling rate, can be supplied by .wav or specified}
+\item{Fs}{Sampling rate, can be supplied by .wav or specified.}
 
-\item{sms}{Sets the filter threshold. Defaults to 20ms (0.020 seconds)}
+\item{sms}{Sets the filter threshold. Defaults to 20ms (0.020 seconds).}
 
 \item{thresh}{Sets the threshold for identifying syllables. If there is not a user specified threshold, the data will
-plot and you will be prompted to select a level.}
+plot and you will be prompted to select a threshold level.}
 
 \item{syllable_filter}{Defaults to TRUE. Turns off/on the syllable filter (filter defined with syl_filt).}
 
@@ -24,9 +24,11 @@ i.e. syllables that are detected as a result of noise and are not of interest. D
 \item{plot_thresh}{If a user specified threshold is used, setting to TRUE will plot threshold and prompt for confirmation. Defaults to true.
 Turn of if you know your threshold and don't want to waste time plotting and confirming.}
 
-\item{plot_syl}{Plot a spectrogram with the start and ends of each syllable marked in green/red respectively}
+\item{plot_syl}{Plot a spectrogram with the start and ends of each syllable marked in green/red respectively.}
 
 \item{index_simp}{Changes output from default data to indices and times of syllables as a dataframe. Default FALSE.}
+
+\item{syl_buff}{Adds a buffer to each the start and end of each extracted syllable to avoid losing the beginning or end. Input in seconds, defaults to 0.}
 }
 \value{
 A list of syllables and times. Timmy is the time in relation to the entire song. Timm is the time of the individual syllable.
