@@ -1,4 +1,4 @@
-#' slop
+#' seesyl
 #'
 #' Graphs spectrogram of bat or bird sounds and marks beginning and end of syllables. slop can also plot dominate frequency on
 #' top of the spectrogram.
@@ -18,7 +18,7 @@
 #'
 #' @export
 
-slop = function(wav_file, syllable_data, Fs, nfft, bat = TRUE, ...) {
+seesyl = function(wav_file, syllable_data, Fs, nfft, bat = TRUE, ...) {
 
   #check for and set nfft
   if(missing(nfft) & bat == FALSE ) {
