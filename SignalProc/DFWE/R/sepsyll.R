@@ -186,7 +186,23 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   if(ends[length(ends)] > starts[length(starts)]) {
     ends = ends
   } else {
-    start = start[1:length(start)-1]
+    starts = starts[1:length(start)-1]
+  }
+
+  #apply sylable buffer, first to starts, then to ends
+  #check to make sure syllables don't run out of bounds
+  for(i in seq(1, length(starts))) {
+    if(starts[[i]]-syl_buff >= 0) {
+      starts[[i]] = starts[[i]]-syl_buff
+    } else {
+      starts[[i]] = 0
+    }
+
+    if(ends[[i]]+syl_buff <= length(wav_file)) {
+      ends[[i]] = ends[[i]] + syl_buff
+    } else {
+      ends[[i]] = length(wav_file)
+    }
   }
 
   #determine if the user wants index data or full syllable data and output as dataframe
@@ -224,11 +240,10 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
 
 
     #create our output data for syllable locations
-    #apply syllable buffer
     for (i in seq(1,length(starts))) {
-      syllable[[i]] = wav_file[starts[i]-syl_buff:ends[i]+syl_buff]
-      timmy[[i]] = tim[starts[i]-syl_buff:ends[i]+syl_buff]
-      timm[[i]] = seq(1/Fs, (1 + (ends[i]+syl_buff) - (starts[i]-syl_buff))/Fs, 1/Fs)
+      syllable[[i]] = wav_file[starts[i]:ends[i]]
+      timmy[[i]] = tim[starts[i]:ends[i]]
+      timm[[i]] = seq(1/Fs, (1 + ends[i] - starts[i])/Fs, 1/Fs)
 
     }
 
