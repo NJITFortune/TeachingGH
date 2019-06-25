@@ -33,12 +33,12 @@ seesyl = function(wav_file, syllable_data, Fs, nfft, amp_range, bat = TRUE, ...)
 
   #set defaults for amp_range when bat = TRUE
   if(missing(amp_range) && bat == TRUE) {
-    ar = c(-10,0)
+    amp_range = c(-10,0)
   }
   if(missing(amp_range) && bat == FALSE) {
-    ar = c(-25,0)
+    amp_range = c(-25,0)
   } else {
-    ar = amp_range
+    amp_range = amp_range
   }
 
 
@@ -62,7 +62,7 @@ seesyl = function(wav_file, syllable_data, Fs, nfft, amp_range, bat = TRUE, ...)
   starts = syllable_data$syllable_start/Fs
   ends = syllable_data$syllable_ends/Fs
   #plot using ablines and list of times
-  specplot(wav_file, Fs, nfft = nfft, amp_range = ar, ...)
+  specplot(wav_file, Fs, nfft = nfft, amp_range = amp_range, ...)
   abline(v = starts, col = "Green", lwd = .5)
   abline(v = ends, col = "Red", lwd = .5)
 }
