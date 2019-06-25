@@ -11,6 +11,7 @@
 #' @param syllable_data A data frame produced by the sepsyll function
 #' @param Fs Sample rate, optional if included in .wav file
 #' @param nfft Default value 128 when bat = TRUE, when bat = FALSE the default is 512
+#' @param amp_range Changes default mapping of colors to decible range
 #' @param bat Defaults to TRUE, a series of default values tuned to produce nice plots from bat data
 #' @param ... Pass parameters on to specplot function !!EXCEPT amp_range!!
 #'
@@ -18,7 +19,7 @@
 #'
 #' @export
 
-seesyl = function(wav_file, syllable_data, Fs, nfft, bat = TRUE, ...) {
+seesyl = function(wav_file, syllable_data, Fs, nfft, amp_range, bat = TRUE, ...) {
 
   #check for and set nfft
   if(missing(nfft) & bat == FALSE ) {
@@ -31,10 +32,13 @@ seesyl = function(wav_file, syllable_data, Fs, nfft, bat = TRUE, ...) {
   }
 
   #set defaults for amp_range when bat = TRUE
-  if(bat) {
+  if(missing(amp_range) && bat == TRUE) {
     ar = c(-10,0)
-  } else {
+  }
+  if(missing(amp_range) && bat == FALSE) {
     ar = c(-25,0)
+  } else {
+    ar = amp_range
   }
 
 
