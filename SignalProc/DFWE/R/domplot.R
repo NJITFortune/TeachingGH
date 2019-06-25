@@ -10,13 +10,14 @@
 #' @param amp_range Changes default mapping of colors to decible range
 #' @param bat Defaults to TRUE, a series of default values tuned to produce nice plots from bat data
 #' @param dfcol Sets color for dominant frequency points
+#' @param plotreg Default FALSE. Plot Linear Regression line. May not be a good fit on all syllables.
 #' @param ... Pass parameters on to specplot function !!EXCEPT amp_range!!
 #'
 #' @examples domplot(bat_syllables$syl1, f = 250000, dfcol = "White")
 #'
 #' @export
 
-domplot = function(wav_file, Fs, nfft, amp_range, dfcol, bat = TRUE, ...) {
+domplot = function(wav_file, Fs, nfft, amp_range, dfcol, bat = TRUE, plotreg = FALSE, ...) {
 
   #check for and set nfft
   if(missing(nfft) && bat == FALSE ) {
@@ -84,9 +85,10 @@ domplot = function(wav_file, Fs, nfft, amp_range, dfcol, bat = TRUE, ...) {
                xlab = "",
                ylab = "",
                col = dfcol)
-  abline(reg1, col = dfcol)
-
-  print(reg1)
+  if(plotreg) {
+    abline(reg1, col = dfcol)
+    print(reg1)
+  }
   return(domf)
 
 }
