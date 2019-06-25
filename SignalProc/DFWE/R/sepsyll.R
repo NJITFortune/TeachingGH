@@ -22,7 +22,7 @@
 #' Turn of if you know your threshold and don't want to waste time plotting and confirming.
 #' @param plot_syl Plot a spectrogram with the start and ends of each syllable marked in green/red respectively.
 #' @param index_simp Changes output from default data to indices and times of syllables as a dataframe. Default FALSE.
-#' @param syl_buff Adds a buffer to each the start and end of each extracted syllable to avoid losing the beginning or end. Input in seconds. Defaults to 0s.
+#' @param syl_buff Adds a buffer to each the start and end of each extracted syllable to avoid losing the beginning or end. Input in % of frame, defaults to 0.
 #'
 #' @examples
 #' sepsyll(zfinch_data, thresh = 1000, syllable_filter = TRUE, syl_filt = 15)
@@ -75,7 +75,7 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   if(missing(syl_buff)) {
     syl_buff = 0
   } else {
-    syl_buff = syl_buff*Fs
+    syl_buff = syl_buff/100
   }
 
   #centers signal at zero
@@ -192,18 +192,37 @@ sepsyll = function(wav_file, Fs, sms, thresh, syllable_filter = TRUE, syl_filt, 
   #apply sylable buffer, first to starts, then to ends
   #check to make sure syllables don't run out of bounds
   for(i in seq(1, length(starts))) {
-    if(starts[[i]]-syl_buff >= 0) {
-      starts[[i]] = starts[[i]]-syl_buff
-    } else {
+    #make sure ends[[i-1]] exists
+    if(i-1 > 0) {
+      #should modify any syllable that does not go into negative time or overlap with another syllable
+      #modify any syllable that overlaps
+      #should modify any syllable that goes into negative time
+      if(starts[[i]]-starts[[i]]*syl_buff >= 0 && starts[[i]]-starts[[i]]*syl_buff > ends[[i-1]]) {
+        starts[[i]] = starts[[i]]-starts[[i]]*syl_buff
+      } else if(starts[[i]]-starts[[i]]*syl_buff <= ends[[i-1]])  {
+        starts[[i]] = starts[[i]]-((ends[[i-1]]-starts[[i]])-1)
+      }
+    } else if(starts[[i]]-starts[[i]]*syl_buff <= 0) {
       starts[[i]] = 0
     }
+  }
 
-    if(ends[[i]]+syl_buff <= length(wav_file)) {
-      ends[[i]] = ends[[i]] + syl_buff
-    } else {
+  for(i in seq(1, length(ends))) {
+    #make sure starts[[i+1]] exists
+    if(i+1 < length(starts)) {
+      #should modify any syllable that does not go overtime or overlap with another syllable
+      #modify any syllable that overlaps
+      #should modify any syllable that goes overtime
+      if(ends[[i]]+ends[[i]]*syl_buff <= length(wav_file) && ends[[i]]+ends[[i]]*syl_buff < starts[[i+1]]) {
+        ends[[i]] = ends[[i]]+ends[[i]]*syl_buff
+      } else if(ends[[i]]+ends[[i]]*syl_buff >= starts[[i+1]]) {
+        ends[[i]] = ends[[i]]+((starts[[i+1]]-ends[[i]])-1)
+      }
+    } else if(ends[[i]]+ends[[i]]*syl_buff >= length(wav_file)) {
       ends[[i]] = length(wav_file)
     }
   }
+
 
   #determine if the user wants index data or full syllable data and output as dataframe
   if(index_simp) {
