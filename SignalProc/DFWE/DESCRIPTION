@@ -12,6 +12,11 @@ Imports:
    signal,
    tuneR,
    seewave
+Depends: 
+   oce,
+   signal,
+   tuneR,
+   seewave
 Suggests:
 License: GPL-3
 Encoding: UTF-8
