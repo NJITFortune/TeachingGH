@@ -131,74 +131,75 @@ Associate Professor,<br> [University of Trinidad and Tobago](https://utt.edu.tt/
 </td></tr></table>
 <hr>
 
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
+
 <!-- Erika Carrera Garcia PhD -->
 <td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/ECG-PhD.jpg" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">Erika Carrera Garcia PhD</h3><p>
 Associate Professor,<br> Oslo, Norway<br>
-</td></tr></table>
-<hr>
+</td>
 
 <!-- Sean G. Carver PhD -->
-<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-
 <tr><td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/sgc.gif" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">Sean G. Carver PhD</h3><p>
 Assistant Professor,<br> [American University](https://www.american.edu/cas/faculty/carver.cfm)<br>
-</td>
+</td></tr></table>
+<hr>
+
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
 
 <!-- Diana Pamela Rivera Parra -->
 <td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/rivera.jpg" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">Pamela Rivera Parra MSc</h3><p>
 Assistant Professor,<br> [Escuela Polit&eacute;cnica Nacional](https://www.epn.edu.ec/)<br>
-</td></tr></table>
-<hr>
+</td>
 
 <!-- Monica Khattak -->
-<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-
 <tr><td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/khattak.jpg" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">Monica Khattak</h3><p>
 Medical Student,<br> [Rowan School of Medicine](https://www.linkedin.com/in/monica-khattak-a4b9b593)<br>
-</td>
+</td></tr></table>
+<hr>
+
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
 
 <!-- Andrea Roeser -->
 <td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/roeser.jpg" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">Andrea Roeser</h3><p>
 Graduate Student,<br> [Cornell University](https://nbb.cornell.edu/andrea-roeser)<br>
-</td></tr></table>
-<hr>
+</td>
 
 <!-- Hannah Gattuso -->
-<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-
 <tr><td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top"><p>
 <img src="images/people/HannahGattusoLabPhoto.jpg" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">Hannah Gattuso</h3><p>
 Graduate Student,<br> [New York University](https://www.linkedin.com/in/hannah-gattuso-35b25a139)<br>
-</td>
+</td></tr></table>
+<hr>
+
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
 
 <!-- David Liptsyn -->
 <td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/david.jpg" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">David Liptsyn</h3><p>
 Intern, [Tesla](https://www.linkedin.com/in/davidliptsyn)<br>
-</td></tr></table>
-<hr>
+</td>
 
 <!-- Nicole Andanar -->
-<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
-
 <tr><td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/nicole.jpg" style="width:230px; border:1px solid;" align="center"><p>
 <h3 class="display-3" align="center">Nicole Andanar</h3><p>
 Chemical Researcher, [Battelle](https://www.linkedin.com/in/nicoleandanar)<br>
-</td>
+</td></tr></table>
+<hr>
 
+<table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
 <!-- Oswaldo Gil -->
 <td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
 <img src="images/people/gil.jpg" style="width:230px; border:1px solid;" align="center"><p>
