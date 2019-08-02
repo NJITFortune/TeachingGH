@@ -131,6 +131,14 @@ Associate Professor,<br> [University of Trinidad and Tobago](https://utt.edu.tt/
 </td></tr></table>
 <hr>
 
+<!-- Erika Carrera Garcia PhD -->
+<td colspan=1 style="padding: 10px; border: 0px none;" align="center" valign="top">
+<img src="images/people/ECG-PhD.jpg" style="width:230px; border:1px solid;" align="center"><p>
+<h3 class="display-3" align="center">Erika Carrera Garcia PhD</h3><p>
+Associate Professor,<br> Oslo, Norway<br>
+</td></tr></table>
+<hr>
+
 <!-- Sean G. Carver PhD -->
 <table align="center" columns=2 cellspacing=2 cellpadding=5 border=0 width=80%>
 
