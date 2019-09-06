@@ -1,4 +1,4 @@
-install.packages("~/SparkleShare/github.com/TeachingGH/SignalProc/DFWE_0.1.2.tar.gz", repos = NULL)
+install.packages("~/SparkleShare/github.com/TeachingGH/SignalProc/DFWE_0.1.3.tar.gz", repos = NULL)
 library(DFWE)
 library(oce)
 library(signal)
