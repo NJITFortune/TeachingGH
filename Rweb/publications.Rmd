@@ -529,8 +529,8 @@ Fortune, E.S. and N.J. Cowan (2010) Robot Behavior, in The Encyclopedia of Anima
 <tr><td colspan=1 width=100>
 <img src="images/icons/StamperUsing2019-icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle"> 
-Metzen, M.G., Fortune, E.S. and M.J. Chacron (2017) Physiology of Tuberous Electrosensory Systems, In Reference Module in Life Sciences, Elsevier, 2017, ISBN: 978-0-12-809633-8,
-[MetzenPhysiology2010](pdf/StamperUsing2019.pdf).  
+Stamper, S.A., Madhav, M.S., Cowan, N.J., and E.S. Fortune (2019) Using Control Theory to Characterize Active Sensing in Weakly Electric Fishes, In Springer Handbook of Auditory Research, Volume 70, Electroreception: Fundamental Insights from Comparative Approaches, 2019, [ISBN: 978-3-030-29104-4](https://doi.org/10.1007/978-3-030-29105-1),
+[StamperUsing2019](pdf/StamperUsing2019.pdf).  
 </td></tr></table>
 <hr>
 
