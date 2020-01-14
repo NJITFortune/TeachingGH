@@ -21,6 +21,7 @@
 #' @param color Choose from 4 present color palettes; 1 = reverse heat, 2 = reverse greyscale, 3 = greyscale, 4 = heat
 #' Defaults to reverse heat
 #' @param amp_value Display min and max dB. Defaults to FALSE
+#' @param no_label Removes plot axes labels. Defaults to FALSE
 #' @param ... Pass on plot and graphical arguments. See function imagep in oce for availanble arguments
 #'
 #' @examples
@@ -28,7 +29,7 @@
 #'
 #' @export
 
-specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, x_limit, y_limit, color, amp_value = FALSE, ...) {
+specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, x_limit, y_limit, color, amp_value = FALSE, no_label = FALSE, ...) {
   #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
   #freq _data may be list of frequencies or wav file
   #if sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
@@ -177,36 +178,59 @@ specplot = function(freq_data, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, x_l
   } else {
     y_limit = y_limit
   }
-  #check to see frequency max
-  if(max(f) > 100000) {
-    #plot in kHz
+  
+  if(no_label == FALSE)
+  {
+    #check to see frequency max
+    if(max(f) > 100000) {
+      #plot in kHz
+      imagep(x = t, y = f, z = t(P),
+             zlim = amp_range,
+             col = col_select,
+             ylab = "Frequency [kHz]",
+             xlab = "Time [s]",
+            drawPalette = FALSE,
+            decimate = FALSE,
+            xlim = x_limit,
+            ylim = y_limit,
+            axes = FALSE,
+            ...)
+      axis(2, at = seq(0, max(f), 20000), labels = seq(0, max(f)/1000, 20))
+      axis(1)
+      box(col = box_col)
+
+    } else {
+      #plot in [Hz]
+      imagep(x = t, y = f, z = t(P),
+            zlim = amp_range,
+            col = col_select,
+            ylab = "Frequency [Hz]",
+            xlab = "Time [s]",
+            drawPalette = FALSE,
+            decimate = FALSE,
+            xlim = x_limit,
+            ylim = y_limit,
+            ...)
+      box(col = box_col)
+    }
+  } else {
+    
+    #plot without axis of frame
     imagep(x = t, y = f, z = t(P),
            zlim = amp_range,
            col = col_select,
-           ylab = "Frequency [kHz]",
-           xlab = "Time [s]",
+           ylab = "",
+           xlab = "",
            drawPalette = FALSE,
            decimate = FALSE,
            xlim = x_limit,
            ylim = y_limit,
            axes = FALSE,
+           bty = 'n',
+           mar = rep(0, 4),
            ...)
-    axis(2, at = seq(0, max(f), 20000), labels = seq(0, max(f)/1000, 20))
-    axis(1)
     box(col = box_col)
-
-  } else {
-    #plot in [Hz]
-    imagep(x = t, y = f, z = t(P),
-          zlim = amp_range,
-          col = col_select,
-          ylab = "Frequency [Hz]",
-          xlab = "Time [s]",
-          drawPalette = FALSE,
-          decimate = FALSE,
-          xlim = x_limit,
-          ylim = y_limit,
-          ...)
-    box(col = box_col)
+    
   }
+  
 }
