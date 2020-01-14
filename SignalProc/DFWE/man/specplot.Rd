@@ -30,6 +30,8 @@ Defaults to reverse heat}
 
 \item{amp_value}{Display min and max dB. Defaults to FALSE}
 
+\item{no_label}{Removes plot axes labels. Defaults to FALSE}
+
 \item{...}{Pass on plot and graphical arguments. See function imagep in oce for availanble arguments}
 }
 \value{

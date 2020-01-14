@@ -4,8 +4,7 @@
 \alias{domplot}
 \title{domplot}
 \usage{
-domplot(wav_file, Fs, nfft, amp_range, dfcol, bat = TRUE,
-  plotreg = FALSE, ...)
+domplot(wav_file, Fs, nfft, amp_range, dfcol, bat = TRUE, plotreg = FALSE, ...)
 }
 \arguments{
 \item{wav_file}{A .wav file or list of frequency data}
