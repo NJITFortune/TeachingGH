@@ -1,7 +1,7 @@
 Package: DFWE
 Type: Package
 Title: Acoustic Analysis Toolbox
-Version: 0.1.3
+Version: 0.1.4
 Author: Alfred Amendolara
 Maintainer: Alfred Amendolara <aba39@njit.edu>
 Description: All the functions you could possibly want to do acoustic analysis. 
