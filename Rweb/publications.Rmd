@@ -6,6 +6,17 @@
 <h2 class="display-3" align="center">Journal Publications</h2>
 <hr>
 
+<!-- UYANIK VARIABILITY 2020 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/Uyanik2020icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Uyanik, I., Sefati, S., Stamper, S.A., Cho, K-A, Ankarali, M.M., Fortune, E.S., and N.J. Cowan (2020) Variability in locomotor dynamics reveals the critical role of feedback in task control. eLife, 
+[link](https://elifesciences.org/articles/51219), 
+[PMID:31024269](pdf/Uyanik2020Variability.pdf).
+</td></tr></table>
+<hr>
+
 <!-- Elie Perception 2019 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
