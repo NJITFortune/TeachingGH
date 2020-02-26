@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,7 +86,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -235,6 +234,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -246,18 +246,6 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -311,6 +299,18 @@ $(document).ready(function () {
 <h2 class="display-3" align="center">
 Journal Publications
 </h2>
+<hr>
+<!-- UYANIK VARIABILITY 2020 -->
+<table columns="2" cellspacing="2" cellpadding="5" border="0" width="100%">
+<tr>
+<td colspan="1" width="100">
+<img src="images/icons/Uyanik2020icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td>
+<td valign="middle">
+Uyanik, I., Sefati, S., Stamper, S.A., Cho, K-A, Ankarali, M.M., Fortune, E.S., and N.J. Cowan (2020) Variability in locomotor dynamics reveals the critical role of feedback in task control. eLife, <a href="https://elifesciences.org/articles/51219">link</a>, <a href="pdf/Uyanik2020Variability.pdf">PMID:31024269</a>.
+</td>
+</tr>
+</table>
 <hr>
 <!-- Elie Perception 2019 -->
 <table columns="2" cellspacing="2" cellpadding="5" border="0" width="100%">
@@ -891,6 +891,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
