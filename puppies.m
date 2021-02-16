@@ -3,8 +3,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 % simulationlength = 100;
 % biastrength = 2;
 % jigglestrength = 1;
-  
-    
+      
     % puppy properties
         puppywid = 40;
         puppylen = 100;
