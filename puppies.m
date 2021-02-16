@@ -12,7 +12,7 @@ function puppies(num)
   
 %% Initialize puppies    
     for z = num:-1:1 % For each puppy
-        scottie(z).ctr = [round(rand*250), round(rand*250)]; % Put the puppy at a random spot
+        scottie(z).ctr = [round(rand*1000)-500, round(rand*1000)-500]; % Put the puppy at a random spot
         scottie(z).puppyang = rand*2*pi; % Randomly set the angle of the puppy
         
         scottie(z).coord = drawpuppy(scottie(z).ctr, scottie(z).puppyang-pi/2, puppywid, puppylen); % Render the body of the puppy
