@@ -56,7 +56,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             text(scottie(z).ctr(k,1), scottie(z).ctr(k,2), num2str(scottie(z).puppyang));
             
         end   
-            
+            plot(0,0,'k.', 'MarkerSize', 40);
             axis([-500, 500, -500, 500]);
             text(-450,-450, num2str(simulationlength-k));
             drawnow;
