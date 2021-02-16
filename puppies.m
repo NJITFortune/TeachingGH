@@ -1,16 +1,16 @@
-function puppies(num)
-
+function puppies(num, simulationlength, jigglestrength, biastrength)
+% Usage puppies(num, simlength, jigglestr, biastr)
+% simulationlength = 100;
+% biastrength = 2;
+% jigglestrength = 1;
   
-    clrs = lines(num); % Give each puppy a color
-    simulationlength = 100;
     
     % puppy properties
         puppywid = 40;
         puppylen = 100;
+        
         maxdist = 30;
         maxturnangle = pi/16;
-        biastrength = 1;
-        jigglestrength = 1;
   
 %% Initialize puppies    
     for z = num:-1:1 % For each puppy
@@ -20,6 +20,7 @@ function puppies(num)
         scottie(z).coord = drawpuppy(scottie(z).ctr, scottie(z).puppyang-pi/2, puppywid, puppylen); % Render the body of the puppy
     end
     
+    clrs = lines(num); % Give each puppy a color
     
 %% Run Simulation    
     for k = 2:simulationlength % Length of simulation
