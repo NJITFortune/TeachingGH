@@ -2,7 +2,7 @@ function puppies(num)
 
   
     clrs = lines(num); % Give each puppy a color
-    simulationlength = 100;
+    simulationlength = 200;
     
     % puppy properties
         puppywid = 40;
