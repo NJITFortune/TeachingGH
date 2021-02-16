@@ -2,13 +2,15 @@ function puppies(num)
 
   
     clrs = lines(num); % Give each puppy a color
-    simulationlength = 200;
+    simulationlength = 100;
     
     % puppy properties
         puppywid = 40;
         puppylen = 100;
         maxdist = 30;
-
+        maxturnangle = pi/16;
+        biastrength = 1;
+        jigglestrength = 1;
   
 %% Initialize puppies    
     for z = num:-1:1 % For each puppy
@@ -27,7 +29,7 @@ function puppies(num)
         for z = 1:num  % For each puppy
             
         % RANDOM PUPPY ANGLE for each step in the simulation
-        scottie(z).puppyang = puppyturn(scottie(z).puppyang, pi/8);
+        scottie(z).puppyang = puppyturn(scottie(z).puppyang, maxturnangle, jigglestrength);
 
         % RANDOM PUPPY MOVEMENT for each step in the simulation
         scottie(z).ctr(k,:) = puppymove(scottie(z).ctr(k-1,:), scottie(z).puppyang, maxdist);
@@ -38,7 +40,7 @@ function puppies(num)
 % Add stuff here to make the simulation work
         
         % Puppy attractor
-        % [scottie(z).ctr(k,:), scottie(z).puppyang] = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang);
+        scottie(z).puppyang = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang, biastrength, maxturnangle);
 
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
@@ -49,8 +51,9 @@ function puppies(num)
         
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
-            plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color',[0,0,0]); 
+            % plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color',[0,0,0]); 
             plot(scottie(z).ctr(:,1), scottie(z).ctr(:,2), '-', 'LineWidth', 0.5, 'Color', clrs(z,:));
+            text(scottie(z).ctr(k,1), scottie(z).ctr(k,2), num2str(scottie(z).puppyang));
             
         end   
             
@@ -64,11 +67,11 @@ function puppies(num)
 %% EMBEDDED FUNCTIONS
 
 % RANDOM PUPPY TURN
-    function newang = puppyturn(oldang, maxang)
+    function newang = puppyturn(oldang, maxang, getjiggy)
        
-        newang = oldang + (0.5 - rand(1)) * maxang; % add random angle change
+        newang = oldang + (getjiggy * (0.5 - rand(1)) * maxang); % add random angle change
         if newang > 2*pi; newang = newang - 2*pi; end
-        if newang < 0; newang = newang + 2*pi; end
+        if newang < 0; newang = 2*pi + newang; end
         
     end
     
@@ -80,6 +83,63 @@ function puppies(num)
             
     end
     
+% PUPPY ATTRACTOR
+
+    function biasedangle = puppyattactor(currctr, currang, biastrength, mxang)
+   
+         biasedangle = currang;
+        % Do this by quadrants
+        
+        if currctr(1) >= 0 && currctr(2) >= 0 % upper right quadrant
+            if currang > pi/4 && currang < (5*pi)/4
+                biasedangle = currang - (mxang * biastrength);
+            end
+            if currang > (5*pi)/4
+                biasedangle = currang + (mxang * biastrength);
+            end
+            if currang < pi/4
+                biasedangle = currang + (mxang * biastrength);
+            end
+        end            
+        if currctr(1) < 0 && currctr(2) >= 0 % upper left quadrant
+            if currang < (3*pi)/4 
+                biasedangle = currang - (mxang * biastrength);
+            end
+            if currang > (7*pi)/4 
+                biasedangle = currang - (mxang * biastrength);
+            end
+            if currang > (3*pi)/4 && currang < (7*pi)/4
+                biasedangle = currang + (mxang * biastrength);
+            end
+        end            
+        if currctr(1) >= 0 && currctr(2) < 0 % lower right quadrant
+            if currang > (3*pi)/4 && currang < (7*pi)/4
+                biasedangle = currang - (mxang * biastrength);
+            end
+            if currang > (7*pi)/4
+                biasedangle = currang + (mxang * biastrength);
+            end
+            if currang < (3*pi)/4
+                biasedangle = currang + (mxang * biastrength);
+            end
+        end            
+        if currctr(1) < 0 && currctr(2) < 0 % lower left quadrant
+            if currang > pi/4 && currang < (5*pi)/4 
+                biasedangle = currang + (mxang * biastrength);
+            end
+            if currang < pi/4 
+                biasedangle = currang - (mxang * biastrength);
+            end
+            if currang > (5*pi)/4 
+                biasedangle = currang - (mxang * biastrength);
+            end
+        end            
+   
+        if biasedangle > 2*pi; biasedangle = biasedangle - (2*pi); end
+        if biasedangle < 0; biasedangle = 2*pi + biasedangle; end
+        
+    end
+
 % WALLCHECK
     function [wallctr, wallang] = wallcheck(wctr, wang)
         
