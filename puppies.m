@@ -55,7 +55,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
         % DID PUPPY RUN INTO THE BOWL
-        %[scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), bowlradius, bowl);           
+        scottie(z).puppyang = bowlcheck(scottie(z), maxturnangle, bowl);           
         
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
@@ -247,12 +247,46 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
 % PUPPY BOWL
 
-    function [cirloc, cirang] = bowlcheck(in, theradius, thebowl)   
+    function cirang = bowlcheck(in, maxT, thebowl)   
 
-        cirloc = in.ctr;
         cirang = in.puppyang;
         
+        shp(1) = polyshape(in.coord(:,1), struct(pp).coord(:,2));
+        shp(2) = thebowl;
         
+        TF = overlaps(shp); 
+
+        if TF(2) == 1 % We are in the bowl
+           
+            % By Quadrant
+            
+            % upper right
+            if in.ctr(1) >= 0 && in.ctr(2) >= 0
+                if in.puppyang < pi/4; cirang = in.puppyang - maxT; end
+                if in.puppyang > 7*pi/4; cirang = in.puppyang - maxT; end
+                if in.puppyang > pi/4 && in.puppyang < 3*pi/4; cirang = in.puppyang + maxT; end
+            end    
+            % upper left
+            if in.ctr(1) < 0 && in.ctr(2) >= 0
+                if in.puppyang > 7*pi/4; cirang = in.puppyang + maxT; end
+                if in.puppyang < pi/4; cirang = in.puppyang + maxT; end
+                if in.puppyang > 5*pi/4 && in.puppyang < 7*pi/4; cirang = in.puppyang - maxT; end
+            end
+            % lower right
+            if in.ctr(1) >= 0 && in.ctr(2) < 0
+                if in.puppyang < 3*pi/4 && in.puppyang > pi/4; cirang = in.puppyang - maxT; end
+                if in.puppyang > 3*pi/4 && in.puppyang < 5*pi/4; cirang = in.puppyang + maxT; end
+            end    
+            % lower left
+            if in.ctr(1) < 0 && in.ctr(2) < 0
+                if in.puppyang > 3*pi/4 && in.puppyang > 5*pi/4; cirang = in.puppyang - maxT; end
+                if in.puppyang > 5*pi/4 && in.puppyang < 7*pi/4; cirang = in.puppyang + maxT; end
+            end    
+            
+            if cirang > 2*pi; cirang = cirang - 2*pi; end
+            if cirang < 0; cirang = 2*pi + cirang; end
+            
+        end
         
         
     end
