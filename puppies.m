@@ -203,7 +203,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             for qq = 1:length(whichidx)
                 
                 currang = atan2([struct(whichidx(pp)).ctr(kk,1) struct(idx).ctr(kk,1)], [struct(whichidx(pp)).ctr(kk,1) struct(idx).ctr(kk,1)]);
-                
+                moveratio = sin(currang);
                 
             end
             
