@@ -44,9 +44,9 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
-
+        
         % Did the puppy run into another puppy?
-        % [scottie(z).ctr(k,:), scottie(z).puppyang] = puppycheck(scottie, z);
+        [scottie(z).ctr(k,:), scottie(z).puppyang] = puppycheck(scottie, z);
 
         
 % PLOT the puppies!!!!
@@ -184,6 +184,15 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
                       wallang = wang - rescueturnangle;
                   end
             end
+    end
+
+    function [newloc, newyang] = puppycheck(struct, idx)
+
+        for pp = 1:length(struct)
+            
+            
+        end
+
     end
 
 % RENDER THE BODY OF THE PUPPY
