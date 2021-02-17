@@ -12,7 +12,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         maxturnangle = pi/16;
         
     % Bowl properties
-        bowlradius = 20; sm = 0.1:0.1:2*pi;
+        bowlradius = 100; sm = 0.1:0.1:2*pi;
         bowl = polyshape(cos(sm)*bowlradius, sin(sm)*bowlradius);
         
   
