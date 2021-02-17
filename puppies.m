@@ -12,8 +12,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         maxturnangle = pi/16;
         
     % Bowl properties
-        bowlradius = 20;
-        bowl = polyshape(cos(
+        bowlradius = 20; sm = 0.1:0.1:2*pi;
+        bowl = polyshape(cos(sm)*bowlradius, sin(sm)*bowlradius);
         
   
 %% Initialize puppies    
@@ -29,7 +29,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 %% Run Simulation    
     for k = 2:simulationlength % Length of simulation
         
-        figure(1); clf; hold on; 
+        figure(1); clf; hold on; plot(bowl);
 
         for z = 1:num  % For each puppy
             
