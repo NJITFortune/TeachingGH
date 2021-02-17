@@ -194,17 +194,17 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
         TF = overlaps(shp); TF = TF(:,idx);
         
-        if sum(TF) == 1  % If no overlap, do nothing
-            newloc = struct(idx).ctr(end,:); 
-        else % There was an overlap! Do something!!
+        newloc = struct(idx).ctr(end,:); 
+
+        if sum(TF) ~= 1  There was an overlap! Do something!!
         
             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
             
             for qq = 1:length(whichidx)
                 
-                currang = atan2([struct(whichidx(pp)).ctr(kk,1) struct(idx).ctr(kk,1)], [struct(whichidx(pp)).ctr(kk,1) struct(idx).ctr(kk,1)]);
+                currang = atan2((newloc(2) - struct(whichidx(pp)).ctr(kk,2)), (newloc(1) - struct(whichidx(pp)).ctr(kk,1)));
                 moveratio = sin(currang);
-                
+                if moveratio < 
                 
             end
             
