@@ -46,7 +46,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
         % Did the puppy run into another puppy?
-        scottie(z).ctr(k,:) = puppycheck(scottie, z, k);
+        scottie(z).ctr(k,:) = puppycheck(scottie, z);
 
         
 % PLOT the puppies!!!!
@@ -186,7 +186,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             end
     end
 
-    function newloc = puppycheck(struct, idx, kk)
+    function newloc = puppycheck(struct, idx)
 
         jumpfactor = 3;
         
@@ -204,7 +204,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             
             for qq = 1:length(whichidx)
                 
-                currang = atan2((newloc(2) - struct(whichidx(qq)).ctr(kk,2)), (newloc(1) - struct(whichidx(qq)).ctr(kk,1)));
+                currang = atan2((newloc(2) - struct(whichidx(qq)).ctr(end,2)), (newloc(1) - struct(whichidx(qq)).ctr(end,1)));
                 if currang > 0
                     if cos(currang) > 0; newloc = [newloc+jumpfactor, newloc+(jumpfactor*sin(currang))]; end
                     if cos(currang) < 0; newloc = [newloc-jumpfactor, newloc+(jumpfactor*sin(currang))]; end
