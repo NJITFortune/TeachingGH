@@ -52,7 +52,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
         % DID PUPPY RUN INTO THE BOWL
-        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z).ctr(k,:), scottie(z).puppyang, bowl);           
+        % [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z).ctr(k,:), scottie(z).puppyang, bowl);           
         
         % Did the puppy run into another puppy?
         [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
