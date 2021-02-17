@@ -255,11 +255,10 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         % Euclian distance from center
         vec = [0,0; cirloc(1),cirloc(2)];
-        pupdist = pdist(vec,'euclidean');
+        pupdist = pdist(vec,'euclidean')
 
         if pupdist <= thebowl % We are in the bowl
-           
-            
+                      
             % By Quadrant
             
             % upper right
