@@ -241,7 +241,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
 % PUPPY BOWL
 
-    function [cirloc cirang] = bowlcheck(in, bowl)   
+    function [cirloc, cirang] = bowlcheck(in, bowl)   
 
         cirloc = in.ctr;
         cirang = in.puppyang;
