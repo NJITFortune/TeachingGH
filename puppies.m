@@ -12,7 +12,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         maxturnangle = pi/16;
         
     % Bowl properties
-        bowlradius = 80; 
+        bowlradius = 60; 
         sm = 0.1:0.1:2*pi;
         bowl = polyshape(cos(sm)*bowlradius, sin(sm)*bowlradius);
         
@@ -45,17 +45,18 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
 % Add stuff here to make the simulation work
         
-        % Did the puppy run into another puppy?
-        [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
-
         % Puppy attractor
         scottie(z).puppyang = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang, biastrength, maxturnangle);
+        
+        % DID PUPPY RUN INTO THE BOWL
+        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
+        
+        % Did the puppy run into another puppy?
+        [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
 
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
-        % DID PUPPY RUN INTO THE BOWL
-        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), maxturnangle, bowlradius);           
         
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
@@ -96,19 +97,32 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
     function biasedangle = puppyattactor(currctr, currang, biastrength, mxang)
    
          biasedangle = currang;
+         
+%          realref = [0, -100]; testref = [1, -100];
+%          
+%          realang = (currctr(1)*realref(1) + currctr(2)*realref(2)) / (sqrt(currctr(1)^2 + currctr(2)^2) * sqrt(realref(1)^2 + realref(2)^2));
+%          testang = (currctr(1)*testref(1) + currctr(2)*testref(2)) / (sqrt(currctr(1)^2 + currctr(2)^2) * sqrt(testref(1)^2 + testref(2)^2));
+%          
+%          if testang <= realang; realang = 2*pi - realang; end
+%          
+%          goang = realang + pi; if goang > 2*pi; goang = goang - 2*pi; end
+         
+         
+         
+         
         % Do this by quadrants
-        
         if currctr(1) >= 0 && currctr(2) >= 0 % upper right quadrant
-            if currang > pi/4 && currang < (5*pi)/4
+            if currang >= pi/4 && currang < (5*pi)/4
                 biasedangle = currang - (mxang * biastrength);
             end
-            if currang > (5*pi)/4
+            if currang >= (5*pi)/4
                 biasedangle = currang + (mxang * biastrength);
             end
             if currang < pi/4
                 biasedangle = currang + (mxang * biastrength);
             end
-        end            
+        end
+        
         if currctr(1) < 0 && currctr(2) >= 0 % upper left quadrant
             if currang < (3*pi)/4 
                 biasedangle = currang - (mxang * biastrength);
@@ -119,7 +133,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             if currang > (3*pi)/4 && currang < (7*pi)/4
                 biasedangle = currang + (mxang * biastrength);
             end
-        end            
+        end
+        
         if currctr(1) >= 0 && currctr(2) < 0 % lower right quadrant
             if currang > (3*pi)/4 && currang < (7*pi)/4
                 biasedangle = currang - (mxang * biastrength);
@@ -130,7 +145,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             if currang < (3*pi)/4
                 biasedangle = currang + (mxang * biastrength);
             end
-        end            
+        end
+        
         if currctr(1) < 0 && currctr(2) < 0 % lower left quadrant
             if currang > pi/4 && currang < (5*pi)/4 
                 biasedangle = currang + (mxang * biastrength);
@@ -155,43 +171,33 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
         rescueturnangle = pi/4;
         
-            if wctr(1) < -500 
+            if wctr(1) < -500 % Left wall
                   wallctr(1) = -500;
-                  if wang > 1.5*pi
-                      wallang = wang + rescueturnangle;
-                  end
-                  if wang < 1.5*pi
-                      wallang = wang - rescueturnangle;
-                  end
+                  if wang < 3*pi/2 && wang > pi/2; wallang = wang + rescueturnangle; end
+                  if wang < 3*pi/2; wallang = wang - rescueturnangle; end
+                  if wang >= 3*pi/2; wallang = wang - rescueturnangle; end
             end
-            if wctr(1) > 500 
+            if wctr(1) > 500 % Right wall
                   wallctr(1) = 500;
-                  if wang < 0.5*pi
-                      wallang = wang - rescueturnangle;
-                  end
-                  if wang > 0.5*pi
-                      wallang = wang + rescueturnangle;
-                  end
+                  if wang >= pi/2 && wang < 3*pi/2; wallang = wang - rescueturnangle; end
+                  if wang < pi/2; wallang = wang + rescueturnangle; end
+                  if wang >= 3*pi/2; wallang = wang + rescueturnangle; end
             end
             
-            if wctr(2) < -500 
+            if wctr(2) < -500 % Bottom wall
                   wallctr(2) = -500;
-                  if wang > pi
-                      wallang = wang - rescueturnangle;
-                  end
-                  if wang < pi
-                      wallang = wang + rescueturnangle;
-                  end
+                  if wang >= pi; wallang = wang - rescueturnangle; end
+                  if wang < pi; wallang = wang + rescueturnangle; end
             end
             if wctr(2) > 500 
-                  wallctr(2) = 500;
-                  if wang > pi && wang < 2*pi
-                      wallang = wang + rescueturnangle;
-                  end
-                  if wang > 0 && wang < pi
-                      wallang = wang - rescueturnangle;
-                  end
+                  wallctr(2) = 500; % Top wall
+                  if wang >= pi; wallang = wang + rescueturnangle; end
+                  if wang < pi; wallang = wang - rescueturnangle; end
             end
+            
+            if wallang > 2*pi; wallang = wallang - (2*pi); end
+            if wallang < 0; wallang = 2*pi + wallang; end
+            
     end
 
 % PUPPY OVERLAP
@@ -216,11 +222,11 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
             
             % We are going to halve the angle difference with the other puppy
-            anglejump = (struct(idx).puppyang - struct(whichidx(1)).puppyang);
-            if abs(anglejump) < pi
-                newang = newang - anglejump;
-            elseif abs(anglejump) > pi
-                newang = newang - (anglejump/abs(anglejump)*(abs(anglejump) - pi)); 
+            angledifference = struct(idx).puppyang - struct(whichidx(1)).puppyang;
+            if abs(angledifference) < pi
+                newang = newang - (angledifference/4);
+            elseif abs(angledifference) > pi
+                newang = newang - (angledifference/abs(angledifference)*(2*pi - abs(angledifference)))/4; 
             end
             
             if newang > 2*pi; newang = newang - 2*pi; end
@@ -251,14 +257,14 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         cirang = in.puppyang;
         cirloc = in.ctr(end,:);
-        bounceback = 8;
+        bounceback = 24;
 
         % Euclian distance from center
         vec = [0,0; cirloc(1),cirloc(2)];
         pupdist = pdist(vec,'euclidean');
 
         if pupdist <= thebowl % We are in the bowl
-             text(400,400, num2str(pupdist), 'r');         
+            % text(400,400, num2str(pupdist));         
             % By Quadrant
             
             % upper right
