@@ -12,7 +12,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         maxturnangle = pi/16;
         
     % Bowl properties
-        bowlradius = 50; sm = 0.1:0.1:2*pi;
+        bowlradius = 60; 
+        sm = 0.1:0.1:2*pi;
         bowl = polyshape(cos(sm)*bowlradius, sin(sm)*bowlradius);
         
   
@@ -49,6 +50,9 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
+        
+        % DID PUPPY RUN INTO THE BOWL
+        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowcheck(scottie(z).ctr(k,:), scottie(z).puppyang, bowl);           
         
         % Did the puppy run into another puppy?
         [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
@@ -191,6 +195,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             end
     end
 
+% PUPPY OVERLAP
+
     function [newloc, newang] = puppycheck(struct, idx)
 
         jumpfactor = 20;
@@ -232,6 +238,11 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         end
         
     end
+
+% PUPPY BOWL
+
+        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowcheck(scottie(z).ctr(k,:), scottie(z).puppyang, bowl);           
+
 
 % RENDER THE BODY OF THE PUPPY
     function pp = drawpuppy(hd, ang, wid, len)
