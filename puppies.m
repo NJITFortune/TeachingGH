@@ -204,7 +204,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
                 
                 currang = atan2((newloc(2) - struct(whichidx(pp)).ctr(kk,2)), (newloc(1) - struct(whichidx(pp)).ctr(kk,1)));
                 moveratio = sin(currang);
-                if moveratio < 
+                
                 
             end
             
