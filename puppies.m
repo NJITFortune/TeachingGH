@@ -200,21 +200,24 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         if sum(TF) ~= 1  % There was an overlap! Do something!!
         
-            whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
+            % Go back in time
             
-            for qq = 1:length(whichidx)
-                
-                currang = atan2((newloc(2) - struct(whichidx(qq)).ctr(end,2)), (newloc(1) - struct(whichidx(qq)).ctr(end,1)));
-                if currang > 0
-                    if cos(currang) > 0; newloc = [newloc(1)+jumpfactor, newloc(2)+(jumpfactor*sin(currang))]; end
-                    if cos(currang) < 0; newloc = [newloc(1)-jumpfactor, newloc(2)+(jumpfactor*sin(currang))]; end
-                end
-                if currang < 0
-                    if cos(-currang) > 0; newloc = [newloc(1)+jumpfactor, newloc(2)-(jumpfactor*sin(currang))]; end
-                    if cos(-currang) < 0; newloc = [newloc(1)-jumpfactor, newloc(2)-(jumpfactor*sin(currang))]; end
-                end
-                
-            end
+            newloc = struct(idx).ctr(end-1,:);
+%             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
+%             
+%             for qq = 1:length(whichidx)
+%                 
+%                 currang = atan2((newloc(2) - struct(whichidx(qq)).ctr(end,2)), (newloc(1) - struct(whichidx(qq)).ctr(end,1)));
+%                 if currang > 0
+%                     if cos(currang) > 0; newloc = [newloc(1)+jumpfactor, newloc(2)+(jumpfactor*sin(currang))]; end
+%                     if cos(currang) < 0; newloc = [newloc(1)-jumpfactor, newloc(2)+(jumpfactor*sin(currang))]; end
+%                 end
+%                 if currang < 0
+%                     if cos(-currang) > 0; newloc = [newloc(1)+jumpfactor, newloc(2)-(jumpfactor*sin(currang))]; end
+%                     if cos(-currang) < 0; newloc = [newloc(1)-jumpfactor, newloc(2)-(jumpfactor*sin(currang))]; end
+%                 end
+%                 
+%             end
             
         end
         
