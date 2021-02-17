@@ -55,7 +55,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
         % DID PUPPY RUN INTO THE BOWL
-        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), 3*pi/4, bowl);           
+        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), maxturnangle, bowlradius);           
         
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
@@ -251,11 +251,9 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         cirang = in.puppyang;
         cirloc = in.ctr(end,:);
+
+        % Eugclian distance from center
         
-        shp(1) = polyshape(in.coord(:,1), in.coord(:,2));
-        shp(2) = thebowl;
-        
-        TF = overlaps(shp); 
 
         if TF(2) == 1 % We are in the bowl
            
