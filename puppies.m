@@ -201,7 +201,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
             
             for qq = 1:length(whichidx)
-                
+                newloc(2)
+                struct(whichidx(qq)).ctr(kk,2)
                 currang = atan2((newloc(2) - struct(whichidx(qq)).ctr(kk,2)), (newloc(1) - struct(whichidx(qq)).ctr(kk,1)));
                 if currang > 0
                     if cos(currang) > 0; newloc = [newloc+jumpfactor, newloc+(jumpfactor*sin(currang))]; end
