@@ -251,7 +251,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         cirang = in.puppyang;
         
-        shp(1) = polyshape(in.coord(:,1), struct(pp).coord(:,2));
+        shp(1) = polyshape(in.coord(:,1), in.coord(:,2));
         shp(2) = thebowl;
         
         TF = overlaps(shp); 
