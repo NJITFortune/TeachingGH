@@ -252,10 +252,11 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         cirang = in.puppyang;
         cirloc = in.ctr(end,:);
 
-        % Eugclian distance from center
-        
+        % Euclian distance from center
+        vec = [in.ctr(1),0;in.ctr(2),0];
+        pupdist = pdist(vec,'euclidean');
 
-        if TF(2) == 1 % We are in the bowl
+        if pupdist <= thebowl % We are in the bowl
            
             cirloc = in.ctr(end-1,:); % go back in time one step
             
