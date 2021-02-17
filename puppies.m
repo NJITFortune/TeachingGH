@@ -188,7 +188,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
     function newloc = puppycheck(struct, idx)
 
-        jumpfactor = 3;
+        jumpfactor = 10;
         
         for pp = length(struct):-1:1
             shp(pp) = polyshape(struct(pp).coord(:,1), struct(pp).coord(:,2));
