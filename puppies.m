@@ -251,6 +251,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         cirang = in.puppyang;
         cirloc = in.ctr(end,:);
+        bounceback = 8;
 
         % Euclian distance from center
         vec = [0,0; cirloc(1),cirloc(2)];
@@ -258,7 +259,6 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         if pupdist <= thebowl % We are in the bowl
            
-            cirloc = in.ctr(end-1,:); % go back in time one step
             
             % By Quadrant
             
@@ -267,22 +267,26 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
                 if in.puppyang < pi/4; cirang = in.puppyang - maxT; end
                 if in.puppyang > 7*pi/4; cirang = in.puppyang - maxT; end
                 if in.puppyang > pi/4 && in.puppyang < 3*pi/4; cirang = in.puppyang + maxT; end
+                cirloc = [cirloc(1)+bounceback, cirloc(2)+bounceback];
             end    
             % upper left
             if in.ctr(1) < 0 && in.ctr(2) >= 0
                 if in.puppyang > 7*pi/4; cirang = in.puppyang + maxT; end
                 if in.puppyang < pi/4; cirang = in.puppyang + maxT; end
                 if in.puppyang > 5*pi/4 && in.puppyang < 7*pi/4; cirang = in.puppyang - maxT; end
+                cirloc = [cirloc(1)-bounceback, cirloc(2)+bounceback];
             end
             % lower right
             if in.ctr(1) >= 0 && in.ctr(2) < 0
                 if in.puppyang < 3*pi/4 && in.puppyang > pi/4; cirang = in.puppyang - maxT; end
                 if in.puppyang > 3*pi/4 && in.puppyang < 5*pi/4; cirang = in.puppyang + maxT; end
+                cirloc = [cirloc(1)+bounceback, cirloc(2)-bounceback];
             end    
             % lower left
             if in.ctr(1) < 0 && in.ctr(2) < 0
                 if in.puppyang > 3*pi/4 && in.puppyang > 5*pi/4; cirang = in.puppyang - maxT; end
                 if in.puppyang > 5*pi/4 && in.puppyang < 7*pi/4; cirang = in.puppyang + maxT; end
+                cirloc = [cirloc(1)-bounceback, cirloc(2)-bounceback];
             end    
             
             if cirang > 2*pi; cirang = cirang - 2*pi; end
