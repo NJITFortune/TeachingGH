@@ -222,7 +222,6 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             
         end
         
-        
     end
 
 % RENDER THE BODY OF THE PUPPY
