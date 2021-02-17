@@ -55,7 +55,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
         % DID PUPPY RUN INTO THE BOWL
-        scottie(z).puppyang = bowlcheck(scottie(z), maxturnangle, bowl);           
+        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), maxturnangle, bowl);           
         
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
@@ -247,9 +247,10 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
 % PUPPY BOWL
 
-    function cirang = bowlcheck(in, maxT, thebowl)   
+    function [cirloc, cirang] = bowlcheck(in, maxT, thebowl)   
 
         cirang = in.puppyang;
+        cirloc = in.ctr(end,:);
         
         shp(1) = polyshape(in.coord(:,1), in.coord(:,2));
         shp(2) = thebowl;
@@ -258,6 +259,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         if TF(2) == 1 % We are in the bowl
            
+            cirloc = in.ctr(end-1,:); % go back in time one step
+            
             % By Quadrant
             
             % upper right
