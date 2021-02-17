@@ -199,6 +199,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         newloc = struct(idx).ctr(end,:); 
 
         if sum(TF) ~= 1  % There was an overlap! Do something!!
+        
+            whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
             
             for qq = 1:length(whichidx)
                 
