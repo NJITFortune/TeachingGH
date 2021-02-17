@@ -59,9 +59,9 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
-            % plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color',[0,0,0]); 
+            plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color',[0,0,0]); 
             plot(scottie(z).ctr(:,1), scottie(z).ctr(:,2), '-', 'LineWidth', 0.5, 'Color', clrs(z,:));
-            text(scottie(z).ctr(k,1), scottie(z).ctr(k,2), num2str(scottie(z).puppyang));
+            % text(scottie(z).ctr(k,1), scottie(z).ctr(k,2), num2str(scottie(z).puppyang));
             
         end   
             plot(0,0,'k.', 'MarkerSize', 40);
