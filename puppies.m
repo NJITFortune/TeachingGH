@@ -188,6 +188,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
     function newloc = puppycheck(struct, idx, kk)
 
+        jumpfactor = 3;
+        
         for pp = length(struct):-1:1
             shp(pp) = polyshape(struct(pp).coord(:,1), struct(pp).coord(:,2));
         end
@@ -197,9 +199,6 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         newloc = struct(idx).ctr(end,:); 
 
         if sum(TF) ~= 1  % There was an overlap! Do something!!
-        
-            whichidx = find(TF) 
-            whichidx = whichidx(whichidx~=idx)
             
             for qq = 1:length(whichidx)
                 
