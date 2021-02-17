@@ -197,7 +197,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         TF = overlaps(shp); TF = TF(:,idx);
         
         newloc = struct(idx).ctr(end,:); 
-
+        newang = struct(idx).puppyang;
+        
         if sum(TF) ~= 1  % There was an overlap! Do something!!
         
             % Go back in time one step
