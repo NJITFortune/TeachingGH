@@ -45,6 +45,9 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
 % Add stuff here to make the simulation work
         
+        % Did the puppy run into another puppy?
+        [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
+
         % Puppy attractor
         scottie(z).puppyang = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang, biastrength, maxturnangle);
 
@@ -52,11 +55,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
         % DID PUPPY RUN INTO THE BOWL
-        % [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z).ctr(k,:), scottie(z).puppyang, bowl);           
-        
-        % Did the puppy run into another puppy?
-        [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
-
+        %[scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), bowlradius, bowl);           
         
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
@@ -198,8 +197,6 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 % PUPPY OVERLAP
 
     function [newloc, newang] = puppycheck(struct, idx)
-
-        jumpfactor = 20;
         
         for pp = length(struct):-1:1
             shp(pp) = polyshape(struct(pp).coord(:,1), struct(pp).coord(:,2));
@@ -212,13 +209,22 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
         if sum(TF) ~= 1  % There was an overlap! Do something!!
         
-            % Go back in time one step
-            
-            newloc = struct(idx).ctr(end-1,:);
-            
+            % Position goes back in time one step
+            % newloc = struct(idx).ctr(end-1,:);
+
+            % Pick the first puppy with overlap 
             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
-            anglejump = jumpfactor * (struct(idx).puppyang - struct(whichidx(1)).puppyang);
-            newang = struct(idx).puppyang - anglejump/abs(anglejump) * min([pi/36, abs(anglejump)]);
+            
+            % We are going to halve the angle difference with the other puppy
+            anglejump = (struct(idx).puppyang - struct(whichidx(1)).puppyang);
+            if abs(anglejump) < pi
+                newang = newang - anglejump;
+            elseif abs(anglejump) > pi
+                newang = newang - (anglejump/abs(anglejump)*(abs(anglejump) - pi)); 
+            end
+            
+            if newang > 2*pi; newang = newang - 2*pi; end
+            if newang < 0; newang = 2*pi + newang; end
             
 %             
 %             for qq = 1:length(whichidx)
@@ -241,10 +247,13 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
 % PUPPY BOWL
 
-    function [cirloc, cirang] = bowlcheck(in, bowl)   
+    function [cirloc, cirang] = bowlcheck(in, theradius, thebowl)   
 
         cirloc = in.ctr;
         cirang = in.puppyang;
+        
+        
+        
         
     end
 
