@@ -188,11 +188,11 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
     function [newloc, newyang] = puppycheck(struct, idx)
 
-        for pp = 1:length(struct)
-            
-            
+        for pp = length(struct):-1:1
+            shp(pp) = polyshape(struct(pp).coord(:,1), struct(pp).coord(:,2));
         end
-
+        pv = [shp];
+        
     end
 
 % RENDER THE BODY OF THE PUPPY
