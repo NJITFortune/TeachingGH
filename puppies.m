@@ -206,7 +206,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             newloc = struct(idx).ctr(end-1,:);
             
             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
-            anglejump = jumpfactor * (struct(idx).puppyang - struct(whichidx(1).puppyang));
+            anglejump = jumpfactor * (struct(idx).puppyang - struct(whichidx(1)).puppyang);
             newang = struct(idx).puppyang + anglejump/abs(anglejump) * min([pi/36, abs(anglejump)]);
             
 %             
