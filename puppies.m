@@ -186,15 +186,28 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             end
     end
 
-    function [newloc, newyang] = puppycheck(struct, idx)
+    function [newloc, newyang] = puppycheck(struct, idx, kk)
 
         for pp = length(struct):-1:1
             shp(pp) = polyshape(struct(pp).coord(:,1), struct(pp).coord(:,2));
         end
         
-        TF = overlaps(shp);
+        TF = overlaps(shp); TF = TF(:,idx);
         
-        TF = TF(:,
+        if sum(TF) == 1  % If no overlap, do nothing
+            newloc = struct(idx).ctr(end,:); 
+        else % There was an overlap! Do something!!
+        
+            whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
+            
+            for qq = 1:length(whichidx)
+                
+                currang = atan2([struct(whichidx(pp)).ctr(kk,1) struct(idx).ctr(kk,1)], [struct(whichidx(pp)).ctr(kk,1) struct(idx).ctr(kk,1)]);
+                
+            end
+            
+        end
+        
         
     end
 
