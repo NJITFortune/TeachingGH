@@ -191,7 +191,10 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         for pp = length(struct):-1:1
             shp(pp) = polyshape(struct(pp).coord(:,1), struct(pp).coord(:,2));
         end
-        pv = [shp];
+        
+        TF = overlaps(shp);
+        
+        TF = TF(:,
         
     end
 
