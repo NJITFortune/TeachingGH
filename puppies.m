@@ -203,7 +203,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
             % Go back in time one step
             
-            newloc = struct(idx).ctr(end-2,:);
+            newloc = struct(idx).ctr(end-1,:);
             
             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
             anglejump = jumpfactor * (struct(idx).puppyang - struct(whichidx(1)).puppyang);
