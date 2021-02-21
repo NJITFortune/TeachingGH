@@ -46,7 +46,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 % Add stuff here to make the simulation work
         
         % Puppy attractor
-        scottie(z).puppyang = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang, biastrength, maxturnangle);
+        scottie(z).puppyang = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
         
         % DID PUPPY RUN INTO THE BOWL
         [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
