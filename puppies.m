@@ -35,7 +35,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         for z = 1:num  % For each puppy
             
         % RANDOM PUPPY ANGLE for each step in the simulation
-        z
+        
         scottie(z).puppyang(k) = puppyturn(scottie(z).puppyang(k-1), maxturnangle, jigglestrength);
 
         % RANDOM PUPPY MOVEMENT for each step in the simulation
