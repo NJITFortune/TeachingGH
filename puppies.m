@@ -233,8 +233,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 %             if newang > 2*pi; newang = newang - 2*pi; end
 %             if newang < 0; newang = 2*pi + newang; end
             
-        newloc = struct(idx).ctr(end-1,:); 
-        newang = struct(idx).puppyang(end-1);
+        newloc = struct(idx).ctr(end-1,:)
+        newang = struct(idx).puppyang(end-1)
 
 
 
