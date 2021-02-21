@@ -35,13 +35,13 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         for z = 1:num  % For each puppy
             
         % RANDOM PUPPY ANGLE for each step in the simulation
-        scottie(z).puppyang = puppyturn(scottie(z).puppyang, maxturnangle, jigglestrength);
+        scottie(z).puppyang(k) = puppyturn(scottie(z).puppyang(k-1), maxturnangle, jigglestrength);
 
         % RANDOM PUPPY MOVEMENT for each step in the simulation
-        scottie(z).ctr(k,:) = puppymove(scottie(z).ctr(k-1,:), scottie(z).puppyang, maxdist);
+        scottie(z).ctr(k,:) = puppymove(scottie(z).ctr(k-1,:), scottie(z).puppyang(k-1), maxdist);
  
         % GET PUPPY BODY
-        scottie(z).coord = drawpuppy(scottie(z).ctr(k,:), scottie(z).puppyang-pi/2, puppywid, puppylen); 
+        scottie(z).coord = drawpuppy(scottie(z).ctr(k,:), scottie(z).puppyang(k)-pi/2, puppywid, puppylen); 
 
 % Add stuff here to make the simulation work
         
@@ -51,13 +51,13 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         % DID PUPPY RUN INTO THE BOWL
         [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
         
-        % Did the puppy run into another puppy?
-        [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
-
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
         
+        % Did the puppy run into another puppy?
+        [scottie(z).ctr(k,:), scottie(z).puppyang]  = puppycheck(scottie, z);
         
+
 % PLOT the puppies!!!!
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
             plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color',[0,0,0]); 
@@ -215,23 +215,28 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
         if sum(TF) ~= 1  % There was an overlap! Do something!!
         
-            % Position goes back in time one step
-            % newloc = struct(idx).ctr(end-1,:);
+%             % Position goes back in time one step
+%             % newloc = struct(idx).ctr(end-1,:);
+% 
+%             % Pick the first puppy with overlap 
+%             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
+%             
+%             % We are going to halve the angle difference with the other puppy
+%             angledifference = struct(idx).puppyang - struct(whichidx(1)).puppyang;
+%             if abs(angledifference) < pi
+%                 newang = newang - (angledifference/4);
+%             elseif abs(angledifference) > pi
+%                 newang = newang - (angledifference/abs(angledifference)*(2*pi - abs(angledifference)))/4; 
+%             end
+%             
+%             if newang > 2*pi; newang = newang - 2*pi; end
+%             if newang < 0; newang = 2*pi + newang; end
+            
+        newloc = struct(idx).ctr(end-1,:); 
+        newang = struct(idx).puppyang(end-1);
 
-            % Pick the first puppy with overlap 
-            whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
-            
-            % We are going to halve the angle difference with the other puppy
-            angledifference = struct(idx).puppyang - struct(whichidx(1)).puppyang;
-            if abs(angledifference) < pi
-                newang = newang - (angledifference/4);
-            elseif abs(angledifference) > pi
-                newang = newang - (angledifference/abs(angledifference)*(2*pi - abs(angledifference)))/4; 
-            end
-            
-            if newang > 2*pi; newang = newang - 2*pi; end
-            if newang < 0; newang = 2*pi + newang; end
-            
+
+
 %             
 %             for qq = 1:length(whichidx)
 %                 
