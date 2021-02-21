@@ -276,7 +276,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             if in.ctr(1) >= 0 && in.ctr(2) >= 0
                 if in.puppyang(end) < pi/4; cirang = in.puppyang(end) - maxT; end
                 if in.puppyang(end) > 7*pi/4; cirang = in.puppyang(end) - maxT; end
-                if in.puppyang(end) > pi/4 && in.puppyang < 3*pi/4; cirang = in.puppyang(end) + maxT; end
+                if in.puppyang(end) > pi/4 && in.puppyang(end) < 3*pi/4; cirang = in.puppyang(end) + maxT; end
                 cirloc = [cirloc(1)+bounceback, cirloc(2)+bounceback];
             end    
             % upper left
