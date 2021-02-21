@@ -79,8 +79,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
     function newang = puppyturn(oldang, maxang, getjiggy)
        
         newang = oldang + (getjiggy * (0.5 - rand(1)) * maxang); % add random angle change
-        if newang > 2*pi; newang = newang - 2*pi; end
-        if newang < 0; newang = 2*pi + newang; end
+            if newang > 2*pi; newang = newang - 2*pi; end
+            if newang < 0; newang = 2*pi + newang; end
         
     end
     
