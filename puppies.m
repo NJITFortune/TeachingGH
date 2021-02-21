@@ -49,7 +49,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         scottie(z).puppyang(k) = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
         
         % DID PUPPY RUN INTO THE BOWL
-        [scottie(z).ctr(k,:), scottie(z).puppyang] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
+        [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
         
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang);   
@@ -260,7 +260,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
     function [cirloc, cirang] = bowlcheck(in, maxT, thebowl)   
 
-        cirang = in.puppyang;
+        cirang = in.puppyang(end);
         cirloc = in.ctr(end,:);
         bounceback = 24;
 
