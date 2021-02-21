@@ -60,7 +60,10 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
 
 % PLOT the puppies!!!!
+        % GET PUPPY BODY AGAIN
+            scottie(z).coord = drawpuppy(scottie(z).ctr(k,:), scottie(z).puppyang(k)-pi/2, puppywid, puppylen); 
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
+            
             plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color',[0,0,0]); 
             plot(scottie(z).ctr(:,1), scottie(z).ctr(:,2), '-', 'LineWidth', 0.5, 'Color', clrs(z,:));
             % text(scottie(z).ctr(k,1), scottie(z).ctr(k,2), num2str(scottie(z).puppyang));
@@ -233,8 +236,8 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 %             if newang > 2*pi; newang = newang - 2*pi; end
 %             if newang < 0; newang = 2*pi + newang; end
             
-        newloc = struct(idx).ctr(end-1,:)
-        newang = struct(idx).puppyang(end-1)
+        newloc = struct(idx).ctr(end-1,:);
+        newang = struct(idx).puppyang(end-1);
 
 
 
