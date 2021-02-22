@@ -1,41 +1,53 @@
-function puppies(num, simulationlength, jigglestrength, biastrength)
-% Usage puppies(num, simlength, jigglestr, biastr)
+function puppies(num, simulationlength, jigglestrength, biastrength, maxdist, maxturnangle)
+% Usage puppies(num, simulationlength, jigglestrength, centerbiastrength)
+% Good values might be:
+% num = 5
 % simulationlength = 100;
-% biastrength = 2;
-% jigglestrength = 1;
-      
+% biastrength = 1;
+% jigglestrength = 0.2;
+% maxdist = 30; 
+% maxturnangle = pi/32;
+
+%% Physical features
+
+    % Arena
+        arenawidth = 500; % Half of actual because we go from -arenawidth to +arenawidth
+        arenaheight = 500; % Half of actual because we go from -arenaheight to +arenaheight
+
     % puppy properties
-        puppywid = 40;
-        puppylen = 100;
+        puppywid = 40; % Puppy width in pixels
+        puppylen = 100;  % Puppy length in pixels
         
-        maxdist = 30;
-        maxturnangle = pi/32;
+        %maxdist = 30; % Farthest forward the puppy can move in pixels
+        % maxturnangle = pi/32; % maximum turning in a step
         
     % Bowl properties
-        bowlradius = 60; 
-        sm = 0.1:0.1:2*pi;
-        bowl = polyshape(cos(sm)*bowlradius, sin(sm)*bowlradius);
+        bowlradius = 80; % Radius of bowl in pixels
+        % Render the bowl
+        sm = 0.1:0.1:2*pi; bowl = polyshape(cos(sm)*bowlradius, sin(sm)*bowlradius);
         
   
-%% Initialize puppies    
+%% Initialize puppies  (Can start anywhere within the bounds of the field, including on top of bowl or other puppy  
     for z = num:-1:1 % For each puppy
-        scottie(z).ctr = [round(rand*1000)-500, round(rand*1000)-500]; % Put the puppy at a random spot
+        scottie(z).ctr = [round(rand*1000)-arenawidth, round(rand*1000)-arenaheight]; % Put the puppy at a random spot
         scottie(z).puppyang = rand*2*pi; % Randomly set the angle of the puppy
-        
         scottie(z).coord = drawpuppy(scottie(z).ctr, scottie(z).puppyang-pi/2, puppywid, puppylen); % Render the body of the puppy
     end
     
     clrs = lines(num); % Give each puppy a color
     
 %% Run Simulation    
-    for k = 2:simulationlength % Length of simulation
-        
-        figure(1); clf; hold on; plot(bowl); axis([-500, 500, -500, 500]);
+    for k = 2:simulationlength % For each iteration of simulation
 
-        for z = 1:num  % For each puppy
-            
-        % RANDOM PUPPY ANGLE for each step in the simulation
+        % Clear the figure and prepare for PUPPIES!!!
+        figure(1); clf; hold on; 
+        plot(bowl); axis([-arenawidth, arenawidth, -arenaheight, arenaheight]);
+        a = gcf;
+        set(gcf, 'Position', [a.Position(1), a.Position(2), 560, 510]);
         
+        for z = 1:num  % For each puppy (required)
+            
+        % RANDOM PUPPY ANGLE for each step in the simulation        
         scottie(z).puppyang(k) = puppyturn(scottie(z).puppyang(k-1), maxturnangle, jigglestrength);
 
         % RANDOM PUPPY MOVEMENT for each step in the simulation
@@ -44,35 +56,34 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         % GET PUPPY BODY
         scottie(z).coord = drawpuppy(scottie(z).ctr(k,:), scottie(z).puppyang(k)-pi/2, puppywid, puppylen); 
 
-% Add stuff here to make the simulation work
+% Add functions here to make the simulation 'interesting'
         
-        % Puppy attractor
+        % Puppy attractor - biases each puppy to turn towards the center of the arena (0,0)
         scottie(z).puppyang(k) = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
         
-        % DID IT RUN INTO A WALL?
-        [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang(k));   
+        % DID IT RUN INTO A WALL? Puppy, don't run away!
+        %[scottie(z).ctr(k,:), scottie(z).puppyang(k)] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang(k));   
         
-        % DID PUPPY RUN INTO THE BOWL
+        % DID PUPPY RUN INTO THE BOWL? Generally messy, so we should avoid that.
         [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
                 
-        % Did the puppy run into another puppy?
+        % Did the puppy run into another puppy? This seems important.
         [scottie(z).ctr(k,:), scottie(z).puppyang(k)]  = puppycheck(scottie, z);
         
-
 % PLOT the puppies!!!!
-        % GET PUPPY BODY AGAIN
+        % Get puppy body location
             scottie(z).coord = drawpuppy(scottie(z).ctr(k,:), scottie(z).puppyang(k)-pi/2, puppywid, puppylen); 
             fill(scottie(z).coord(:,1), scottie(z).coord(:,2), clrs(z,:));
-            
-            plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color',[0,0,0]); 
+        % Plot the puppy in our figure
+            plot(scottie(z).ctr(k,1), scottie(z).ctr(k,2), '.', 'MarkerSize', puppywid, 'Color', [0,0,0]); 
             plot(scottie(z).ctr(:,1), scottie(z).ctr(:,2), '-', 'LineWidth', 0.5, 'Color', clrs(z,:));
             % text(scottie(z).ctr(k,1), scottie(z).ctr(k,2), num2str(scottie(z).puppyang));
             
         end   
-            plot(0,0,'k.', 'MarkerSize', 40);
-            axis([-500, 500, -500, 500]);
-            text(-450,-450, num2str(simulationlength-k));
-            drawnow;
+        
+            plot(0,0,'k.', 'MarkerSize', 40); % Origin
+            text(-arenawidth+50,-arenaheight+50, num2str(simulationlength-k)); % Countdown timer
+            drawnow; % Force Matlab to render the puppies for each cycle
     
     end
 
@@ -81,38 +92,28 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
 % RANDOM PUPPY TURN
     function newang = puppyturn(oldang, maxang, getjiggy)
-       
+    % Random angle change within our user-specified 'jigglestrength'
         newang = oldang + (getjiggy * (0.5 - rand(1)) * maxang); % add random angle change
             if newang > 2*pi; newang = newang - 2*pi; end
-            if newang < 0; newang = 2*pi + newang; end
-        
+            if newang < 0; newang = 2*pi + newang; end        
     end
     
 % RANDOM PUPPY MOVEMENT
     function newctr = puppymove(oldctr, ang, maxmove)
-        
+    % Random forward movement in the direction of the puppy. Distance is <=
+    % 'maxdist' which was specified by the user
             dist =  rand(1) * maxmove;
-            newctr = [oldctr(1) - dist * sin(ang), oldctr(2) - dist * cos(ang)];
-            
+            newctr = [oldctr(1) - dist * sin(ang), oldctr(2) - dist * cos(ang)];            
     end
     
 % PUPPY ATTRACTOR
 
     function biasedangle = puppyattactor(currctr, currang, biastrength, mxang)
-   
+    % Bias the angle of the puppy towards the origin (center of arena)
          biasedangle = currang;
          
-%          realref = [0, -100]; testref = [1, -100];
-%          
-%          realang = (currctr(1)*realref(1) + currctr(2)*realref(2)) / (sqrt(currctr(1)^2 + currctr(2)^2) * sqrt(realref(1)^2 + realref(2)^2));
-%          testang = (currctr(1)*testref(1) + currctr(2)*testref(2)) / (sqrt(currctr(1)^2 + currctr(2)^2) * sqrt(testref(1)^2 + testref(2)^2));
-%          
-%          if testang <= realang; realang = 2*pi - realang; end
-%          
-%          goang = realang + pi; if goang > 2*pi; goang = goang - 2*pi; end
-         
-        % Do this by quadrants
-        if currctr(1) >= 0 && currctr(2) >= 0 % upper right quadrant
+        % CRAPPY METHOD - by quadrants
+        if currctr(1) >= 0 && currctr(2) >= 0 %         upper right quadrant
             if currang >= pi/4 && currang < (5*pi)/4
                 biasedangle = currang - (mxang * biastrength);
             end
@@ -124,7 +125,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             end
         end
         
-        if currctr(1) < 0 && currctr(2) >= 0 % upper left quadrant
+        if currctr(1) < 0 && currctr(2) >= 0 %          upper left quadrant
             if currang < (3*pi)/4 
                 biasedangle = currang - (mxang * biastrength);
             end
@@ -136,7 +137,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             end
         end
         
-        if currctr(1) >= 0 && currctr(2) < 0 % lower right quadrant
+        if currctr(1) >= 0 && currctr(2) < 0 %          lower right quadrant
             if currang > (3*pi)/4 && currang < (7*pi)/4
                 biasedangle = currang - (mxang * biastrength);
             end
@@ -148,7 +149,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
             end
         end
         
-        if currctr(1) < 0 && currctr(2) < 0 % lower left quadrant
+        if currctr(1) < 0 && currctr(2) < 0 %           lower left quadrant
             if currang > pi/4 && currang < (5*pi)/4 
                 biasedangle = currang + (mxang * biastrength);
             end
@@ -159,15 +160,16 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
                 biasedangle = currang - (mxang * biastrength);
             end
         end            
-   
+    
+        % Unwind angle
         if biasedangle > 2*pi; biasedangle = biasedangle - (2*pi); end
         if biasedangle < 0; biasedangle = 2*pi + biasedangle; end
         
     end
 
-% WALLCHECK
+% WALLCHECK - Bounce off the walls my puppies!
     function [wallctr, wallang] = wallcheck(wctr, wang)
-        
+    % Ensure that the puppies don't run away        
         wallctr = wctr; wallang = wang;
         
         rescueturnangle = pi/4;
@@ -184,7 +186,6 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
                   if wang < pi/2; wallang = wang + rescueturnangle; end
                   if wang >= 3*pi/2; wallang = wang + rescueturnangle; end
             end
-            
             if wctr(2) < -500 % Bottom wall
                   wallctr(2) = -500;
                   if wang >= pi; wallang = wang - rescueturnangle; end
@@ -196,33 +197,63 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
                   if wang < pi; wallang = wang - rescueturnangle; end
             end
             
+            % Unwind angle
             if wallang > 2*pi; wallang = wallang - (2*pi); end
-            if wallang < 0; wallang = 2*pi + wallang; end
-            
+            if wallang < 0; wallang = 2*pi + wallang; end            
     end
 
-% PUPPY OVERLAP
-
+% PUPPY OVERLAP - Pauli exclusion principle: no two puppies may occupy the same space
     function [newloc, newang] = puppycheck(struct, idx)
-        
+    % The most important function - how the puppies interact when they run into each other    
+
+    % Make no changes if the puppies did not overlap
+        newloc = struct(idx).ctr(end,:); 
+        newang = struct(idx).puppyang(end);
+    
+    % Render the current positions of every puppy
         for pp = length(struct):-1:1
             shp(pp) = polyshape(struct(pp).coord(:,1), struct(pp).coord(:,2));
         end
         
+    % Use 'overlaps' to find out if any of our puppies are overlapping    
         TF = overlaps(shp); TF = TF(:,idx);
-        
-        newloc = struct(idx).ctr(end,:); 
-        newang = struct(idx).puppyang(end);
-        
-        if sum(TF) ~= 1  % There was an overlap! Do something!!
-        
-%             % Position goes back in time one step
-%             % newloc = struct(idx).ctr(end-1,:);
- 
+
+        if sum(TF) ~= 1  % There was an overlap! We have to do something!!
+         
              % Pick the first puppy with overlap 
              whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
+
+        % ALTER POSITION
+        
+        % 1) NUDGE OUT METHOD. Furthest puppy is bumped further away
+                nudgedist = 10;
              
-             % What is the angle difference with the other puppy?
+        % If our puppy is further away from center, nudge it out further yet     
+            vec = [0,0; struct(idx).ctr(end,1),struct(idx).ctr(end,2)];
+                focalpupdist = pdist(vec,'euclidean');
+            vec = [0,0; struct(whichidx(1)).ctr(end,1),struct(whichidx(1)).ctr(end,2)];
+                otherpupdist = pdist(vec,'euclidean');
+            if focalpupdist > otherpupdist
+                % Do this by quadrant
+                if struct(idx).ctr(1) >= 0 
+                    if struct(idx).ctr(2) >= 0 % Upper right
+                        newloc = [struct(idx).ctr(end,1)+nudgedist, struct(idx).ctr(end,2)+nudgedist];
+                    else % Lower right
+                        newloc = [struct(idx).ctr(end,1)+nudgedist, struct(idx).ctr(end,2)-nudgedist];
+                    end
+                else
+                    if struct(idx).ctr(2) >= 0 % Upper left
+                        newloc = [struct(idx).ctr(end,1)-nudgedist, struct(idx).ctr(end,2)+nudgedist];
+                    else % Lower left
+                        newloc = [struct(idx).ctr(end,1)-nudgedist, struct(idx).ctr(end,2)-nudgedist];
+                    end
+                end
+
+            end
+                
+         % ALTER ANGLE 
+         
+         % 1) Match angle method (alter focal puppy angle to more closely match the other puppy) 
              angledifference = struct(idx).puppyang(end) - struct(whichidx(1)).puppyang(end);
              
              if abs(angledifference) < pi
@@ -231,50 +262,34 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
                  newang = newang - (angledifference/abs(angledifference)*(2*pi - abs(angledifference)))/4; 
              end
             
+            % Unwind angle
             if newang > 2*pi; newang = newang - 2*pi; end
             if newang < 0; newang = 2*pi + newang; end
             
-        newloc = struct(idx).ctr(end-1,:);
-%         newang = struct(idx).puppyang(end-1);
-        puppywidagain = 40;
-        puppylenagain = 100;
-
-            struct(idx).coord = drawpuppy(struct(idx).ctr(end,:), struct(idx).puppyang(end)-pi/2, puppywidagain, puppylenagain); 
-
-
-
-%             
-%             for qq = 1:length(whichidx)
-%                 
-%                 currang = atan2((newloc(2) - struct(whichidx(qq)).ctr(end,2)), (newloc(1) - struct(whichidx(qq)).ctr(end,1)));
-%                 if currang > 0
-%                     if cos(currang) > 0; newloc = [newloc(1)+jumpfactor, newloc(2)+(jumpfactor*sin(currang))]; end
-%                     if cos(currang) < 0; newloc = [newloc(1)-jumpfactor, newloc(2)+(jumpfactor*sin(currang))]; end
-%                 end
-%                 if currang < 0
-%                     if cos(-currang) > 0; newloc = [newloc(1)+jumpfactor, newloc(2)-(jumpfactor*sin(currang))]; end
-%                     if cos(-currang) < 0; newloc = [newloc(1)-jumpfactor, newloc(2)-(jumpfactor*sin(currang))]; end
-%                 end
-%                 
-%             end
-            
-        end
+        end % If there is an overlap between our puppy and another
         
     end
 
-% PUPPY BOWL
-
+% PUPPY BOWL - Keep puppies out of the bowl!
     function [cirloc, cirang] = bowlcheck(in, maxT, thebowl)   
+    % This is brain dead and doesn't work.  Wish I had spend a few moments
+    % of thinking before I wrote this incredibly stoopid method for
+    % avoiding the bowl. This function is also critically important for our
+    % emergent behavior and should be tuned so that the simulation can
+    % work.
+    
+    % If the puppy is not in the bowl, do nothing
+        cirang = in.puppyang(end); % Set new angle as previous
+        cirloc = in.ctr(end,:); % Set new position as previous
+        
+        bounceback = 25; % How many pixels we 'bounce' puppy back when it dips into the bowl
 
-        cirang = in.puppyang(end);
-        cirloc = in.ctr(end,:);
-        bounceback = 20;
-
-        % Euclian distance from center
+        % Get the Euclian distance of the puppy from center
         vec = [0,0; cirloc(1),cirloc(2)];
         pupdist = pdist(vec,'euclidean');
 
         if pupdist <= thebowl % We are in the bowl
+            
             % By Quadrant - This is quick and dirty and deeply embarrasing coding
             
             % upper right
