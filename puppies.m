@@ -9,10 +9,10 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         puppylen = 100;
         
         maxdist = 30;
-        maxturnangle = pi/16;
+        maxturnangle = pi/32;
         
     % Bowl properties
-        bowlradius = 60; 
+        bowlradius = 200; 
         sm = 0.1:0.1:2*pi;
         bowl = polyshape(cos(sm)*bowlradius, sin(sm)*bowlradius);
         
@@ -30,7 +30,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 %% Run Simulation    
     for k = 2:simulationlength % Length of simulation
         
-        figure(1); clf; hold on; plot(bowl);
+        figure(1); clf; hold on; plot(bowl); axis([-500, 500, -500, 500]);
 
         for z = 1:num  % For each puppy
             
@@ -49,12 +49,12 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         % Puppy attractor
         scottie(z).puppyang(k) = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
         
-        % DID PUPPY RUN INTO THE BOWL
-        [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
-        
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang(k));   
         
+        % DID PUPPY RUN INTO THE BOWL
+        [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
+                
         % Did the puppy run into another puppy?
         [scottie(z).ctr(k,:), scottie(z).puppyang(k)]  = puppycheck(scottie, z);
         
@@ -110,9 +110,6 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 %          if testang <= realang; realang = 2*pi - realang; end
 %          
 %          goang = realang + pi; if goang > 2*pi; goang = goang - 2*pi; end
-         
-         
-         
          
         % Do this by quadrants
         if currctr(1) >= 0 && currctr(2) >= 0 % upper right quadrant
@@ -221,23 +218,28 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
         
 %             % Position goes back in time one step
 %             % newloc = struct(idx).ctr(end-1,:);
-% 
-%             % Pick the first puppy with overlap 
-%             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
-%             
-%             % We are going to halve the angle difference with the other puppy
-%             angledifference = struct(idx).puppyang - struct(whichidx(1)).puppyang;
-%             if abs(angledifference) < pi
-%                 newang = newang - (angledifference/4);
-%             elseif abs(angledifference) > pi
-%                 newang = newang - (angledifference/abs(angledifference)*(2*pi - abs(angledifference)))/4; 
-%             end
-%             
-%             if newang > 2*pi; newang = newang - 2*pi; end
-%             if newang < 0; newang = 2*pi + newang; end
+ 
+             % Pick the first puppy with overlap 
+             whichidx = find(TF); whichidx = whichidx(whichidx~=idx);
+             
+             % What is the angle difference with the other puppy?
+             angledifference = struct(idx).puppyang(end) - struct(whichidx(1)).puppyang(end);
+             
+             if abs(angledifference) < pi
+                 newang = newang - (angledifference/4);
+             elseif abs(angledifference) > pi
+                 newang = newang - (angledifference/abs(angledifference)*(2*pi - abs(angledifference)))/4; 
+             end
+            
+            if newang > 2*pi; newang = newang - 2*pi; end
+            if newang < 0; newang = 2*pi + newang; end
             
         newloc = struct(idx).ctr(end-1,:);
-        newang = struct(idx).puppyang(end-1);
+%         newang = struct(idx).puppyang(end-1);
+        puppywidagain = 40;
+        puppylenagain = 100;
+
+            struct(idx).coord = drawpuppy(struct(idx).ctr(end,:), struct(idx).puppyang(end)-pi/2, puppywidagain, puppylenagain); 
 
 
 
@@ -266,41 +268,62 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 
         cirang = in.puppyang(end);
         cirloc = in.ctr(end,:);
-        bounceback = 24;
+        bounceback = 20;
 
         % Euclian distance from center
         vec = [0,0; cirloc(1),cirloc(2)];
         pupdist = pdist(vec,'euclidean');
 
         if pupdist <= thebowl % We are in the bowl
-            % text(400,400, num2str(pupdist));         
-            % By Quadrant
+            % By Quadrant - This is quick and dirty and deeply embarrasing coding
             
             % upper right
             if in.ctr(1) >= 0 && in.ctr(2) >= 0
-                if in.puppyang(end) < pi/4; cirang = in.puppyang(end) - maxT; end
-                if in.puppyang(end) > 7*pi/4; cirang = in.puppyang(end) - maxT; end
-                if in.puppyang(end) > pi/4 && in.puppyang(end) < 3*pi/4; cirang = in.puppyang(end) + maxT; end
-                cirloc = [cirloc(1)+bounceback, cirloc(2)+bounceback];
+                if in.ctr(1) - in.ctr(2) >=0 % bottom of upper right
+                    if in.puppyang(end) <= 3*pi/8; cirang = in.puppyang(end) - maxT; end
+                    if in.puppyang(end) > 3*pi/2; cirang = in.puppyang(end) - maxT; end
+                    if in.puppyang(end) > 3*pi/8 && in.puppyang(end) < 5*pi/4; cirang = in.puppyang(end) + maxT; end
+                else % upper of upper right
+                    if in.puppyang(end) <= pi/8; cirang = in.puppyang(end) - maxT; end
+                    if in.puppyang(end) > 5*pi/4; cirang = in.puppyang(end) - maxT; end
+                    if in.puppyang(end) > pi/8 && in.puppyang(end) < pi; cirang = in.puppyang(end) + maxT; end                    
+                end
+                cirloc(1) = in.ctr(end-1,1)+(bounceback*rand); cirloc(2) = in.ctr(end-1,2)+(bounceback*rand);
             end    
             % upper left
             if in.ctr(1) < 0 && in.ctr(2) >= 0
-                if in.puppyang(end) > 7*pi/4; cirang = in.puppyang(end) + maxT; end
-                if in.puppyang(end) < pi/4; cirang = in.puppyang(end) + maxT; end
-                if in.puppyang > 5*pi/4 && in.puppyang < 7*pi/4; cirang = in.puppyang(end) - maxT; end
-                cirloc = [cirloc(1)-bounceback, cirloc(2)+bounceback];
+                if abs(in.ctr(1)) - in.ctr(2) >=0 % bottom of upper left
+                    if in.puppyang(end) >= 13*pi/8; cirang = in.puppyang(end) + maxT; end
+                    if in.puppyang(end) < pi/2; cirang = in.puppyang(end) + maxT; end
+                    if in.puppyang(end) < 13*pi/8 && in.puppyang < 7*pi/8; cirang = in.puppyang(end) - maxT; end
+                else % top of upper left
+                    if in.puppyang(end) >= 15*pi/8; cirang = in.puppyang(end) + maxT; end
+                    if in.puppyang(end) < 5*pi/8; cirang = in.puppyang(end) + maxT; end
+                    if in.puppyang(end) < 15*pi/8 && in.puppyang < 7*pi/8; cirang = in.puppyang(end) - maxT; end                    
+                end
+                cirloc(1) = in.ctr(end-1,1)-(bounceback*rand); cirloc(2) = in.ctr(end-1,2)+(bounceback*rand);
             end
             % lower right
             if in.ctr(1) >= 0 && in.ctr(2) < 0
-                if in.puppyang(end) < 3*pi/4 && in.puppyang(end) > pi/4; cirang = in.puppyang(end) - maxT; end
-                if in.puppyang(end) > 3*pi/4 && in.puppyang(end) < 5*pi/4; cirang = in.puppyang(end) + maxT; end
-                cirloc = [cirloc(1)+bounceback, cirloc(2)-bounceback];
+                if in.ctr(1) - abs(in.ctr(2)) >=0 % top of lower right
+                    if in.puppyang(end) <= 5*pi/8 && in.puppyang(end) > 7*pi/4; cirang = in.puppyang(end) - maxT; end
+                    if in.puppyang(end) > 5*pi/8 && in.puppyang(end) < 7*pi/4; cirang = in.puppyang(end) + maxT; end
+                else % bottom of lower right
+                    if in.puppyang(end) <= 7*pi/8 && in.puppyang(end) > 7*pi/4; cirang = in.puppyang(end) - maxT; end
+                    if in.puppyang(end) > 7*pi/8 && in.puppyang(end) < 7*pi/4; cirang = in.puppyang(end) + maxT; end                    
+                end
+                cirloc(1) = in.ctr(end-1,1)+(bounceback*rand); cirloc(2) = in.ctr(end-1,2)-(bounceback*rand);
             end    
             % lower left
             if in.ctr(1) < 0 && in.ctr(2) < 0
-                if in.puppyang(end) > 3*pi/4 && in.puppyang(end) > 5*pi/4; cirang = in.puppyang(end) - maxT; end
-                if in.puppyang(end) > 5*pi/4 && in.puppyang(end) < 7*pi/4; cirang = in.puppyang(end) + maxT; end
-                cirloc = [cirloc(1)-bounceback, cirloc(2)-bounceback];
+                if abs(in.ctr(1)) - abs(in.ctr(2)) >=0 % top of lower left
+                    if in.puppyang(end) <= 11*pi/8; cirang = in.puppyang(end) - maxT; end
+                    if in.puppyang(end) > 11*pi/8; cirang = in.puppyang(end) + maxT; end
+                else % bottom of lower left
+                    if in.puppyang(end) >= 9*pi/8; cirang = in.puppyang(end) + maxT; end
+                    if in.puppyang(end) < 9*pi/8; cirang = in.puppyang(end) - maxT; end
+                end
+                cirloc(1) = in.ctr(end-1,1)-(bounceback*rand); cirloc(2) = in.ctr(end-1,2)-(bounceback*rand);
             end    
             
             if cirang > 2*pi; cirang = cirang - 2*pi; end
