@@ -47,7 +47,7 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 % Add stuff here to make the simulation work
         
         % Puppy attractor
-        %scottie(z).puppyang(k) = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
+        scottie(z).puppyang(k) = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
         
         % DID IT RUN INTO A WALL?
         [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang(k));   
