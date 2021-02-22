@@ -47,16 +47,16 @@ function puppies(num, simulationlength, jigglestrength, biastrength)
 % Add stuff here to make the simulation work
         
         % Puppy attractor
-        scottie(z).puppyang(k) = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
+        %scottie(z).puppyang(k) = puppyattactor(scottie(z).ctr(k,:), scottie(z).puppyang(k), biastrength, maxturnangle);
         
         % DID IT RUN INTO A WALL?
-        [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang(k));   
+        %[scottie(z).ctr(k,:), scottie(z).puppyang(k)] = wallcheck(scottie(z).ctr(k,:), scottie(z).puppyang(k));   
         
         % DID PUPPY RUN INTO THE BOWL
-        [scottie(z).ctr(k,:), scottie(z).puppyang(k)] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
+        %[scottie(z).ctr(k,:), scottie(z).puppyang(k)] = bowlcheck(scottie(z), 8*maxturnangle, bowlradius);           
                 
         % Did the puppy run into another puppy?
-        [scottie(z).ctr(k,:), scottie(z).puppyang(k)]  = puppycheck(scottie, z);
+        %[scottie(z).ctr(k,:), scottie(z).puppyang(k)]  = puppycheck(scottie, z);
         
 
 % PLOT the puppies!!!!
