@@ -8,7 +8,7 @@ y = length(im(1,:));
 im(in > thresh) = 255;
 im(in < thresh) = 0;
 
-figure(2); clf; imshow(im);
+%figure(2); clf; imshow(im);
 
 sr = zeros(x, y, 'uint8');
 %threshbox = thresh * ones(x, y);
@@ -22,4 +22,4 @@ for j = 1:length(rnd(:,1))
     end
 end
 
-figure(3); clf; imshow(sr);
+%figure(3); clf; imshow(sr);
