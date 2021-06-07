@@ -1,7 +1,7 @@
 a = imread('~/Downloads/Wrens2011-CarlosPhoto.jpeg');
 a = a(:,:,2);
 
-[im1, sr1] = StochRes2021(a, 
+[im1, sr1] = StochRes2021(a, 50);
 
 vidfile = VideoWriter('StochRes2021.mp4','MPEG-4');
 
