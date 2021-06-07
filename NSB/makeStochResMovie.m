@@ -7,6 +7,15 @@ vidfile = VideoWriter('StochRes2021.mp4','MPEG-4');
 
 open(vidfile);
 
+for j=1:256
+    
+    [~, sr] = StochRes2021(a, 50);    
+    writeVideo(vidfile, sr);
+
+end
+
+close(vidfile)
+
 
 
 
