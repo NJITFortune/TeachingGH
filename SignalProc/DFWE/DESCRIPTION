@@ -1,12 +1,12 @@
-Package: DFWE
+Package: FortuneAcousticTools
 Type: Package
 Title: Acoustic Analysis Toolbox
 Version: 0.1.4
 Author: Alfred Amendolara
 Maintainer: Alfred Amendolara <aba39@njit.edu>
-Description: All the functions you could possibly want to do acoustic analysis. 
-    Currated by Dr. Eric Fortune who hates R and would rather use MatLab. Brought to you in R by Alfred Amendolara. Under 
-    development - current version contains 3 functions to visualize acoustic signals and extract useful data for further analysis.
+Description: Some custom functions for acoustic visualization and analysis. 
+    Written by Alfred Amendolara for Dr. Eric Fortune (who loathes R and would rather use MatLab). In 2022,
+    package contains 3 functions to visualize acoustic signals and extract useful data for further analysis.
 Imports: 
    oce,
    signal,
