@@ -9,20 +9,20 @@
 #'
 #' @usage specplot = function(sdata, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, color, amp_value = FALSE)
 #'
-#' @param sdata Wav file or frequency data
-#' @param Fs Sample rate, not necessary if provided by .wav file
+#' @param sdata Wav file or other data
+#' @param Fs Samplerate (not necessary if provided by .wav file)
 #' @param nfft Defaults to 512
 #' @param wl Defaults to 1/2 nfft
 #' @param ovlp Overlap, give in percent. Defaults to 50 percent
 #' @param normal Normalize. Defaults to TRUE
-#' @param amp_range DB range
-#' @param x_limit List of x-limits
-#' @param y_limit List of y-limits
-#' @param color Choose from 4 present color palettes; 1 = reverse heat, 2 = reverse greyscale, 3 = greyscale, 4 = heat
+#' @param amp_range Amplitude range
+#' @param x_limit Time (x) limits
+#' @param y_limit Frequency (y) limits
+#' @param color Color palettes; 1 = reverse heat, 2 = reverse greyscale, 3 = greyscale, 4 = heat
 #' Defaults to reverse heat
-#' @param amp_value Display min and max dB. Defaults to FALSE
-#' @param no_label Removes plot axes labels. Defaults to FALSE
-#' @param ... Pass on plot and graphical arguments. See function imagep in oce for availanble arguments
+#' @param amp_value PLot min and max dB. Defaults to FALSE
+#' @param no_label Remove plot axes labels. Defaults to FALSE
+#' @param ... Pass on plot and graphical arguments. See function imagep in oce for available arguments
 #'
 #' @examples
 #' specplot(zfinch_data, ovlp = 90, color = 2, amp_value = TRUE, amp_range = c(-45,-10))
@@ -30,11 +30,11 @@
 #' @export
 
 specplot = function(sdata, Fs, nfft, wl, ovlp, normal = TRUE, amp_range, x_limit, y_limit, color, amp_value = FALSE, no_label = FALSE, ...) {
-  #requires tuneR (if using wave file for input), signal (to produce spectro data), and oce (for plotting)
-  #freq _data may be list of frequencies or wav file
-  #if sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
+  #Requires tuneR (if using wave file for input), signal (to produce spectrogram), and oce (for plotting)
+  #sdata may be list of frequencies or wav file
+  #If sample rate is provided in wav, it does not need to be specified, otherwise it MUST be given
   #all other parameters are optional and have defaults
-  #nfft, wl are input in points
+  #nfft, wl are input in samples
   #ovlp is input in percent
 
   #create 2 custom palletes for graphing
