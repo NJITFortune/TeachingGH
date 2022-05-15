@@ -4,79 +4,101 @@ output:
   html_document:
     df_print: paged
   pdf_document: default
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
+
 # Introduction
 
-In these tutorials you'll be learning some of the basics of acoustic analysis using R and R studio. 
+In these tutorials you'll be learning some of the basics of acoustic
+analysis using R and R studio.
 
-The first steps are to download and install the most recent versions of both R and R studio onto your computer. 
+The first steps are to download and install the most recent versions of
+both R and R studio onto your computer.
 
-Once we have R studio running we can begin learning. To complete these tutorials you'll need several packages: signal, TuneR, ggplot2, oce, seeWave, and gridExtra. TuneR allows us to read .wav files, signal allows us to create spectrograms, and ggplot2 and gridExtra allow us to plot other graphs. We will also be using the built in graphing functions for certain plots (so you'll learn to use both ggplot and built in R graphics)
+Once we have R studio running we can begin learning. To complete these
+tutorials you'll need several packages: signal, TuneR, ggplot2, oce,
+seeWave, and gridExtra. TuneR allows us to read .wav files, signal
+allows us to create spectrograms, and ggplot2 and gridExtra allow us to
+plot other graphs. We will also be using the built in graphing functions
+for certain plots (so you'll learn to use both ggplot and built in R
+graphics)
 
-We will install these packages now. In the future you may choose to use different packages or even make your own. For now lets just use these; copy and paste into a blank R script to run (don't forget to uncomment the install commands). You should only have to install these packages once and if you use the same R workspace but it's a good idea to reload your libraries every time. 
+We will install these packages now. In the future you may choose to use
+different packages or even make your own. For now lets just use these;
+copy and paste into a blank R script to run (don't forget to uncomment
+the install commands). You should only have to install these packages
+once and if you use the same R workspace but it's a good idea to reload
+your libraries every time.
 
-```{r, include=FALSE} 
+```{r, include=FALSE}
 library(signal)
 library(tuneR)
 library(ggplot2)
 library(oce)
 library(seewave)
 library(gridExtra)
-library(DFWE)
 ```
 
 # Exercise 1: Make a sinewave
 
 Let's get started!
 
-Most audio systems use a sample rate of 44100 Hz. 
+Most audio systems use a sample rate of 44100 Hz.
 
-The highest frequencies that humans can hear are typically 
-in the range of 12000 to 17000 Hz. Here I chose 20 kHz. 
-You can change this to see the effect of sample rate.
+The highest frequencies that humans can hear are typically in the range
+of 12000 to 17000 Hz. Here I chose 20 kHz. You can change this to see
+the effect of sample rate.
 
 Lets create a variable **Fs**, the sample rate.
 
-In R we can create variables and assign values using either **=** or **<-**. For this tutorial we will be using **=**
+In R we can create variables and assign values using either **=** or
+**\<-**. For this tutorial we will be using **=**
 
 ```{r}
 Fs = 20000
 ```
 
-The variable **intvl** is the time for a single cycle at the 
-sample rate. 
+The variable **intvl** is the time for a single cycle at the sample
+rate.
 
-For instance, 1 Hz would be 1 second, 2 Hz 
-would be 0.5 seconds, 10 Hz would be 0.1 seconds, and 20 Hz 
-would be 0.05 seconds.
+For instance, 1 Hz would be 1 second, 2 Hz would be 0.5 seconds, 10 Hz
+would be 0.1 seconds, and 20 Hz would be 0.05 seconds.
 
 ```{r}
 intvl = 1/Fs 
 ```
 
-Now we will make a time series called **tim** using the **seq()** function. 
+Now we will make a time series called **tim** using the **seq()**
+function.
 
-Lets make one now. 
+Lets make one now.
 
-You get to choose the duration in seconds --- here I show 2 seconds **secs**. 
+You get to choose the duration in seconds --- here I show 2 seconds
+**secs**.
 
 This will be the duration of the sinewave.
 
-### Syntax 
-There are three parts in seq() - seq(a, c, b) 
+### Syntax
 
-1. a is the time of the first sample. We can't sample at time zero --- the first sample will occur at a time determined by the sample rate. 
+There are three parts in seq() - seq(a, c, b)
 
-2. b is the interval for every other sample starting after the first. 
+1.  a is the time of the first sample. We can't sample at time zero ---
+    the first sample will occur at a time determined by the sample rate.
 
-3. c is the final value, in seconds.
+2.  b is the interval for every other sample starting after the first.
+
+3.  c is the final value, in seconds.
 
 ```{r}
 secs = 2 
 tim = seq(intvl, secs, intvl)
 ```
 
-Now we make the sinewave using the **sin()** command. You choose the frequency **freq** --- which is set to 2 Hz here. **pi** is literally the number Pi (3.1415926...). 
+Now we make the sinewave using the **sin()** command. You choose the
+frequency **freq** --- which is set to 2 Hz here. **pi** is literally
+the number Pi (3.1415926...).
 
 We want to save our sinewave in a variable, lets call it **wav**
 
@@ -86,15 +108,21 @@ freq = 2
 wav = sin(tim*2*pi*freq)
 ```
 
-Now we can plot. Lets get used to ggplot2. 
+Now we can plot. Lets get used to ggplot2.
 
 ### Syntax
 
-ggplot2 by default uses dataframes to plot. We don't always need to make a dataframe, but its good to know how. We can create a dataframe using the **data.frame(data1, data2, data3, etc...)** function. 
+ggplot2 by default uses dataframes to plot. We don't always need to make
+a dataframe, but its good to know how. We can create a dataframe using
+the **data.frame(data1, data2, data3, etc...)** function.
 
-We create initiate a plot window using **ggplot()** and we can add to that plot by using a **+**. There are lots of plotting options and we will address them as we go. For now lets create a line graph using **geom_line()**.
+We create initiate a plot window using **ggplot()** and we can add to
+that plot by using a **+**. There are lots of plotting options and we
+will address them as we go. For now lets create a line graph using
+**geom_line()**.
 
-*Note: we will always use **aes()** for mapping our data, but it may appear in different places*
+*Note: we will always use **aes()** for mapping our data, but it may
+appear in different places*
 
 ```{r}
 plotsin = data.frame(tim, wav)
@@ -115,10 +143,10 @@ Here is a suggestion: Fs = 8; freq = 5;
 
 Then you can increase the sample rate to 10, 15, 20, 50, and 100.
 
-# Excercise 2: Add two sinewaves 
+# Excercise 2: Add two sinewaves
 
-For this exercise, the two sinewaves need to have the same duration.
-As above, we need a sample rate and a time sequence.
+For this exercise, the two sinewaves need to have the same duration. As
+above, we need a sample rate and a time sequence.
 
 ```{r}
 Fs = 20000
@@ -127,14 +155,15 @@ secs = 2
 tim = seq(intvl, secs, intvl)
 ```
 
-We will make two signals at two different frequencies. 
+We will make two signals at two different frequencies.
 
-Each signal can have its own amplitude - basically we can multiply 
-by any value we want. Obviously, if we multiply by 0, we will get no 
-signal, and 0.5, we'll get 1/2 amplitude. 1 will be the original amplitude. 
+Each signal can have its own amplitude - basically we can multiply by
+any value we want. Obviously, if we multiply by 0, we will get no
+signal, and 0.5, we'll get 1/2 amplitude. 1 will be the original
+amplitude.
 
-In the example here, we have 4 Hz difference in frequencies, and the second signal 
-is 1/2 the amplitude of the first
+In the example here, we have 4 Hz difference in frequencies, and the
+second signal is 1/2 the amplitude of the first
 
 ```{r}
 freq1 = 1000
@@ -166,19 +195,21 @@ ggplot(plotaddwave, aes(x = tim, y = addwave)) +
 
 ### Excercise 2.1: Learn about interactions between sinewaves
 
-Play around by changing freq2 and amp2.
-Try freq2 of 1001, 1002, 1010.
-Try amp2 of 1, 0.1, 1.5.
-Plot the results using the plot command.
-Also plot using the sonogram command.
+Play around by changing freq2 and amp2. Try freq2 of 1001, 1002, 1010.
+Try amp2 of 1, 0.1, 1.5. Plot the results using the plot command. Also
+plot using the sonogram command.
 
 # Excercise 3: Make Sonograms --- artificial signal
 
-We can make a sonogram (spectrogram) of any signal to learn more about its spectral and temporal characteristics.
+We can make a sonogram (spectrogram) of any signal to learn more about
+its spectral and temporal characteristics.
 
-R does not contain a native function to plot sonograms. In order to plot them we need to use a custom function called **specplot()**. 
+R does not contain a native function to plot sonograms. In order to plot
+them we need to use a custom function called **specplot()**.
 
-We begin with the signal that we used above, except with different frequencies. The frequencies are further apart: **freq1** = 1000 and **freq2** = 4200.
+We begin with the signal that we used above, except with different
+frequencies. The frequencies are further apart: **freq1** = 1000 and
+**freq2** = 4200.
 
 ```{r}
 Fs = 20000
@@ -194,25 +225,33 @@ wave3 = sin(tim*2*pi*freq3) * amp2
 addwave2 = wave1 + wave3
 ```
 
-Now we make a sonogram!
-The critical variable is fft which is specified as **wl** --- this is the length, in samples, over which the frequency will be estimate using the Fourier transform. The longer the length, the greater precision of the frequency estimate. fft should always be a multiple of 2.
+Now we make a sonogram! The critical variable is fft which is specified
+as **wl** --- this is the length, in samples, over which the frequency
+will be estimate using the Fourier transform. The longer the length, the
+greater precision of the frequency estimate. fft should always be a
+multiple of 2.
 
-### Syntax 
+### Syntax
 
-The function **spectro()** is based on the default R graphics, so its syntax will be a little different than the **ggplot()** syntax we have been using. So don't worry to much about the other parameters here, we'll talk about the **spectro()** function in detail in the next section.
-
+The function **spectro()** is based on the default R graphics, so its
+syntax will be a little different than the **ggplot()** syntax we have
+been using. So don't worry to much about the other parameters here,
+we'll talk about the **spectro()** function in detail in the next
+section.
 
 ```{r}
 specplot(addwave2, Fs) 
 ```
 
-
 Bigger values for **nfft** lead to better frequency resolution but worse
-time resolution. Smaller values for nfft have worse frequency resolution but better temporal resolution. The artificial signal we made does not change over time, so we can easily use larger values for **nfft**.
+time resolution. Smaller values for nfft have worse frequency resolution
+but better temporal resolution. The artificial signal we made does not
+change over time, so we can easily use larger values for **nfft**.
 
 ### EXERCISE 3.1: Learn about the role of fft window size
 
-Try **nfft** = 512, 1024, 2048, and 8096 (**nfft** should be multiples of 2)
+Try **nfft** = 512, 1024, 2048, and 8096 (**nfft** should be multiples
+of 2)
 
 # Exercise 4: Make Sonograms - natural signal
 
@@ -224,32 +263,41 @@ One is a White-crowned sparrow (*Zonotrichia leucophrys*)
 
 The other is a Zebra finch (*Taeniopygia guttata*)
 
-In order to read wave files in R we will need to use **tuneR** (we already installed that in the last section) and then read the files using the **readWave()** function. 
-The recording is in xxData, and the sample rate is in xxFs
+In order to read wave files in R we will need to use **tuneR** (we
+already installed that in the last section) and then read the files
+using the **readWave()** function. The recording is in xxData, and the
+sample rate is in xxFs
 
+**Get the sound files:**
+<https://web.njit.edu/~efortune/n2014/data/wcs.wav> (wcs)
+<https://web.njit.edu/~efortune/n2014/data/wcs.wav> (zfinch)
 
-**Get the sound files:** https://web.njit.edu/~efortune/n2014/data/wcs.wav (wcs)
-                         https://web.njit.edu/~efortune/n2014/data/wcs.wav (zfinch)
-                        
-
-*Note: Make sure you know where the files are saved to, you'll need to specify the path (or change the working directory)*
+*Note: Make sure you know where the files are saved to, you'll need to
+specify the path (or change the working directory)*
 
 ```{r}
 wcs_data = readWave('wcs.wav')
 zfinch_data = readWave('zfinch.wav')
 ```
 
-In this exercise, we will see the effect of the nfft value on the sparrow (wcs) song.
+In this exercise, we will see the effect of the nfft value on the
+sparrow (wcs) song.
 
 ### Syntax
 
-A couple of new commands: **par()** and **spectro()**...
-**par()** allows us to edit certain plot parameters in the default R graphics. 
+A couple of new commands: **par()** and **spectro()**... **par()**
+allows us to edit certain plot parameters in the default R graphics.
 
-In this case we are editing the parameter **mfrow = c(m, n)** or **mfcol = c(m, n)** --- these specify the row or collumn of the plot as a matrix using m and n 
+In this case we are editing the parameter **mfrow = c(m, n)** or **mfcol
+= c(m, n)** --- these specify the row or collumn of the plot as a matrix
+using m and n
 
-spectro(wave, f, wl, ); **wave** is the .wav file, **f** is the frequency,**wl** controls the fft, **palette** allows us to select a color scheme, and **main** allows us to add a title. **collevels** and **scale** change certain graphing parameters, for now just use the values given.  
-                         
+spectro(wave, f, wl, ); **wave** is the .wav file, **f** is the
+frequency,**wl** controls the fft, **palette** allows us to select a
+color scheme, and **main** allows us to add a title. **collevels** and
+**scale** change certain graphing parameters, for now just use the
+values given.
+
 ```{r}
 par(mfrow = c(2,2))
 
@@ -259,10 +307,11 @@ specplot(wcs_data, nfft = 512)
 specplot(wcs_data, nfft = 1024)
 ```
 
+### EXERCISE 4.1
 
-### EXERCISE 4.1 
-
-Which FFT (nfft) size is best to show the details of the signal? 32, 128, 512, 2048?? You can try other values - 256 and 1024 are good choices.                       
+Which FFT (nfft) size is best to show the details of the signal? 32,
+128, 512, 2048?? You can try other values - 256 and 1024 are good
+choices.\
 Now lets plot the zebra finch...
 
 ```{r}
@@ -276,9 +325,16 @@ specplot(zfinch_data, nfft = 1024)
 
 ### Tying everything together:
 
-For short, variable signals, lower nfft values are most useful. For long, constant signals, higher nfft values are most useful. For wave-type weakly electric fish, which produce constant frequency sinusoidal signals, we sometimes use nfft values of 65536 - which provides very precise frequency resolution.
+For short, variable signals, lower nfft values are most useful. For
+long, constant signals, higher nfft values are most useful. For
+wave-type weakly electric fish, which produce constant frequency
+sinusoidal signals, we sometimes use nfft values of 65536 - which
+provides very precise frequency resolution.
 
 **nfft and Fs are related!**
 
-If Fs is 1000 and nfft is 128, then the sample is 0.128 seconds in duration. If Fs is 10000 and nfft is 128, then the sample is 0.0128 seconds in duration. For the White-Crowned Sparrow, the best nfft window was 512. The song was recorded at a sample rate of 22050 Hz. If the song had been recorded at 44100 Hz, then the nfft window should be 1024.                         
-                         
+If Fs is 1000 and nfft is 128, then the sample is 0.128 seconds in
+duration. If Fs is 10000 and nfft is 128, then the sample is 0.0128
+seconds in duration. For the White-Crowned Sparrow, the best nfft window
+was 512. The song was recorded at a sample rate of 22050 Hz. If the song
+had been recorded at 44100 Hz, then the nfft window should be 1024.
