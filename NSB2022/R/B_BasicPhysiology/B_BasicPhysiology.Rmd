@@ -1,0 +1,217 @@
+---
+title: "R Notebook"
+output: html_notebook
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+defaultW <- getOption("warn")
+library(ggplot2)
+library(pracma)
+library(tuneR)
+library(signal)
+library(R.matlab)
+library(grid)
+library(shiny)
+```
+
+# Exercise 2: Coding by receptor afferents and responses of central neurons
+
+Goal: In this exercise, we'll be looking at how peripheral electroreceptors respond to stimuli such as SAMs, RAMs, and envelopes (see Background.mlx for more information).
+
+## Experiment
+
+The fish will be paralyzed by intramuscular curare injection. This blocks the neuromuscular junction, but since the electric organ is a modified axon in Apteronotus, its electric field is unaffected by the drug.
+
+Importantly, the fish will not be able to use its gills to respire, and therefore artificial respiration is necessary -- which is achieved by directing a flow of water into the fish's mouth. Maintaining this flow is critical for the survival of the animal and for the success of the experiment. As much as we don't like water in our lungs, these guys DON'T like air in their gills. If you see an air bubble, inform one of us immediately.
+
+On the oscilloscope, you'll see a sinusoidal-like waveform. This is the animal's electric organ discharge (EOD). Turn on the audio monitor to hear it - it should sound like a pure tone.
+
+These animals expend most of their metabolic energy producing this field: it is thus a very good indicator of the overall health of the animal.
+
+\*IT IS VERY IMPORTANT FOR YOU TO MONITOR THE EOD AMPLITUDE: IMMEDIATELY INFORM ONE OF US IF YOU SEE ANY SUDDEN LARGE DECREASE IN EOD AMPLITUDE.\* 
+
+NOTE: Fish are cold-blooded vertebrates; this means that their metabolic activity decreases with temperature and this includes the generation of their EOD.
+
+The main water flows from one bucket (which has a heater, and a bubbler for oxygenation) to the main tank that flows back to the bucket. It's important not to have the flow rate too high otherwise the pump will not be able to keep up and the tank will overflow.
+
+## Recordings
+
+1.  When you're ready, pull some micropipettes using the Sutter puller and fill them with 3M KCl.
+
+2.  Place the micropipette in the holder at the tip of the micropositioner. The electrode should be approximately vertical.
+
+3.  Use the positioner to lower the electrode so that the tip is in the saline.
+
+4.  Use the motor control to lower the electrode until you hit the surface of the brain
+
+5.  Zero the depth monitor and begin to slowly lower the electrode in steps of 2 μm: don't forget to buzz every once in a while. You should start seeing receptor afferents at about 900 μm (depending on where the electrode penetrated). Be patient, if you go too fast, the recordings will not be as stable.
+
+Receptor afferents have large firing rates (150-500 spikes/sec) and are spontaneously active: make sure the signal-to-noise ratio (SNR) is large enough to trigger spikes reliably. Ask one of us if you're not sure. Try recording baseline activity from a few units (50 seconds will be plenty). You should find plenty of receptors but holding the recording for more than 1-2 minutes is tough. Try buzzing again if the SNR gets too low, or try going up or down one step and buzzing again.
+
+# Exercise 3: Responses of central neurons
+
+## Recordings:
+
+Depending on penetration site, the summed activity of PCells should be registered on the recording electrode from about 500 μm on. PCells have low firing rates (5-50 spikes/sec), will typically show phase-locking to the search stimulus, and are also spontaneously active [make sure the signal-to-noise ratio is large enough to trigger spikes reliably for analysis]. To record from PCells:
+
+1.  Place 2 Wood's metal electrodes in the micromanipulators
+
+2.  Use the motor control to slower lower the electrodes until you reach the surface of the brain
+
+3.  Zero the depth monitor
+
+4.  Gently lower the electrodes into the brain wile stimulating the animal with a globas 4 Hz AM "search stimulus". Be patient, if the electrode is advanced too quickly, the tissue will be damaged and any recordings established will be less stable.
+
+5.  Try recording baseline activity from a few PCell untis - about 1 minute each. If you used the search stimulus, be sure to let the activity recover (\~ 1 min no stimulation) before recording baseline activity.
+
+NOTE: Remember to rinse the craniotomy with saline frequently between recordings!
+
+## Stimulation
+
+Once you have established a stable recording, use the global electrodes on each side of the animal to deliver amplitude modulations of the animal's own EOD. The EOD acts like a carrier and stimuli will consist of amplitude (and phase) modulations of this EOD (just like in a radio). The relevant signal during analysis will be this amplitude modulation rather than the full signal. The fish has separate neural pathways processing amplitude and phase modulations of the EOD: here we will be studying the pathway that codes for amplitude modulations exclusively. Stimulation can be applied through the buttons in the stimulation panel in Spike2.
+
+1.  Try recording PCell responses to sinusoidal AMs at 1, 2, 4, 8, 16, 32, 64, 128, 256 Hz. Each stimulus should be applied for at least 15-20 seconds.
+
+2.  Stimulation with random amplitude modulations (RAM). For this we prepared noise in the range of 0-120 Hz.
+
+3.  See how PCells respond to contrast modulated SAMs (this simulates what a fish might experience during an agonistic or courtship encounter). These are "envelopes" of the AM of the EOD (i.e., an amplitude modulation of the amplitude modulation) with different carrier frequencies (AM bandwidths)
+
+4.  Don't forget to adjust the stimulus intensity by varying the amplitude on the sine wave generator. A modulation depth of 15% is a typical stimulus contrast used in most studies.
+
+# A) Basic Analysis of Neurophysiological data
+
+See Exercise 1: Social behavior on how to export Spike2 files to MatLab and open data using the load_data function.
+
+## Pre-analysis for responses to central neurons
+
+Since you are doing extracellular recordings from ELL pyramidal cells, recorded spikes do not necessarily belong to one neuron. You therefore have to sort the spikes in Spike2 prior to exporting them. There are tools in Spike2 that will group spikes belonging to individual PCells based on some spike characteristics (i.e., shape, amplitude, width,...). The spike-sorted Spike2 file will hence already contain the correct "spiketimes" and after loading the ELL data you therefore don't have to obtain those from the membrane potential as for the intracellular EA recordings and should skip that step below.
+
+```{r ReadDataFile, warning=TRUE}
+
+# Load data 
+# At this stage, you should be able to extract your channel data using the load_data function. This function opens your ".mat" exported from Spike2 and stores data from each channel into its own vector. In addition to the sampled data, the time vector for the stimulus channel is stored in the variable marker.
+
+tmp <- readMat("~/NotCloudy/NSB2022/MatlabManual/old/pUNITsv6.mat")
+```
+
+```{r ConvertData, warning=TRUE}
+# The EOD recording
+    EOD <- as.numeric(unlist(tmp$Ch1[9]))
+      EOD = t(EOD)
+# Sampling interval for EOD
+    EOD_dt <- as.numeric(unlist(tmp$Ch1[3]))
+# Generate a time vector for EOD
+    time_EOD = seq(EOD_dt, length(EOD)*EOD_dt, EOD_dt)
+
+# Load the EOD zero crossings from channel 2    
+    EOD0Xings <- as.numeric(unlist(tmp$Ch2[6]))
+      EOD0Xings = t(EOD0Xings)
+      
+# The AM recording
+    AM <- as.numeric(unlist(tmp$Ch3[9])) 
+# Sampling interval for AM
+    AM_dt <- as.numeric(unlist(tmp$Ch3[3])) 
+# Generate a time vector for AM
+    time_AM = seq(AM_dt, length(AM)*AM_dt, AM_dt)
+
+# The membrane potential values
+    vm <- as.numeric(unlist(tmp$Ch5[9]))
+# The sampling interval
+    vm_dt <- as.numeric(unlist(tmp$Ch5[3]))
+
+# get the dipole channel values
+#    dipole = Ch6.values;
+# set the sampling interval of the dipole
+#    dip_dt = Ch6.interval;
+
+# get the start points of stimuli
+    marker <- as.numeric(unlist(tmp$Ch31[5]))
+    
+```
+
+## Extract spike times from the membrane potential
+
+NOTE: If you extract the spike times before you export from Spike2, you do not need to run this section of code and should skip to the characterization of baseline activity.
+
+You've probably noticed that the membrane potential fluctuates a bit during the recordings, we can take care of this by high-pass filtering the trace. We compare the filtered and unfiltered traces below.
+
+```{r FilterSpikdeData, warning=FALSE}
+windowidth = 0.25
+
+# The samplerate in Hz
+  vFs = 1/vm_dt 
+
+# Make a time sequence for the data
+    tim = seq(1/vFs, length(vm)/vFs, 1/vFs)
+
+# create a Butterworth filter with 200 Hz cutoff
+    Bf <- butter(2, 200/(vFs/2), 'high')
+    
+# filter the membrane potential
+    vmfilt <- filtfilt(Bf, vm)
+    
+# Assemble into dataframe for plots
+  plotPhys = data.frame(tim, vm, vmfilt) 
+  
+ggplot(data=plotPhys) +
+  geom_line(colour = "Black", show.legend = FALSE, aes(x = tim, y = vm)) +
+  geom_line(colour = "Blue", show.legend = FALSE, aes(x = tim, y = vmfilt)) +
+  xlab("Time, S") +
+  ylab("Vm, mV") +
+  ggtitle("Neurophysiology: black original, blue filtered") +
+  xlim(0, windowidth)    
+    
+```
+
+Now we can extract the spike times from the neural recordings by applying a threshold in order to get the times at which the membrane potential crosses the threshold from below.
+
+```{r SpikeGetCutoff, warning=FALSE, message=FALSE}
+windowidth = 0.050
+
+thresh = 2
+  threshX = c(0, windowidth)
+  threshY = c(thresh, thresh)
+plotThresh <- data.frame(threshX, threshY)
+
+
+ui <- basicPage(
+  plotOutput("plot1", click = "plot_click"),
+  verbatimTextOutput("info")
+)
+
+server <- function(input, output) {
+  output$plot1 <- renderPlot({
+    plot(tim[1:2000], vmfilt[1:2000], type="l")
+  })
+
+  output$info <- renderText({
+    thresh <<- input$plot_click$y
+    paste0("y= ", thresh)
+  })
+  
+}
+
+shinyApp(ui, server)
+
+```
+
+Did we get an appropriate threshold??
+
+```{r ShowThreshold, warning=FALSE}
+# Assemble into dataframe for plots
+  Xs = c(0, windowidth)
+  Ys = c(thresh, thresh)
+  
+  ploThresh = data.frame(Xs, Ys) 
+  
+ggplot() +
+  geom_line(data=plotPhys, colour = "Black", show.legend = FALSE, aes(x = tim, y = vmfilt)) +
+  geom_line(data=ploThresh, colour = "Red", show.legend = FALSE, aes(x = Xs, y = Ys)) +
+  xlab("Time, S") +
+  ylab("Vm, mV") +
+  ggtitle("Yeet") +
+  xlim(0, windowidth)    
+
+```
