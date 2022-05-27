@@ -1,7 +1,8 @@
 ---
-title: "R Notebook"
+title: "B_BasicPhysiology"
 output: html_notebook
 runtime: shiny
+date: '2022-05-27'
 ---
 
 ```{r setup, include=FALSE}
@@ -93,28 +94,31 @@ Since you are doing extracellular recordings from ELL pyramidal cells, recorded 
 # Load data 
 # At this stage, you should be able to extract your channel data using the load_data function. This function opens your ".mat" exported from Spike2 and stores data from each channel into its own vector. In addition to the sampled data, the time vector for the stimulus channel is stored in the variable marker.
 
-tmp <- readMat("~/NotCloudy/NSB2022/MatlabManual/old/pUNITsv6.mat")
+matlFileName = file.choose()
+tmp <- readMat(matlFileName)
+
+#tmp <- readMat("~/NotCloudy/NSB2022/MatlabManual/old/pUNITsv6.mat")
+#tmp <- readMat("~/Desktop/pUNITsv6.mat")
 ```
 
 ```{r ConvertData, warning=TRUE}
 # The EOD recording
     EOD <- as.numeric(unlist(tmp$Ch1[9]))
-      EOD = t(EOD)
+      EOD <- t(EOD)
 # Sampling interval for EOD
     EOD_dt <- as.numeric(unlist(tmp$Ch1[3]))
 # Generate a time vector for EOD
     time_EOD = seq(EOD_dt, length(EOD)*EOD_dt, EOD_dt)
 
 # Load the EOD zero crossings from channel 2    
-    EOD0Xings <- as.numeric(unlist(tmp$Ch2[6]))
-      EOD0Xings = t(EOD0Xings)
-      
+    EOD0Xings <- as.numeric(unlist(tmp$Ch2[5]))
+
 # The AM recording
     AM <- as.numeric(unlist(tmp$Ch3[9])) 
 # Sampling interval for AM
     AM_dt <- as.numeric(unlist(tmp$Ch3[3])) 
 # Generate a time vector for AM
-    time_AM = seq(AM_dt, length(AM)*AM_dt, AM_dt)
+    time_AM <- seq(AM_dt, length(AM)*AM_dt, AM_dt)
 
 # The membrane potential values
     vm <- as.numeric(unlist(tmp$Ch5[9]))
@@ -128,7 +132,7 @@ tmp <- readMat("~/NotCloudy/NSB2022/MatlabManual/old/pUNITsv6.mat")
 
 # get the start points of stimuli
     marker <- as.numeric(unlist(tmp$Ch31[5]))
-    
+     
 ```
 
 ## Extract spike times from the membrane potential
@@ -170,27 +174,28 @@ Now we can extract the spike times from the neural recordings by applying a thre
 ```{r SpikeGetCutoff, warning=FALSE, message=FALSE}
 windowidth = 0.050
 
-thresh = 2
-  threshX = c(0, windowidth)
-  threshY = c(thresh, thresh)
-plotThresh <- data.frame(threshX, threshY)
-
-
 ui <- basicPage(
-  plotOutput("plot1", click = "plot_click"),
-  verbatimTextOutput("info")
+  plotOutput("ThreshClick", click = "plot_click"),
+  verbatimTextOutput("info"),
+  actionButton("myBtn", "Close Window")
 )
 
 server <- function(input, output) {
-  output$plot1 <- renderPlot({
-    plot(tim[1:2000], vmfilt[1:2000], type="l")
-  })
+
+  output$ThreshClick <- renderPlot({
+    plot(tim[1:2000], vmfilt[1:2000], type="l")    
+    })
 
   output$info <- renderText({
     thresh <<- input$plot_click$y
-    paste0("y= ", thresh)
+    paste0("Threshold= ", thresh, " mV.")
   })
   
+  observe({
+      if(input$myBtn > 0){
+        stopApp(7)
+      }
+  })
 }
 
 shinyApp(ui, server)
@@ -200,18 +205,146 @@ shinyApp(ui, server)
 Did we get an appropriate threshold??
 
 ```{r ShowThreshold, warning=FALSE}
+windowidth = 0.100
+
+# create an empty vector of the length of the data
+    Z <- array(0, c(length(vmfilt),1))
+# Make every point where the data is above threshold equal to 1 and leave
+# everything else as zero
+    idx <- which(vmfilt > thresh)
+    Z[idx] <- 1
+
+# Positive zero crossings will have a diff equal to 1   
+    dZ <- diff(Z, lag=1)
+    indices <- which(dZ == 1)
+
+# Convert to seconds
+    spiketimes = indices * vm_dt;
+    meanSpikeRate = 1 / mean(diff(spiketimes, lag=1));
+
 # Assemble into dataframe for plots
-  Xs = c(0, windowidth)
-  Ys = c(thresh, thresh)
+  Xs <- c(0, windowidth)
+  Ys <- c(thresh, thresh)
+  ploThresh <- data.frame(Xs, Ys) 
   
-  ploThresh = data.frame(Xs, Ys) 
+  spikedots <- array(thresh, c(length(spiketimes),1))
+  plotSpikes <- data.frame(spiketimes, spikedots)
   
 ggplot() +
-  geom_line(data=plotPhys, colour = "Black", show.legend = FALSE, aes(x = tim, y = vmfilt)) +
+  geom_line(data=plotPhys, colour = "Blue", show.legend = FALSE, aes(x = tim, y = vmfilt)) +
   geom_line(data=ploThresh, colour = "Red", show.legend = FALSE, aes(x = Xs, y = Ys)) +
+  geom_point(data=plotSpikes, colour = "Black", show.legend = FALSE, aes(x = spiketimes, y = spikedots)) +
   xlab("Time, S") +
   ylab("Vm, mV") +
   ggtitle("Yeet") +
   xlim(0, windowidth)    
+
+```
+
+## Characterize baseline activity
+
+Now that you have the spike times (either from the above code or from spike2), you can characterize the baseline activity of these receptors (i.e., the spiking activity without stimulation). To do this we 1) calculate the mean baseline firing rate, 2) determine the interspike interval, 3) compute the coefficient of variation, 4) plot the phase distribution relative to the EOD, and 5) measure the degree of phase locking of the spike times releative to the stimulus.
+
+### 1. Baseline activity - no stimulus
+
+```{r BaselineData, warning=FALSE}
+
+# Take data before the first stimulus starts (marker[1])
+    spiketimesBaseLine = spiketimes[which(spiketimes < marker[1])]
+
+    # Calculate mean baseline firing rate (this varies wildly across neurons)
+    meanBaseLinefiringrate = length(spiketimesBaseLine) / max(spiketimesBaseLine)  # Number of spikes divided by time
+    disp('Mean baseline firing rate of the neuron is: ', meanBaseLinefiringrate, ' Hz.')
+    isi <- diff(spiketimesBaseLine, lag=1);
+
+    # Compute the coefficient of variation (CV)
+    standard_deviation_isi <- std(isi)
+    mean_isi <- mean(isi)
+
+# Definition of CV
+    CV = standard_deviation_isi / mean_isi
+
+    disp('Mean ISI (ms): ', mean_isi*1000, ' CV: ', CV)
+
+```
+
+### 2. Plot baseline interspike interval distribution (ISI Histogram)
+
+```{r isiHist, warning=FALSE}
+
+# Make a histogram of ISIs - we need bins over the range of ISI durations
+    ISIrange = c(0.000, 0.010) # CHOOSE WISELY! This will vary between neurons. (in seconds)
+
+    # Create 100 bins evenly distributed between the min and max of isi
+    numbins = 100 # This is the number of bins (default 100)
+    ISIbins <- seq(from=ISIrange[1], to=ISIrange[2], length=numbins)
+    
+    # Make the histogram
+    numbercounts = histc(isi, ISIbins) # Calculate the histogram
+
+# plot ISI histogram
+    plotISIHist <- data.frame(ISIbins, numbercounts$cnt)
+    
+ggplot(data=plotISIHist) +
+  geom_col(colour = "Blue", show.legend = FALSE, aes(x = ISIbins, y = numbercounts$cnt)) +
+  xlab("ISI (ms)") +
+  ylab("Counts") +
+  ggtitle("Inter-Spike Interval Histogram") 
+
+```
+
+Notice the multimodal distribution. What could give rise to a multimodal distribution?
+
+### 3. Plot phase of spiking relative to the EOD (baseline)
+
+You might have noticed that receptor afferents tend to fire near a local maximum of the EOD. What about the PCells in the ELL? We can evaluate the phase relationship between the spike train and the EOD. To do this, you'll need to convert the spike times into phases with respect to the nearest EOD zero crossing.
+
+Look at the phase distribution (also called a phase histogram) relative to the EOD.
+
+```{r EODPhaseHist, warning=FALSE}
+# Compute a phase histogram relative to the EOD. 
+# Select the spike times between the 1st and last EOD zero-crossings of our
+# sample before the first stimulus occurred - almost all spikes if not all!
+
+spiketimesBaseEOD = spiketimesBaseLine[which(spiketimesBaseLine > EOD0Xings[1] & spiketimesBaseLine < EOD0Xings[length(EOD0Xings)])]
+
+# Created an empty vector length of the zerocrossings
+      EODSpikephase = array(0, c(length(spiketimesBaseEOD), 1)) # PreAllocate for speed
+
+# Loop over the spiketimes
+    for (I in 1:length(spiketimesBaseEOD)) { # For each spike... 
+        ind = which(EOD0Xings <= spiketimesBaseEOD[I]) # Get previous EOD zero Xing
+        ind = tail(ind, n=1)
+        
+    # Phase is 2pi times the ratio [time from EOD crossing prior to spike] / [duration of the EOD crossing to the subsequent]     
+        EODSpikephase[I] = 2*pi*(spiketimesBaseEOD[I] - EOD0Xings[ind]) / (EOD0Xings[ind+1] - EOD0Xings[ind]);
+    }
+      
+# Plot phase distribution
+    numbins = 60; # Number of bins for the histogram (60 is default)
+    PhaseHistedges <- seq(from=0, to=2*pi, length=numbins)
+    PhaseHistbins = histc(EODSpikephase, PhaseHistedges);
+    
+# plot EOD Phase histogram
+    plotEODPhase <- data.frame(PhaseHistedges, PhaseHistbins$cnt)
+    
+ggplot(data=plotEODPhase) +
+  geom_col(colour = "Blue", show.legend = FALSE, aes(x = PhaseHistedges, y = PhaseHistbins$cnt)) +
+  xlab("Radians - 2pi") +
+  ylab("Counts") +
+  ggtitle("EOD Phase Histogram") 
+
+```
+
+### 4. Measure degree of phase locking (vector strength) to EOD
+
+Vector strength is used as a measure of phase locking in the auditory system and ranges between zero and one.
+
+```{r EODVectorStrength, warning=TRUE}
+
+# Compute the vector strength (VS)
+    vector_strength = sqrt(mean(cos(EODSpikephase))^2 + mean(sin(EODSpikephase))^2);
+
+    disp('VS: ', vector_strength)
 
 ```
