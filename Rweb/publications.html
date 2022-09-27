@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title></title>
+<title>publications.knit</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -43,38 +57,12 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -82,13 +70,8 @@ h6 {
   margin-left: auto;
   margin-right: auto;
 }
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -102,40 +85,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -163,7 +122,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -175,7 +134,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -186,14 +145,25 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -203,7 +173,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -239,6 +208,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -251,20 +221,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -294,7 +261,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -307,6 +274,56 @@ $(document).ready(function () {
 Journal Publications
 </h2>
 <hr>
+<!-- COLEMAN NEUROPHYSIOLOGICAL 2021 -->
+<table columns="2" cellspacing="2" cellpadding="5" border="0" width="100%">
+<tr>
+<td colspan="1" width="100">
+<img src="images/icons/Coleman2021icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td>
+<td valign="middle">
+Coleman, M.J., Day, N.F., Rivera-Parra, P., and E.S. Fortune (2021)
+Neurophysiological coordination of duet singing. PNAS,
+118(23):e2018188118 <a
+href="https://www.pnas.org/doi/10.1073/pnas.2018188118?url_ver=Z39.88-2003&amp;rfr_id=ori%3Arid%3Acrossref.org&amp;rfr_dat=cr_pub++0pubmed">link</a>,
+<a href="pdf/Coleman2021Neurophysiological.pdf">PMID:34074755</a>.
+</td>
+</tr>
+</table>
+<hr>
+<!-- FORTUNE SPOOKY 2020 -->
+<table columns="2" cellspacing="2" cellpadding="5" border="0" width="100%">
+<tr>
+<td colspan="1" width="100">
+<img src="images/icons/Fortune2020icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td>
+<td valign="middle">
+Fortune, E.S., Andanar, N., Madhav, M., Jayakumar, R.P., Cowan, N.J.,
+Bichuette, M.E., and D. Soares (2020) Spooky Interaction at a Distance
+in Cave and Surface Dwelling Electric Fishes. Front Integr Neurosci,
+14:561524. <a
+href="https://www.frontiersin.org/articles/10.3389/fnint.2020.561524/full">link</a>,
+<a href="pdf/Fortune2020Spooky.pdf">PMID:33192352</a>.
+</td>
+</tr>
+</table>
+<hr>
+<!-- GALLMAN DIFFERENCES 2020 -->
+<table columns="2" cellspacing="2" cellpadding="5" border="0" width="100%">
+<tr>
+<td colspan="1" width="100">
+<img src="images/icons/Gallman2020icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td>
+<td valign="middle">
+Gallman, K., Fortune, E.S., Rivera, D., and D. Soares (2020) Differences
+in behavior between surface and cave Astyanax mexicanus may be mediated
+by changes in catecholamine signaling. J Comp Neurol, 528(16):2639-2653.
+<a
+href="https://onlinelibrary.wiley.com/doi/10.1002/cne.24923">link</a>,
+<a href="pdf/Gallman2020Differences-reduced.pdf">PMID:32291742</a>.
+</td>
+</tr>
+</table>
+<hr>
 <!-- UYANIK VARIABILITY 2020 -->
 <table columns="2" cellspacing="2" cellpadding="5" border="0" width="100%">
 <tr>
@@ -314,7 +331,11 @@ Journal Publications
 <img src="images/icons/Uyanik2020icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Uyanik, I., Sefati, S., Stamper, S.A., Cho, K-A, Ankarali, M.M., Fortune, E.S., and N.J. Cowan (2020) Variability in locomotor dynamics reveals the critical role of feedback in task control. eLife, e51219. <a href="https://elifesciences.org/articles/51219">link</a>, <a href="pdf/Uyanik2020Variability.pdf">PMID:31971509</a>.
+Uyanik, I., Sefati, S., Stamper, S.A., Cho, K-A, Ankarali, M.M.,
+Fortune, E.S., and N.J. Cowan (2020) Variability in locomotor dynamics
+reveals the critical role of feedback in task control. eLife, e51219. <a
+href="https://elifesciences.org/articles/51219">link</a>, <a
+href="pdf/Uyanik2020Variability.pdf">PMID:31971509</a>.
 </td>
 </tr>
 </table>
@@ -326,7 +347,12 @@ Uyanik, I., Sefati, S., Stamper, S.A., Cho, K-A, Ankarali, M.M., Fortune, E.S., 
 <img src="images/icons/iPMID_31805560.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Elie, J.E., Hoffmann, S., Dunning, J.L., Coleman, M.J., Fortune, E.S., and J.F. Prather (2019) From Perception to Action: The Role of Auditory Input in Shaping Vocal Communication and Social Behaviors in Birds. Brain Behav. Evol., <a href="https://www.karger.com/Article/Abstract/504380">link</a>, <a href="pdf/EliePerception2019.pdf">PMID:31805560</a>.
+Elie, J.E., Hoffmann, S., Dunning, J.L., Coleman, M.J., Fortune, E.S.,
+and J.F. Prather (2019) From Perception to Action: The Role of Auditory
+Input in Shaping Vocal Communication and Social Behaviors in Birds.
+Brain Behav. Evol., <a
+href="https://www.karger.com/Article/Abstract/504380">link</a>, <a
+href="pdf/EliePerception2019.pdf">PMID:31805560</a>.
 </td>
 </tr>
 </table>
@@ -338,7 +364,11 @@ Elie, J.E., Hoffmann, S., Dunning, J.L., Coleman, M.J., Fortune, E.S., and J.F. 
 <img src="images/icons/iPMID_31024269.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory Cues Modulate Smooth Pursuit and Active Sensing Movements. Front. Behav. Neurosci., <a href="https://www.frontiersin.org/articles/10.3389/fnbeh.2019.00059/full">link</a>, <a href="pdf/UyanikSensory2019.pdf">PMID:31024269</a>.
+Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory
+Cues Modulate Smooth Pursuit and Active Sensing Movements. Front. Behav.
+Neurosci., <a
+href="https://www.frontiersin.org/articles/10.3389/fnbeh.2019.00059/full">link</a>,
+<a href="pdf/UyanikSensory2019.pdf">PMID:31024269</a>.
 </td>
 </tr>
 </table>
@@ -350,7 +380,10 @@ Uyanik, I., Stamper, S.A., Cowan, N.J., and E.S. Fortune (2019) Sensory Cues Mod
 <img src="images/icons/iPMID_30503617.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Biswas, D., Arend, L.A., Stamper, S.A., Vagvolgyi, B.P., Fortune, E.S., and N.J. Cowan. (2018) Closed-Loop Control of Active Sensing Movements Regulates Sensory Slip. Curr. Biol., 28(24):4029-4036.e4, <a href="pdf/BiswasClosed-Loop2018.pdf">PMID:30503617</a>.
+Biswas, D., Arend, L.A., Stamper, S.A., Vagvolgyi, B.P., Fortune, E.S.,
+and N.J. Cowan. (2018) Closed-Loop Control of Active Sensing Movements
+Regulates Sensory Slip. Curr. Biol., 28(24):4029-4036.e4, <a
+href="pdf/BiswasClosed-Loop2018.pdf">PMID:30503617</a>.
 </td>
 </tr>
 </table>
@@ -362,7 +395,9 @@ Biswas, D., Arend, L.A., Stamper, S.A., Vagvolgyi, B.P., Fortune, E.S., and N.J.
 <img src="images/icons/QuickGuide.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Coleman, M.J. and E.S. Fortune (2018) Quick Guide: Duet Singing in plain-tailed wrens. Curr. Biol., doi.org/10.1016/j.cub.2018.02.066, <a href="pdf/ColemanQuick2018.pdf">pdf</a>.
+Coleman, M.J. and E.S. Fortune (2018) Quick Guide: Duet Singing in
+plain-tailed wrens. Curr. Biol., doi.org/10.1016/j.cub.2018.02.066, <a
+href="pdf/ColemanQuick2018.pdf">pdf</a>.
 </td>
 </tr>
 </table>
@@ -374,7 +409,11 @@ Coleman, M.J. and E.S. Fortune (2018) Quick Guide: Duet Singing in plain-tailed 
 <img src="images/icons/MadhavIcon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Madhav, M.S., Jayakumar R.P., Demir, A., Stamper S.A., Fortune, E.S., and N.J. Cowan (2018) High-resolution behavioral mapping of electrical fishes in Amazonian habitats. Scientific Reports. <a href="https://www.nature.com/articles/s41598-018-24035-5">link</a>, <a href="pdf/MadhavHigh-Resolution2018.pdf">PMID:29643472</a>.
+Madhav, M.S., Jayakumar R.P., Demir, A., Stamper S.A., Fortune, E.S.,
+and N.J. Cowan (2018) High-resolution behavioral mapping of electrical
+fishes in Amazonian habitats. Scientific Reports. <a
+href="https://www.nature.com/articles/s41598-018-24035-5">link</a>, <a
+href="pdf/MadhavHigh-Resolution2018.pdf">PMID:29643472</a>.
 </td>
 </tr>
 </table>
@@ -386,7 +425,10 @@ Madhav, M.S., Jayakumar R.P., Demir, A., Stamper S.A., Fortune, E.S., and N.J. C
 <img src="images/icons/iPMID_27170650.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Sutton, E.E., Demir, A., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2016) Dynamic modulation of visual and electrosensory gains for locomotor control. J R Soc Interface. 13(118).pii:20160057, <a href="pdf/SuttonDynamic2016.pdf">PMID:27170650</a>.
+Sutton, E.E., Demir, A., Stamper, S.A., Fortune, E.S., and N.J. Cowan
+(2016) Dynamic modulation of visual and electrosensory gains for
+locomotor control. J R Soc Interface. 13(118).pii:20160057, <a
+href="pdf/SuttonDynamic2016.pdf">PMID:27170650</a>.
 </td>
 </tr>
 </table>
@@ -398,7 +440,10 @@ Sutton, E.E., Demir, A., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2016) Dyn
 <img src="images/icons/iPMID_25989596.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Rouse, M.L., Stevenson, T.J., Fortune, E.S., and G.F. Ball (2015) Reproductive state modulates testosterone-induced singing in adult female European starlings (<i>Sturnus vulgaris</i>). Horm. Behav., 72:78-87, <a href="pdf/RouseReproductive2015.pdf">PMID:25989596</a>.
+Rouse, M.L., Stevenson, T.J., Fortune, E.S., and G.F. Ball (2015)
+Reproductive state modulates testosterone-induced singing in adult
+female European starlings (<i>Sturnus vulgaris</i>). Horm. Behav.,
+72:78-87, <a href="pdf/RouseReproductive2015.pdf">PMID:25989596</a>.
 </td>
 </tr>
 </table>
@@ -410,7 +455,11 @@ Rouse, M.L., Stevenson, T.J., Fortune, E.S., and G.F. Ball (2015) Reproductive s
 <img src="images/icons/iPMID_24893678.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Cowan, N.J., Ankarali, M.M., Dyhr, J.P., Madhav, M.S., Roth, E., Sefati, S., Stamper, S.A., Fortune, E.S., and T.L. Daniel (2014) Feedback control as a framework for understanding tradeoffs in biology. Integr. Comp. Biol., 54:223-237, <a href="pdf/CowanFeedback2014.pdf">PMID:23893678</a>.
+Cowan, N.J., Ankarali, M.M., Dyhr, J.P., Madhav, M.S., Roth, E., Sefati,
+S., Stamper, S.A., Fortune, E.S., and T.L. Daniel (2014) Feedback
+control as a framework for understanding tradeoffs in biology. Integr.
+Comp. Biol., 54:223-237, <a
+href="pdf/CowanFeedback2014.pdf">PMID:23893678</a>.
 </td>
 </tr>
 </table>
@@ -422,7 +471,11 @@ Cowan, N.J., Ankarali, M.M., Dyhr, J.P., Madhav, M.S., Roth, E., Sefati, S., Sta
 <img src="images/icons/iPMID_24191034.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Sefati, S., Neveln I.D., Roth E., Mitchell T.R., Snyder J.B., Maciver M.A., Fortune E.S., and N.J. Cowan (2013) Mutually opposing forces during locomotion can eliminate the tradeoff between maneuverability and stability. PNAS, 110:19798-18803, <a href="pdf/SefatiMutually2013_pmid24191034.pdf">PMID:24191034</a>.
+Sefati, S., Neveln I.D., Roth E., Mitchell T.R., Snyder J.B., Maciver
+M.A., Fortune E.S., and N.J. Cowan (2013) Mutually opposing forces
+during locomotion can eliminate the tradeoff between maneuverability and
+stability. PNAS, 110:19798-18803, <a
+href="pdf/SefatiMutually2013_pmid24191034.pdf">PMID:24191034</a>.
 </td>
 </tr>
 </table>
@@ -434,7 +487,11 @@ Sefati, S., Neveln I.D., Roth E., Mitchell T.R., Snyder J.B., Maciver M.A., Fort
 <img src="images/icons/iPMID_23997196.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Madhav M.S., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2013) Closed-loop stabilization of the Jamming Avoidance Response reveals its locally unstable and globally nonlinear dynamics., J. Exp. Biol., 216:4272-4284, <a href="pdf/MadhavClosed2013_pmid23997196.pdf">PMID:23997196</a>.
+Madhav M.S., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2013)
+Closed-loop stabilization of the Jamming Avoidance Response reveals its
+locally unstable and globally nonlinear dynamics., J. Exp. Biol.,
+216:4272-4284, <a
+href="pdf/MadhavClosed2013_pmid23997196.pdf">PMID:23997196</a>.
 </td>
 </tr>
 </table>
@@ -446,7 +503,10 @@ Madhav M.S., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2013) Closed-loop sta
 <img src="images/icons/iPMID_23761464.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Stamper, S.A., Fortune, E.S., and M.J. Chacron (2013) Perception and coding of envelopes in weakly electric fishes. J. Exp. Biol., 216:2393-2402, <a href="pdf/StamperPerception2013_pmid23761464.pdf">PMID:23761464</a>.
+Stamper, S.A., Fortune, E.S., and M.J. Chacron (2013) Perception and
+coding of envelopes in weakly electric fishes. J. Exp. Biol.,
+216:2393-2402, <a
+href="pdf/StamperPerception2013_pmid23761464.pdf">PMID:23761464</a>.
 </td>
 </tr>
 </table>
@@ -458,7 +518,10 @@ Stamper, S.A., Fortune, E.S., and M.J. Chacron (2013) Perception and coding of e
 <img src="images/icons/iPMID_23136154.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Stamper S.A., Madhav M.S., Cowan N.J., and Fortune E.S. (2012) Beyond the Jamming Avoidance Response: weakly electric fish respond to the envelope of social electrosensory signals, J. Exp. Biol., 215:4196-4207, <a href="pdf/StamperBeyond2012_pmid23136154.pdf">PMID:23136154</a>.
+Stamper S.A., Madhav M.S., Cowan N.J., and Fortune E.S. (2012) Beyond
+the Jamming Avoidance Response: weakly electric fish respond to the
+envelope of social electrosensory signals, J. Exp. Biol., 215:4196-4207,
+<a href="pdf/StamperBeyond2012_pmid23136154.pdf">PMID:23136154</a>.
 </td>
 </tr>
 </table>
@@ -470,7 +533,10 @@ Stamper S.A., Madhav M.S., Cowan N.J., and Fortune E.S. (2012) Beyond the Jammin
 <img src="images/icons/iPMID_22514313.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-McGilligray, P., Vonderschen, K., Fortune, E.S., and M.J. Chacron (2012) Parallel coding of first- and second-order stimulusattributes by midbrain electrosensory neurons. J. Neurosci., 32:5510-5524, <a href="pdf/McGillivrayParallel2012_pmid22514313.pdf">PMID:22514313</a>.
+McGilligray, P., Vonderschen, K., Fortune, E.S., and M.J. Chacron (2012)
+Parallel coding of first- and second-order stimulusattributes by
+midbrain electrosensory neurons. J. Neurosci., 32:5510-5524, <a
+href="pdf/McGillivrayParallel2012_pmid22514313.pdf">PMID:22514313</a>.
 </td>
 </tr>
 </table>
@@ -482,7 +548,10 @@ McGilligray, P., Vonderschen, K., Fortune, E.S., and M.J. Chacron (2012) Paralle
 <img src="images/icons/iPMID_22496294.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Stamper, S.A., Roth, E., Cowan, N.J., and E.S. Fortune (2012) Active sensing via movement shapes spatiotemporal patterns of sensory feedback. J. Exp. Biol., 215:1567-1574, <a href="pdf/StamperActive2012_pmid22496294.pdf">PMID:22496294</a>.
+Stamper, S.A., Roth, E., Cowan, N.J., and E.S. Fortune (2012) Active
+sensing via movement shapes spatiotemporal patterns of sensory feedback.
+J. Exp. Biol., 215:1567-1574, <a
+href="pdf/StamperActive2012_pmid22496294.pdf">PMID:22496294</a>.
 </td>
 </tr>
 </table>
@@ -494,7 +563,10 @@ Stamper, S.A., Roth, E., Cowan, N.J., and E.S. Fortune (2012) Active sensing via
 <img src="images/icons/iPMID_22053048.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S., Rodriguez, C., Li, D., Ball, G.F., and M.J. Coleman (2011) Neural mechanisms for the coordination of duet singing in wrens. Science., 334:666-669, <a href="pdf/FortuneNeural2011_pmid22053048.pdf">PMID:22052048</a>.
+Fortune, E.S., Rodriguez, C., Li, D., Ball, G.F., and M.J. Coleman
+(2011) Neural mechanisms for the coordination of duet singing in wrens.
+Science., 334:666-669, <a
+href="pdf/FortuneNeural2011_pmid22053048.pdf">PMID:22052048</a>.
 </td>
 </tr>
 </table>
@@ -506,7 +578,10 @@ Fortune, E.S., Rodriguez, C., Li, D., Ball, G.F., and M.J. Coleman (2011) Neural
 <img src="images/icons/iPMID_21389203.gif" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Roth, E., Zhuang, K., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2011) Stimulus predictability mediates a switch in locomotor smooth pursuit performance for <i>Eigenmannia virescens</i>., <a href="pdf/RothStimulus2011_pmid21389203.pdf">PMID:21389203</a>.
+Roth, E., Zhuang, K., Stamper, S.A., Fortune, E.S., and N.J. Cowan
+(2011) Stimulus predictability mediates a switch in locomotor smooth
+pursuit performance for <i>Eigenmannia virescens</i>., <a
+href="pdf/RothStimulus2011_pmid21389203.pdf">PMID:21389203</a>.
 </td>
 </tr>
 </table>
@@ -518,7 +593,9 @@ Roth, E., Zhuang, K., Stamper, S.A., Fortune, E.S., and N.J. Cowan (2011) Stimul
 <img src="images/icons/iPMID_21775723.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Khosravi-Hashemi, N., Fortune, E.S., and M.J. Chacron (2011) Coding movement direction by burst firing in electrosensory neurons., <a href="pdf/KhosraviCoding2011_pmid21775723.pdf">PMID:21775723</a>.
+Khosravi-Hashemi, N., Fortune, E.S., and M.J. Chacron (2011) Coding
+movement direction by burst firing in electrosensory neurons., <a
+href="pdf/KhosraviCoding2011_pmid21775723.pdf">PMID:21775723</a>.
 </td>
 </tr>
 </table>
@@ -530,7 +607,10 @@ Khosravi-Hashemi, N., Fortune, E.S., and M.J. Chacron (2011) Coding movement dir
 <img src="images/icons/iPMID_20445028.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Chacron, M.J. and E.S. Fortune (2010) Subthreshold membrane conductances enhance directional selectivity in vertebrate sensory neurons. J. Neurophysiol., 4(2):e32, <a href="pdf/ChacronSubthreshold2010_pmid20445028.pdf">PMID:20445028</a>.
+Chacron, M.J. and E.S. Fortune (2010) Subthreshold membrane conductances
+enhance directional selectivity in vertebrate sensory neurons. J.
+Neurophysiol., 4(2):e32, <a
+href="pdf/ChacronSubthreshold2010_pmid20445028.pdf">PMID:20445028</a>.
 </td>
 </tr>
 </table>
@@ -542,7 +622,11 @@ Chacron, M.J. and E.S. Fortune (2010) Subthreshold membrane conductances enhance
 <img src="images/icons/iPMID_19874885.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Stamper, S.A., Carrera-G, E., Tan, E.W., Fugere, V., Krahe, R., and E.S. Fortune (2010) Species differences in group size and electrosensory interference in weakly electric fishes: Implications for electrosensory processing. Behav Brain Res., <a href="pdf/StamperSpecies2010_pmid19874885.pdf">PMID:19874855</a>.
+Stamper, S.A., Carrera-G, E., Tan, E.W., Fugere, V., Krahe, R., and E.S.
+Fortune (2010) Species differences in group size and electrosensory
+interference in weakly electric fishes: Implications for electrosensory
+processing. Behav Brain Res., <a
+href="pdf/StamperSpecies2010_pmid19874885.pdf">PMID:19874855</a>.
 </td>
 </tr>
 </table>
@@ -554,7 +638,11 @@ Stamper, S.A., Carrera-G, E., Tan, E.W., Fugere, V., Krahe, R., and E.S. Fortune
 <img src="images/icons/iPMID_19793877.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Chacron, M.J., Toporikova, N., and E.S. Fortune (2009) Differences in the time course of short-term depression across receptive fields are correlated with directional selectivity in electrosensory neurons., J. Neurophysiol., 102:3270-3279, <a href="pdf/ChacronDifferences2009_pmid19793877.pdf">PMID:19793877</a>.
+Chacron, M.J., Toporikova, N., and E.S. Fortune (2009) Differences in
+the time course of short-term depression across receptive fields are
+correlated with directional selectivity in electrosensory neurons., J.
+Neurophysiol., 102:3270-3279, <a
+href="pdf/ChacronDifferences2009_pmid19793877.pdf">PMID:19793877</a>.
 </td>
 </tr>
 </table>
@@ -566,7 +654,10 @@ Chacron, M.J., Toporikova, N., and E.S. Fortune (2009) Differences in the time c
 <img src="images/icons/iPMID_19949252.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Hitschfeld, É.M., Stamper, S.A., Vonderschen, K., Fortune, E.S., and M.J. Chacron (2009) Effects of restraint and immobilization on electrosensory behavior of weakly electric fish. ILAR J., 50:361-372, <a href="pdf/HitschfeldEffects2009_pmid19949252.pdf">PMID:19949252</a>.
+Hitschfeld, É.M., Stamper, S.A., Vonderschen, K., Fortune, E.S., and
+M.J. Chacron (2009) Effects of restraint and immobilization on
+electrosensory behavior of weakly electric fish. ILAR J., 50:361-372, <a
+href="pdf/HitschfeldEffects2009_pmid19949252.pdf">PMID:19949252</a>.
 </td>
 </tr>
 </table>
@@ -578,7 +669,11 @@ Hitschfeld, É.M., Stamper, S.A., Vonderschen, K., Fortune, E.S., and M.J. Chacr
 <img src="images/icons/iPMID_19787034.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and M.J. Chacron (2009) From molecules to behavior: organismal-level regulation of ion channel trafficking. PLoS Biol., 7:e1000211, <a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000211">link</a>, <a href="pdf/FortuneMolecules2009_pmid19787034.pdf">PMID:19787034</a>.
+Fortune, E.S. and M.J. Chacron (2009) From molecules to behavior:
+organismal-level regulation of ion channel trafficking. PLoS Biol.,
+7:e1000211, <a
+href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000211">link</a>,
+<a href="pdf/FortuneMolecules2009_pmid19787034.pdf">PMID:19787034</a>.
 </td>
 </tr>
 </table>
@@ -590,7 +685,11 @@ Fortune, E.S. and M.J. Chacron (2009) From molecules to behavior: organismal-lev
 <img src="images/icons/iPMID_18282087.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Carver, S., Roth, E., Cowan, N.J. and E.S. Fortune (2008) Synaptic plasticity can produce and enhance direction selectivity. PLoS Comput. Biol., 4(2):e32, <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0040032">link</a>, <a href="pdf/CarverSynaptic2008_pmid18282087.pdf">PMID:18282087</a>.
+Carver, S., Roth, E., Cowan, N.J. and E.S. Fortune (2008) Synaptic
+plasticity can produce and enhance direction selectivity. PLoS Comput.
+Biol., 4(2):e32, <a
+href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0040032">link</a>,
+<a href="pdf/CarverSynaptic2008_pmid18282087.pdf">PMID:18282087</a>.
 </td>
 </tr>
 </table>
@@ -602,7 +701,9 @@ Carver, S., Roth, E., Cowan, N.J. and E.S. Fortune (2008) Synaptic plasticity ca
 <img src="images/icons/iPMID_17267567.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Cowan, N.J. and E.S. Fortune (2007) The critical role of locomotion mechanics in decoding sensory systems. J. Neurosci, 27:1123-1128, <a href="pdf/CowanCritical2007_pmid17267567.pdf">PMID:17267567</a>.
+Cowan, N.J. and E.S. Fortune (2007) The critical role of locomotion
+mechanics in decoding sensory systems. J. Neurosci, 27:1123-1128, <a
+href="pdf/CowanCritical2007_pmid17267567.pdf">PMID:17267567</a>.
 </td>
 </tr>
 </table>
@@ -614,7 +715,9 @@ Cowan, N.J. and E.S. Fortune (2007) The critical role of locomotion mechanics in
 <img src="images/icons/iPMID_16837187.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. (2006) The decoding of electrosensory systems. Curr. Opin. Neurobiol., <a href="pdf/FortuneDecoding2006_pmid16837187.pdf">PMID:16837187</a>.
+Fortune, E.S. (2006) The decoding of electrosensory systems. Curr. Opin.
+Neurobiol., <a
+href="pdf/FortuneDecoding2006_pmid16837187.pdf">PMID:16837187</a>.
 </td>
 </tr>
 </table>
@@ -626,7 +729,10 @@ Fortune, E.S. (2006) The decoding of electrosensory systems. Curr. Opin. Neurobi
 <img src="images/icons/iPMID_16790600.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Ramcharitar, J.U., Tan, E.W., E.S. Fortune (2006) Global electrosensory oscillations enhance directional responses of midbrain neurons in <i>Eigenmannia</i>. J. Neurophys., <a href="pdf/RamcharitarGlobal2006_pmid16790600.pdf">PMID:16790600</a>.
+Ramcharitar, J.U., Tan, E.W., E.S. Fortune (2006) Global electrosensory
+oscillations enhance directional responses of midbrain neurons in
+<i>Eigenmannia</i>. J. Neurophys., <a
+href="pdf/RamcharitarGlobal2006_pmid16790600.pdf">PMID:16790600</a>.
 </td>
 </tr>
 </table>
@@ -638,7 +744,10 @@ Ramcharitar, J.U., Tan, E.W., E.S. Fortune (2006) Global electrosensory oscillat
 <img src="images/icons/iPMID_16450118.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S., Rose, G.J., and M. Kawasaki (2006) Encoding and processing biologically relevant temporal information in electrosensory systems. J. Comp. Physiol. A, 192:625-635, <a href="pdf/FortuneEncoding2006_pmid16450118.pdf">PMID:16450118</a>.
+Fortune, E.S., Rose, G.J., and M. Kawasaki (2006) Encoding and
+processing biologically relevant temporal information in electrosensory
+systems. J. Comp. Physiol. A, 192:625-635, <a
+href="pdf/FortuneEncoding2006_pmid16450118.pdf">PMID:16450118</a>.
 </td>
 </tr>
 </table>
@@ -651,7 +760,9 @@ Fortune, E.S., Rose, G.J., and M. Kawasaki (2006) Encoding and processing biolog
 </td>
 <td valign="middle">
 Ramcharitar, J.U., Tan, E.W., and E.S. Fortune (2005)<br />
-Effects of global electrosensory signals on motion processing in the midbrain of <i>Eigenmannia</i>. J. Comp. Physiol. A, 191:865-872, <a href="pdf/RamcharitarEffects2005_pmid16001182.pdf">PMID:16001182</a>.
+Effects of global electrosensory signals on motion processing in the
+midbrain of <i>Eigenmannia</i>. J. Comp. Physiol. A, 191:865-872, <a
+href="pdf/RamcharitarEffects2005_pmid16001182.pdf">PMID:16001182</a>.
 </td>
 </tr>
 </table>
@@ -663,7 +774,11 @@ Effects of global electrosensory signals on motion processing in the midbrain of
 <img src="images/icons/iPMID_16099058.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Tan, E.W., Nizar, J.M., Carrera-G, E., and E.S. Fortune (2005) Electrosensory interference in naturally occurring aggregates of a species of weakly electric fish, <i>Eigenmannia virescens</i>. Behav. Brain Res., 164:83-92, <a href="pdf/TanElectrosensory2005_pmid16099058.pdf">PMID:16099058</a>.
+Tan, E.W., Nizar, J.M., Carrera-G, E., and E.S. Fortune (2005)
+Electrosensory interference in naturally occurring aggregates of a
+species of weakly electric fish, <i>Eigenmannia virescens</i>. Behav.
+Brain Res., 164:83-92, <a
+href="pdf/TanElectrosensory2005_pmid16099058.pdf">PMID:16099058</a>.
 </td>
 </tr>
 </table>
@@ -675,7 +790,10 @@ Tan, E.W., Nizar, J.M., Carrera-G, E., and E.S. Fortune (2005) Electrosensory in
 <img src="images/icons/iPMID_12750421.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and G.J. Rose (2003) Voltage-gated Na<sup>+</sup> channels enhance the temporal filtering properties of electrosensory neurons in the torus. J. Neurophys., 90:924-929, <a href="pdf/FortuneVoltage2003_pmid12750421.pdf">PMID:12750421</a>.
+Fortune, E.S. and G.J. Rose (2003) Voltage-gated Na<sup>+</sup> channels
+enhance the temporal filtering properties of electrosensory neurons in
+the torus. J. Neurophys., 90:924-929, <a
+href="pdf/FortuneVoltage2003_pmid12750421.pdf">PMID:12750421</a>.
 </td>
 </tr>
 </table>
@@ -687,7 +805,9 @@ Fortune, E.S. and G.J. Rose (2003) Voltage-gated Na<sup>+</sup> channels enhance
 <img src="images/icons/iPMID_14692501.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and G.J. Rose (2002) Roles for short-term synaptic plasticity in behavior. J Physiol Paris, 96:539-545, <a href="pdf/FortuneRoles2002_pmid14692501.pdf">PMID:14692501</a>.
+Fortune, E.S. and G.J. Rose (2002) Roles for short-term synaptic
+plasticity in behavior. J Physiol Paris, 96:539-545, <a
+href="pdf/FortuneRoles2002_pmid14692501.pdf">PMID:14692501</a>.
 </td>
 </tr>
 </table>
@@ -699,7 +819,9 @@ Fortune, E.S. and G.J. Rose (2002) Roles for short-term synaptic plasticity in b
 <img src="images/icons/iPMID_11410267.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and G.J. Rose (2001) Short-term synaptic plasticity as a temporal filter. Trends in Neurosciences, 24:381-385, <a href="pdf/FortuneShort2001_pmid11410267.pdf">PMID:11410267</a>.
+Fortune, E.S. and G.J. Rose (2001) Short-term synaptic plasticity as a
+temporal filter. Trends in Neurosciences, 24:381-385, <a
+href="pdf/FortuneShort2001_pmid11410267.pdf">PMID:11410267</a>.
 </td>
 </tr>
 </table>
@@ -711,7 +833,10 @@ Fortune, E.S. and G.J. Rose (2001) Short-term synaptic plasticity as a temporal 
 <img src="images/icons/iPMID_10460268.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Rose, G.J. and E.S. Fortune (1999) Frequency-dependent PSP depression contributes to low-pass temporal filtering in <i>Eigenmannia</i>. J. Neurosci., 19:7629-7639, <a href="pdf/RoseFrequency1999_pmid10460268.pdf">PMID:10460268</a>.
+Rose, G.J. and E.S. Fortune (1999) Frequency-dependent PSP depression
+contributes to low-pass temporal filtering in <i>Eigenmannia</i>. J.
+Neurosci., 19:7629-7639, <a
+href="pdf/RoseFrequency1999_pmid10460268.pdf">PMID:10460268</a>.
 </td>
 </tr>
 </table>
@@ -723,7 +848,9 @@ Rose, G.J. and E.S. Fortune (1999) Frequency-dependent PSP depression contribute
 <img src="images/icons/iPMID_10210668.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Rose, G.J. and E.S. Fortune (1999) Mechanisms for generating temporal filters in the electrosensory system. J. Exp. Biol., 202:1281-1289, <a href="pdf/RoseMechanisms1999_pmid10210668.pdf">PMID:10210668</a>.
+Rose, G.J. and E.S. Fortune (1999) Mechanisms for generating temporal
+filters in the electrosensory system. J. Exp. Biol., 202:1281-1289, <a
+href="pdf/RoseMechanisms1999_pmid10210668.pdf">PMID:10210668</a>.
 </td>
 </tr>
 </table>
@@ -735,7 +862,10 @@ Rose, G.J. and E.S. Fortune (1999) Mechanisms for generating temporal filters in
 <img src="images/icons/iPMID_9133400.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and G.J. Rose (1997) Passive and active membrane properties contribute to the temporal filtering properties of midbrain neurons, <i>in vivo</i>. J. Neurosci., 17:3815-3825, <a href="pdf/FortunePassive1997_pmid9133400.pdf">PMID:9133400</a>.
+Fortune, E.S. and G.J. Rose (1997) Passive and active membrane
+properties contribute to the temporal filtering properties of midbrain
+neurons, <i>in vivo</i>. J. Neurosci., 17:3815-3825, <a
+href="pdf/FortunePassive1997_pmid9133400.pdf">PMID:9133400</a>.
 </td>
 </tr>
 </table>
@@ -747,7 +877,11 @@ Fortune, E.S. and G.J. Rose (1997) Passive and active membrane properties contri
 <img src="images/icons/iPMID_9167857.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and G.J. Rose (1997) Temporal filtering properties of ampullary electrosensory neurons in the torus semicircularis of <i>Eigenmannia</i>: evolutionary and computational implications. Brain, Behav., and Evol., 49:312-323, <a href="pdf/FortuneTemporal1997_pmid9167857.pdf">PMID:9167857</a>.
+Fortune, E.S. and G.J. Rose (1997) Temporal filtering properties of
+ampullary electrosensory neurons in the torus semicircularis of
+<i>Eigenmannia</i>: evolutionary and computational implications. Brain,
+Behav., and Evol., 49:312-323, <a
+href="pdf/FortuneTemporal1997_pmid9167857.pdf">PMID:9167857</a>.
 </td>
 </tr>
 </table>
@@ -759,7 +893,9 @@ Fortune, E.S. and G.J. Rose (1997) Temporal filtering properties of ampullary el
 <img src="images/icons/iPMID_8895897.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Rose, G.J. and E.S. Fortune (1996) New techniques for making whole-cell recordings from CNS neurons <i>in vivo</i>. Neurosci. Res. 26:89-94, <a href="pdf/RoseNew1996_pmid8895897.pdf">PMID:8895897</a>.
+Rose, G.J. and E.S. Fortune (1996) New techniques for making whole-cell
+recordings from CNS neurons <i>in vivo</i>. Neurosci. Res. 26:89-94, <a
+href="pdf/RoseNew1996_pmid8895897.pdf">PMID:8895897</a>.
 </td>
 </tr>
 </table>
@@ -771,7 +907,10 @@ Rose, G.J. and E.S. Fortune (1996) New techniques for making whole-cell recordin
 <img src="images/icons/iPMID_8543649.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and D. Margoliash (1995) Parallel pathways and convergence onto HVc and adjacent neostriatum of adult male zebra finches (<i>Taeniopygia guttata</i>). J. Comp. Neurol. 360(3):413-441, <a href="pdf/FortuneParallel1995_pmid8543649.pdf">PMID:8543649</a>.
+Fortune, E.S. and D. Margoliash (1995) Parallel pathways and convergence
+onto HVc and adjacent neostriatum of adult male zebra finches
+(<i>Taeniopygia guttata</i>). J. Comp. Neurol. 360(3):413-441, <a
+href="pdf/FortuneParallel1995_pmid8543649.pdf">PMID:8543649</a>.
 </td>
 </tr>
 </table>
@@ -783,7 +922,11 @@ Fortune, E.S. and D. Margoliash (1995) Parallel pathways and convergence onto HV
 <img src="images/icons/iPMID_7842284.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Margoliash, D., E.S. Fortune, M. Sutter, C-H. Yu, D. Hardin, and A.Dave (1994) Distributed representation in the song system of oscines: evolutionary implications and functional consequences. Brain Behav. Evol. 44:247-264, <a href="pdf/MargoliashDistributed1994_pmid7842284.pdf">PMID:7842284</a>.
+Margoliash, D., E.S. Fortune, M. Sutter, C-H. Yu, D. Hardin, and A.Dave
+(1994) Distributed representation in the song system of oscines:
+evolutionary implications and functional consequences. Brain Behav.
+Evol. 44:247-264, <a
+href="pdf/MargoliashDistributed1994_pmid7842284.pdf">PMID:7842284</a>.
 </td>
 </tr>
 </table>
@@ -795,7 +938,10 @@ Margoliash, D., E.S. Fortune, M. Sutter, C-H. Yu, D. Hardin, and A.Dave (1994) D
 <img src="images/icons/iPMID_1447407.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and D. Margoliash (1992) Cytoarchitectonic organization and morphology of cells of the field L complex in adult male zebra finches (<i>Taeniopygia guttata</i>). J. Comp. Neurol., 325:388-404, <a href="pdf/FortuneCytoarchitectonic1992_pmid1447407.pdf">PMID:1447407</a>.
+Fortune, E.S. and D. Margoliash (1992) Cytoarchitectonic organization
+and morphology of cells of the field L complex in adult male zebra
+finches (<i>Taeniopygia guttata</i>). J. Comp. Neurol., 325:388-404, <a
+href="pdf/FortuneCytoarchitectonic1992_pmid1447407.pdf">PMID:1447407</a>.
 </td>
 </tr>
 </table>
@@ -807,7 +953,10 @@ Fortune, E.S. and D. Margoliash (1992) Cytoarchitectonic organization and morpho
 <img src="images/icons/iPMID_1432096.jpg" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Margoliash, D. and E.S. Fortune (1992) Temporal and harmonic combination-sensitive neurons in the zebra finch’s HVc. J. Neurosci., 12:4309-4326, <a href="pdf/MargoliashTemporal1992_pmid1432096.pdf">PMID:1432096</a>.
+Margoliash, D. and E.S. Fortune (1992) Temporal and harmonic
+combination-sensitive neurons in the zebra finch’s HVc. J. Neurosci.,
+12:4309-4326, <a
+href="pdf/MargoliashTemporal1992_pmid1432096.pdf">PMID:1432096</a>.
 </td>
 </tr>
 </table>
@@ -823,7 +972,10 @@ Conference Papers
 <img src="images/icons/carverstate2013.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Carver, S.G., Fortune, E.S., and N.J. Cowan (2013) State-estimation and cooperative control with uncertain time. In Proc Amer Control Conf, Washington, DC, USA, 2013, p. 2990–2995, <a href="pdf/carverstate2013.pdf">PDF</a>.
+Carver, S.G., Fortune, E.S., and N.J. Cowan (2013) State-estimation and
+cooperative control with uncertain time. In Proc Amer Control Conf,
+Washington, DC, USA, 2013, p. 2990–2995, <a
+href="pdf/carverstate2013.pdf">PDF</a>.
 </td>
 </tr>
 </table>
@@ -835,7 +987,11 @@ Carver, S.G., Fortune, E.S., and N.J. Cowan (2013) State-estimation and cooperat
 <img src="images/icons/sefaticounter2012.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Sefati, S., Neveln, I., MacIver, M.A., Fortune, E.S., and N.J. Cowan (2012) Counter-propagating waves enhance maneuverability and stability: a bio-inspired strategy for robotic ribbon-fin propulsion. In Proc IEEE Int Conf on Biomed Robot and Biomech, Ro{Mech Eng}, Italy, <a href="pdf/sefaticounter2012.pdf">PDF</a>.
+Sefati, S., Neveln, I., MacIver, M.A., Fortune, E.S., and N.J. Cowan
+(2012) Counter-propagating waves enhance maneuverability and stability:
+a bio-inspired strategy for robotic ribbon-fin propulsion. In Proc IEEE
+Int Conf on Biomed Robot and Biomech, Ro{Mech Eng}, Italy, <a
+href="pdf/sefaticounter2012.pdf">PDF</a>.
 </td>
 </tr>
 </table>
@@ -851,7 +1007,13 @@ Book Chapters
 <img src="images/icons/StamperUsing2019-icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Stamper, S.A., Madhav, M.S., Cowan, N.J., and E.S. Fortune (2019) Using Control Theory to Characterize Active Sensing in Weakly Electric Fishes, In Springer Handbook of Auditory Research, Volume 70, Electroreception: Fundamental Insights from Comparative Approaches, 2019, <a href="https://doi.org/10.1007/978-3-030-29105-1">ISBN: 978-3-030-29104-4</a>, <a href="pdf/StamperUsing2019.pdf">StamperUsing2019</a>.
+Stamper, S.A., Madhav, M.S., Cowan, N.J., and E.S. Fortune (2019) Using
+Control Theory to Characterize Active Sensing in Weakly Electric Fishes,
+In Springer Handbook of Auditory Research, Volume 70, Electroreception:
+Fundamental Insights from Comparative Approaches, 2019, <a
+href="https://doi.org/10.1007/978-3-030-29105-1">ISBN:
+978-3-030-29104-4</a>, <a
+href="pdf/StamperUsing2019.pdf">StamperUsing2019</a>.
 </td>
 </tr>
 </table>
@@ -863,7 +1025,10 @@ Stamper, S.A., Madhav, M.S., Cowan, N.J., and E.S. Fortune (2019) Using Control 
 <img src="images/icons/MetzenPhysiology2017.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Metzen, M.G., Fortune, E.S. and M.J. Chacron (2017) Physiology of Tuberous Electrosensory Systems, In Reference Module in Life Sciences, Elsevier, 2017, ISBN: 978-0-12-809633-8, <a href="pdf/MetzenPhysiology2017.pdf">MetzenPhysiology2010</a>.
+Metzen, M.G., Fortune, E.S. and M.J. Chacron (2017) Physiology of
+Tuberous Electrosensory Systems, In Reference Module in Life Sciences,
+Elsevier, 2017, ISBN: 978-0-12-809633-8, <a
+href="pdf/MetzenPhysiology2017.pdf">MetzenPhysiology2010</a>.
 </td>
 </tr>
 </table>
@@ -875,7 +1040,9 @@ Metzen, M.G., Fortune, E.S. and M.J. Chacron (2017) Physiology of Tuberous Elect
 <img src="images/icons/roboticon.png" style="width:75px; border:0px solid; margin-right: 10px" align="left">
 </td>
 <td valign="middle">
-Fortune, E.S. and N.J. Cowan (2010) Robot Behavior, in The Encyclopedia of Animal Behavior, eds. Breed and Moore, Elsevier. <a href="pdf/FortuneRobot2010.pdf">FortuneRobot2010</a>.
+Fortune, E.S. and N.J. Cowan (2010) Robot Behavior, in The Encyclopedia
+of Animal Behavior, eds. Breed and Moore, Elsevier. <a
+href="pdf/FortuneRobot2010.pdf">FortuneRobot2010</a>.
 </td>
 </tr>
 </table>
@@ -890,7 +1057,7 @@ Fortune, E.S. and N.J. Cowan (2010) Robot Behavior, in The Encyclopedia of Anima
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -898,6 +1065,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -6,6 +6,39 @@
 <h2 class="display-3" align="center">Journal Publications</h2>
 <hr>
 
+<!-- COLEMAN NEUROPHYSIOLOGICAL 2021 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/Coleman2021icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Coleman, M.J., Day, N.F., Rivera-Parra, P., and E.S. Fortune (2021) Neurophysiological coordination of duet singing. PNAS, 118(23):e2018188118 
+[link](https://www.pnas.org/doi/10.1073/pnas.2018188118?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub++0pubmed), 
+[PMID:34074755](pdf/Coleman2021Neurophysiological.pdf).
+</td></tr></table>
+<hr> 
+
+<!-- FORTUNE SPOOKY 2020 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/Fortune2020icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Fortune, E.S., Andanar, N., Madhav, M., Jayakumar, R.P., Cowan, N.J., Bichuette, M.E., and D. Soares (2020) Spooky Interaction at a Distance in Cave and Surface Dwelling Electric Fishes. Front Integr Neurosci, 14:561524. 
+[link](https://www.frontiersin.org/articles/10.3389/fnint.2020.561524/full), 
+[PMID:33192352](pdf/Fortune2020Spooky.pdf).
+</td></tr></table>
+<hr>
+
+<!-- GALLMAN DIFFERENCES 2020 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/Gallman2020icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Gallman, K., Fortune, E.S., Rivera, D., and D. Soares (2020) Differences in behavior between surface and cave Astyanax mexicanus may be mediated by changes in catecholamine signaling. J Comp Neurol, 528(16):2639-2653. 
+[link](https://onlinelibrary.wiley.com/doi/10.1002/cne.24923), 
+[PMID:32291742](pdf/Gallman2020Differences-reduced.pdf).
+</td></tr></table>
+<hr>
+
 <!-- UYANIK VARIABILITY 2020 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
