@@ -1,15 +1,16 @@
 function makeStochResMovie(thre, rang)
 
 [ff, pp] = uigetfile;
-a = imread('~/Downloads/Wrens2011-CarlosPhoto.jpeg');
+a = imread(fullfile(pp,ff));
+
 % a = a(:,:,2);
 a = rgb2gray(a);
 
 [im1, sr1] = StochRes2021(a, thre, rang);
-    imwrite(im1,'SimpleThreshold.jpg','JPEG')
-    imwrite(sr1,'SingleStochRes.jpg','JPEG')
+    imwrite(im1,'SimpleThreshold2023.jpg','JPEG')
+    imwrite(sr1,'SingleStochRes2023.jpg','JPEG')
 
-vidfile = VideoWriter('StochRes2021.mp4','MPEG-4');
+vidfile = VideoWriter('StochRes2023.mp4','MPEG-4');
 
 open(vidfile);
 
