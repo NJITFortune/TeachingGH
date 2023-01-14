@@ -1,6 +1,6 @@
 function makeStochResMovie(thre, rang)
 
-
+[ff, pp] = uigetfile;
 a = imread('~/Downloads/Wrens2011-CarlosPhoto.jpeg');
 % a = a(:,:,2);
 a = rgb2gray(a);
