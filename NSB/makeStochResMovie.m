@@ -2,7 +2,8 @@ function makeStochResMovie(thre, rang)
 
 
 a = imread('~/Downloads/Wrens2011-CarlosPhoto.jpeg');
-a = a(:,:,2);
+% a = a(:,:,2);
+a = rgb2gray(a);
 
 [im1, sr1] = StochRes2021(a, thre, rang);
     imwrite(im1,'SimpleThreshold.jpg','JPEG')
@@ -14,7 +15,7 @@ open(vidfile);
 
 for j=1:256
     
-    [~, sr] = StochRes2021(a, 50);    
+    [~, sr] = StochRes2021(a, thre, rang);    
     writeVideo(vidfile, sr);
 
 end
@@ -23,8 +24,7 @@ close(vidfile)
 
 
 
-
-    function [im, sr] = StochRes2021(in, thresh, rango)
+function [im, sr] = StochRes2021(in, thresh, rango)
 
 im = in;
 
@@ -38,12 +38,14 @@ sr = zeros(x, y, 'uint8');
 %threshbox = thresh * ones(x, y);
 rnd = randi([-rango rango], x, y, 'uint8');
 
-for j = 1:length(rnd(:,1))
+for jj = 1:length(rnd(:,1))
     for k = 1:length(rnd(1,:))
-        if in(j,k) > rnd(j,k)+thresh  
-            sr(j,k) = 255;
+        if in(jj,k) > rnd(jj,k)+thresh  
+            sr(jj,k) = 255;
         end
     end
+end
+
 end
 
 end
