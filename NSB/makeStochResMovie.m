@@ -13,8 +13,8 @@ a = rgb2gray(a);
 
 vidfile = VideoWriter('StochRes2023.mp4','MPEG-4');
 vidfile.Quality = 100;
-vidfile.FrameRate = 10;
-vidfile.LosslessCompression = 
+vidfile.FrameRate = 20;
+vidfile.LosslessCompression = 'true';
 % 'MPEG-4'
 open(vidfile);
 
