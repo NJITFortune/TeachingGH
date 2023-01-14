@@ -1,6 +1,6 @@
 function makeStochResMovie(thre, rang)
 
-[ff, pp] = uigetfile;
+[ff, pp] = uigetfile('*', 'Pick Image');
 a = imread(fullfile(pp,ff));
 
 % a = a(:,:,2);
