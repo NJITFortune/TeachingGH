@@ -4,7 +4,7 @@ function makeStochResMovie(thre, rang)
 a = imread(fullfile(pp,ff));
 
 % a = a(:,:,2);
-a = rgb2gray(a);
+a = fliplr(rgb2gray(a));
     imwrite(a,'Grayscale2023.jpg','JPEG')
 
 [im1, sr1] = StochRes2021(a, thre, rang);
