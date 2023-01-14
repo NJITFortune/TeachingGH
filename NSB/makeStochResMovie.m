@@ -1,10 +1,10 @@
-function out = makeStochResMovie()
+function makeStochResMovie(thre, rang)
 
 
 a = imread('~/Downloads/Wrens2011-CarlosPhoto.jpeg');
 a = a(:,:,2);
 
-[im1, sr1] = StochRes2021(a, 50);
+[im1, sr1] = StochRes2021(a, thre, rang);
     imwrite(im1,'SimpleThreshold.jpg','JPEG')
     imwrite(sr1,'SingleStochRes.jpg','JPEG')
 
@@ -36,7 +36,7 @@ im(in < thresh) = 0;
 
 sr = zeros(x, y, 'uint8');
 %threshbox = thresh * ones(x, y);
-rnd = randi([0 rango], x, y, 'uint8');
+rnd = randi([-rango rango], x, y, 'uint8');
 
 for j = 1:length(rnd(:,1))
     for k = 1:length(rnd(1,:))
