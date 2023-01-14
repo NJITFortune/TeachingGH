@@ -12,7 +12,7 @@ a = rgb2gray(a);
     imwrite(sr1,'SingleStochRes2023.jpg','JPEG')
 
 vidfile = VideoWriter('StochRes2023.mp4','MPEG-4');
-vidfile.quality = 100;
+vidfile.Quality = 100;
 % 'MPEG-4'
 open(vidfile);
 
