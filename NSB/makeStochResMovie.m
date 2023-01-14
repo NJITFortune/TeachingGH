@@ -11,7 +11,7 @@ a = rgb2gray(a);
     imwrite(im1,'SimpleThreshold2023.jpg','JPEG')
     imwrite(sr1,'SingleStochRes2023.jpg','JPEG')
 
-vidfile = VideoWriter('StochRes2023.avi','Archival');
+vidfile = VideoWriter('StochRes2023.avi','Grayscale AVI');
 % 'MPEG-4'
 open(vidfile);
 
