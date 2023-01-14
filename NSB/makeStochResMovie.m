@@ -25,8 +25,6 @@ end
 
 close(vidfile)
 
-
-
 function [im, sr] = StochRes2021(in, thresh, rango)
 
 im = in;
