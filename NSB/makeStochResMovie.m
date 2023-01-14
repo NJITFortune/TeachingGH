@@ -24,7 +24,7 @@ close(vidfile)
 
 
 
-function [im, sr] = StochRes2021(in, thresh)
+    function [im, sr] = StochRes2021(in, thresh, rango)
 
 im = in;
 
@@ -36,7 +36,7 @@ im(in < thresh) = 0;
 
 sr = zeros(x, y, 'uint8');
 %threshbox = thresh * ones(x, y);
-rnd = randi([0 80], x, y, 'uint8');
+rnd = randi([0 rango], x, y, 'uint8');
 
 for j = 1:length(rnd(:,1))
     for k = 1:length(rnd(1,:))
