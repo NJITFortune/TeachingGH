@@ -1,4 +1,4 @@
-function makeStochResMovie(thre, rang)
+function makeStochResMovie(thre, rang)    
 
 [ff, pp] = uigetfile('*', 'Pick Image');
 a = imread(fullfile(pp,ff));
@@ -39,7 +39,11 @@ im(in < thresh) = 0;
 
 sr = zeros(x, y, 'uint8');
 %threshbox = thresh * ones(x, y);
-rnd = randi([-rango rango], x, y, 'uint8');
+if rango > 255
+    rnd = randi([-thresh 255-thresh], x, y, 'uint8');
+else
+    rnd = randi([-rango rango], x, y, 'uint8');
+end
 
 for jj = 1:length(rnd(:,1))
     for k = 1:length(rnd(1,:))
