@@ -49,8 +49,7 @@ for jj = 1:length(rnd(:,1))
     for k = 1:length(rnd(1,:))
         if in(jj,k) > rnd(jj,k)+thresh  
             sr(jj,k) = 255;
-        end
-        if in(jj,k) <= rnd(jj,k)+thresh
+        else
             sr(jj,k) = 0;
         end
     end
