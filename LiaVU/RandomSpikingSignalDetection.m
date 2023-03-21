@@ -17,8 +17,10 @@ clear all
     neuron = zeros(len,numits);
 
 % Generate spikes
-    spikeIDXs = randi(len,[numits,numspikes]);
-    neuron(spikeIDXs) = 1; 
+for j=1:numits
+    spikeIDXs = randi(len,[1,numspikes]);
+    neuron(spikeIDXs,j) = 1; 
+end
 
 % Calculate the downstream response to all neural inputs
     avgDownStream = sum(neuron');
