@@ -2,7 +2,7 @@ clear all
 
 %% Random spikes 
 
-numits = 2; % How many neurons 
+numits = 512; % How many neurons 
 
 len = 200; % Duration of the epoch
 numspikes = 30; % Number of spikes per epoch
