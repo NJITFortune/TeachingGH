@@ -14,7 +14,7 @@ clear all
     t = 1:len; 
 
 % Initialize neurons, no spikes
-neuron = zeros(len,numits);
+    neuron = zeros(len,numits);
 
 % Generate spikes
     spikeIDXs = randi(len,[numits,numspikes]);
