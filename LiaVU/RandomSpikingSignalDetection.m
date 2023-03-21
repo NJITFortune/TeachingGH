@@ -35,7 +35,7 @@ figure(27); clf; hold on;
 
 %% Signal detection with random spikes
 
-detectionChance = 0.20; % Chance that a neuron will detect the event (range 0-1)
+detectionChance = 0.80; % Chance that a neuron will detect the event (range 0-1)
 
 
 neuronDetector = neuron;
