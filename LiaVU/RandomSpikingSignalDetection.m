@@ -40,7 +40,7 @@ detectionChance = 0.20; % Chance that a neuron will detect the event (range 0-1)
 
 neuronDetector = neuron;
 
-detections = find(rand(1,numits) >= detectionChance);
+detections = find(rand(1,numits) <= detectionChance);
 neuronDetector(round(len/2),detections) = 1;
 
 % Calculate the downstream response to all neural inputs
