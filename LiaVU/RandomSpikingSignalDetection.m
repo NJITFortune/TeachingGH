@@ -44,7 +44,7 @@ detections = find(rand(1,numits) >= detectionChance);
 neuronDetector(round(len/2),detections) = 1;
 
 % Calculate the downstream response to all neural inputs
-    avgDownStreamDetector = sum(neuneuronDetectorron');
+    avgDownStreamDetector = sum(neuronDetector');
     avgDownStreamDetector = avgDownStreamDetector / numits;
 
 
