@@ -53,7 +53,7 @@ figure(29); clf; hold on;
         plot(t, neuronDetector(:,j)+j);
     end
     ylim([0.9, min([maxnumtrainstoshow+1, numits+1])])
-    plot(round(len/2), 1, 'r*'); plot(round(len/2), 0, 'r*')
+    plot(round(len/2), 1, 'r*'); plot(round(len/2), min([maxnumtrainstoshow+1, numits+1]), 'r*')
 
 % Plot the downstream neural response
     figure(30); clf; 
