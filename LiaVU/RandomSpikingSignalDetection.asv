@@ -2,9 +2,10 @@ clear all
 
 %% Random spikes 
 
-numits = 1024; % How many neurons 
+% How many neurons 
+    numits = 512; 
 
-len = 200; % Duration of the epoch
+len = 200; 
 numspikes = 30; % Number of spikes per epoch
 
 z = zeros(1,len); % Empty time window, no spikes
@@ -33,10 +34,34 @@ figure(27); clf; hold on;
     figure(28); clf; 
         plot(t, avgDownStream); ylim([0 1]);
 
-%% Signal
+%% Signal detection with random spikes
 
-detectionChance = 0.50; % Chance that a neuron will detect the event (range 0-1)
+detectionChance = 0.80; % Chance that a neuron will detect the event (range 0-1)
 
-detections = find(rand(1,numits) >= detectionChance);
 
-neuron()
+neuronDetector = neuron;
+
+detections = find(rand(1,numits) <= detectionChance);
+neuronDetector(round(len/2),detections) = 1;
+
+% Calculate the downstream response to all neural inputs
+    avgDownStreamDetector = sum(neuronDetector');
+    avgDownStreamDetector = avgDownStreamDetector / numits;
+
+
+figure(29); clf; hold on;
+    for j=1:min([maxnumtrainstoshow, numits])
+        plot(t, neuronDetector(:,j)+j);
+    end
+    ylim([0.9, min([maxnumtrainstoshow+1, numits+1])])
+    plot(round(len/2), 1, 'r*'); plot(round(len/2), min([maxnumtrainstoshow+1, numits+1]), 'r*')
+
+% Plot the downstream neural response
+    figure(30); clf; 
+        plot(t, avgDownStreamDetector); 
+        hold on;
+        plot(round(len/2), 1, 'r*'); plot(round(len/2), 0, 'r*')
+        ylim([0 1]);
+
+
+
