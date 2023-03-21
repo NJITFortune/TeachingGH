@@ -43,11 +43,10 @@ figure(27); clf; hold on;
 % Chance that a neuron will detect the event (range 0-1)
     detectionChance = 0.80; 
 
+    neuronDetector = neuron;
 
-neuronDetector = neuron;
-
-detections = find(rand(1,numits) <= detectionChance);
-neuronDetector(round(len/2),detections) = 1;
+    detections = find(rand(1,numits) <= detectionChance);
+    neuronDetector(round(len/2),detections) = 1;
 
 % Calculate the downstream response to all neural inputs
     avgDownStreamDetector = sum(neuronDetector');
