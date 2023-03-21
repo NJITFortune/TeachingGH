@@ -10,19 +10,15 @@ clear all
 % Number of spikes per epoch
     numspikes = 30; 
 
-% Empty time window, no spikes
-    z = zeros(1,len); 
 % Time steps
     t = 1:len; 
 
-% Make each neuron
-for j=numits:-1:1
-    neuron(:,j) = z; 
-% Random time indexes...
-    tt = randi(len,[1,numspikes]); 
-% Are set to one, which is the spike
-    neuron(tt,j) = 1; 
-end
+% Initialize neurons, no spikes
+neuron = zeros(numits,len);
+
+% Generate spikes
+    spikeIDXs = randi(len,[numits,numspikes]);
+    neuron(spikeIDXs) = 1; 
 
 % Calculate the downstream response to all neural inputs
     avgDownStream = sum(neuron');
