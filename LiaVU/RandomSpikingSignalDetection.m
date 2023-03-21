@@ -61,3 +61,7 @@ figure(29); clf; hold on;
         hold on;
         plot(round(len/2), 1, 'r*'); plot(round(len/2), 0, 'r*')
         ylim([0 1]);
+
+
+
+        
