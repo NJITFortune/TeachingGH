@@ -2,19 +2,26 @@ clear all
 
 %% Random spikes 
 
-numits = 512; % How many neurons 
+% How many neurons 
+    numits = 512; 
 
-len = 200; % Duration of the epoch
-numspikes = 30; % Number of spikes per epoch
+% Duration of the epoch
+    len = 200; 
+% Number of spikes per epoch
+    numspikes = 30; 
 
-z = zeros(1,len); % Empty time window, no spikes
-t = 1:len; % Time steps
+% Empty time window, no spikes
+    z = zeros(1,len); 
+% Time steps
+    t = 1:len; 
 
 % Make each neuron
 for j=numits:-1:1
     neuron(:,j) = z; 
-    tt = randi(len,[1,numspikes]); % Random time indexes...
-    neuron(tt,j) = 1; % Are set to one, which is the spike
+% Random time indexes...
+    tt = randi(len,[1,numspikes]); 
+% Are set to one, which is the spike
+    neuron(tt,j) = 1; 
 end
 
 % Calculate the downstream response to all neural inputs
@@ -35,7 +42,8 @@ figure(27); clf; hold on;
 
 %% Signal detection with random spikes
 
-detectionChance = 0.80; % Chance that a neuron will detect the event (range 0-1)
+% Chance that a neuron will detect the event (range 0-1)
+    detectionChance = 0.80; 
 
 
 neuronDetector = neuron;
@@ -64,4 +72,3 @@ figure(29); clf; hold on;
 
 
 
-        
