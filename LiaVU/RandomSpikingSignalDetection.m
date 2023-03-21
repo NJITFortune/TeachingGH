@@ -32,3 +32,28 @@ figure(27); clf; hold on;
 % Plot the downstream neural response
     figure(28); clf; 
         plot(t, avgDownStream); ylim([0 1]);
+
+%% Signal
+
+detectionChance = 0.50; % Chance that a neuron will detect the event (range 0-1)
+
+
+neuronDetector = neuron;
+
+detections = find(rand(1,numits) >= detectionChance);
+neuronDetector(round(len/2),detections) = 1;
+
+% Calculate the downstream response to all neural inputs
+    avgDownStreamDetector = sum(neuneuronDetectorron');
+    avgDownStreamDetector = avgDownStreamDetector / numits;
+
+
+figure(29); clf; hold on;
+    for j=1:min([maxnumtrainstoshow, numits])
+        plot(t, neuronDetector(:,j)+j);
+    end
+    ylim([0.9, min([maxnumtrainstoshow+1, numits+1])])
+
+% Plot the downstream neural response
+    figure(30); clf; 
+        plot(t, avgDownStreamDetector); ylim([0 1]);
