@@ -3,7 +3,7 @@ clear all
 %% Random spikes 
 
 % How many neurons 
-    numits = 512; 
+    numits = 20; 
 
 % Duration of the epoch
     len = 200; 
