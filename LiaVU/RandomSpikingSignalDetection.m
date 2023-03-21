@@ -33,9 +33,9 @@ figure(27); clf; hold on;
     figure(28); clf; 
         plot(t, avgDownStream); ylim([0 1]);
 
-%% Signal
+%% Signal detection with random spikes
 
-detectionChance = 0.50; % Chance that a neuron will detect the event (range 0-1)
+detectionChance = 0.20; % Chance that a neuron will detect the event (range 0-1)
 
 
 neuronDetector = neuron;
