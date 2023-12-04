@@ -7,12 +7,23 @@
 <h2 class="display-3" align="center">Journal Publications</h2>
 
 
+<!-- BISWAS MODE 2023 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/Biswas2023icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Biswas, D., Lamperski, A., Yang, Y., Hoffman, K., Guckenheimer, J., Fortune, E.S. and N.J. Cowan (2023) Mode switching in organisms for solving explore-versus-exploit problems. Nature Mach. Intell.
+[link](https://www.nature.com/articles/s42256-023-00745-y),
+[DOI:10.1038/s42256-023-00745-y](pdf/Biswas2023Mode.pdf).
+</td></tr></table>
+<hr>
+
 <!-- COLEMAN NEURAL 2022 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
 <img src="images/icons/Coleman2022icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
 </td><td valign="middle">
-Coleman, M.J., Day, N.F., and E.S. Fortune (2022) Neural mechanisms for turn-taking in duetting plain-tailed wrens. Front.  Neural Circuits, fn-cir.2022.970434. 
+Coleman, M.J., Day, N.F., and E.S. Fortune (2022) Neural mechanisms for turn-taking in duetting plain-tailed wrens. Front. Neural Circuits, fn-cir.2022.970434. 
 [link](https://doi.org/10.3389/fncir.2022.970434), 
 [PMID:34074755](pdf/Coleman2022Neural.pdf).
 </td></tr></table>
