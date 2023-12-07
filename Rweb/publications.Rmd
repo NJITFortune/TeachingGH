@@ -18,6 +18,29 @@ Biswas, D., Lamperski, A., Yang, Y., Hoffman, K., Guckenheimer, J., Fortune, E.S
 </td></tr></table>
 <hr>
 
+<!-- SOARES ADAPTIVE 2023 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/Soares2023icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Soares, D., Gallman, K., Bichuette, M.E. and E.S. Fortune (2023) Adaptive shift
+of active electroreception in weakly electric fish for troglobitic life. Front. Ecol. Evol.
+[link](https://doi.org/10.3389/fevo.2023.1180506),
+[DOI:10.3389/fevo.2023.1180506](pdf/Soares2023Adaptive.pdf).
+</td></tr></table>
+<hr>
+
+<!-- AMENDOLARA LSTM 2023 -->
+<table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
+<tr><td colspan=1 width=100>
+<img src="images/icons/Amendolara2023icon.png" style="width:75px; border:1px solid; margin-right: 10px" align="left">
+</td><td valign="middle">
+Amendolara, A.B., Sant, B., Rotstein, H.G. and E.S. Fortune (2023) LSTM-based recurrent neural network provides effective short term flu forecasting. BMC Public Health, 23:1788
+[link](https://doi.org/10.1186/s12889-023-16720-6),
+[PMID:37710241](pdf/Amendolara2023LSTM-based.pdf).
+</td></tr></table>
+<hr>
+
 <!-- COLEMAN NEURAL 2022 -->
 <table columns=2 cellspacing=2 cellpadding=5 border=0 width=100%>
 <tr><td colspan=1 width=100>
